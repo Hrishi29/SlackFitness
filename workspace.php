@@ -23,51 +23,58 @@
 
 
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
-
-
-
+	
+	if(isset($_POST['submit'])){
+	
 	$search = $_POST["search"];
-
+	
   $search = trim($search);
   $search = stripslashes($search);
   $search = htmlspecialchars($search);
-
-
-
-	mysqli_connect("localhost","root","") or die(mysql_error());
-    mysqli_select_db("slack");
-
-	$r1=mysql_query("select workspace from users where workspace='".$search."'");
-    $r2=mysql_fetch_array($r1);
-
-	 if($r2['workspace']!=$search)
-
+  
+  
+  
+	$conn = mysqli_connect("localhost","root","");
+    if ($conn->connect_error) {
+    die("Connection failed: " . $conn->connect_error);
+     } 
+	
+	mysqli_select_db($conn,'slack');
+	
+	$r1=mysqli_query($conn,"select workspace from users where workspace='".$search."'");
+    $r2=mysqli_fetch_array($r1);
+	
+	 if($r2['workspace']!= $search)
+	
 	{
-
-
+		
+	
 	?>
-
-				<h2>Error</h2>
-
+	
+				<h2>We couldn’t find your workspace.</h2>
+	
 	<?php
 	}
-
+	
 	else
 	{
-
-	header("Location: signin.php");
-
-
-
+	
+	header("Location: workspace.php");
+	
+	
+	
 	}
+	
 }
-?>
+}
 
+?>
+				
 				<h2>Sign in to your workspace</h2>
 					<p>Enter your workspace’s Slack URL.</p>
 						<form  class="form-horizontal" method="post" action="milestone1.php">
 							<div class="input-group">
-
+								
 									<input id="workspace" type="text"  placeholder="your-workspace-url" name="search" required />
 											<label for="workspace" class="control-label">someone@example.com</label>
 							</div>
@@ -75,16 +82,16 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 									<div class="input-group" >
 											<button class="btn btn-success" name="submit" value="submit" type="submit">Continue -></button>
 									</div>
-
+							
 						</form>
-
-
-
-
-
-
-
-
+									
+									
+										
+									
+							
+						
+			
+		
 			</div>
 		</div>
 	</div>
