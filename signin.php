@@ -22,20 +22,40 @@ error_reporting(0);
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css"><!-- getting the bootstrap css file for predefined components  -->
-</head>
+
+  <style>
+	#bannerimage {
+  width: 100%;
+  background-image: url(image1.png);
+  height: 700px;
+  background-repeat: no-repeat;
+  background-position: center;
+  -webkit-background-size: cover;
+    -moz-background-size: cover;
+    -o-background-size: cover;
+    background-size: cover;
+  
+}
+	
+	
+	
+	</style>
+  </head>
+  
 
 
 <body>
+<div id="bannerimage">
 	<div class="container">
 		<div class="row">
-			<div class="col-md-8 col-sm-4 col-md-offset-2">
+			<div style="margin-top:150px" class="col-md-4 col-sm-4 col-md-offset-4">
 				
 	<center>
-			<h3>Sign in to <?php echo $_SESSION['workspace']; ?></h3>
-			<h5><?php echo $_SESSION['workspace']; ?>.muscles.com</h5>
+			<h3 style="font-weight:bold">Sign in to <?php echo $_SESSION['workspace']; ?></h3>
+			<h5><?php echo $_SESSION['workspace']; ?>.fitness.com</h5>
 	</center>		
 	
-		<h5>Enter your email address and password</h5>
+		<h5 style="font-weight:bold">Enter your email address and password</h5>
 					
 						<form   method="post" action="login.php">
 							<div class="input-group">
@@ -70,6 +90,6 @@ error_reporting(0);
 
 
 	
-	
+</div>	
  </body>
 </html>	
