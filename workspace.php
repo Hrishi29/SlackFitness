@@ -1,7 +1,7 @@
-
-
-
-
+<?php
+// Start the session
+session_start();
+?>
 
 <!DOCTYPE html>
 <html lang="en">
@@ -24,7 +24,7 @@
 
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
 	
-	if(isset($_POST['submit'])){
+	
 	
 	$search = $_POST["search"];
 	
@@ -51,32 +51,33 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 	
 	?>
 	
-				<h2>We couldn’t find your workspace.</h2>
+				<h4>We couldn’t find your workspace.</h4>
 	
 	<?php
 	}
 	
 	else
 	{
+	$_SESSION['workspace'] = $r2['workspace'];
+	header("Location: signin.php");
 	
-	header("Location: workspace.php");
 	
 	
 	
 	}
 	
-}
+$conn->close();
 }
 
 ?>
 				
 				<h2>Sign in to your workspace</h2>
 					<p>Enter your workspace’s Slack URL.</p>
-						<form  class="form-horizontal" method="post" action="milestone1.php">
+						<form  class="form-horizontal" method="post" action="workspace.php">
 							<div class="input-group">
 								
 									<input id="workspace" type="text"  placeholder="your-workspace-url" name="search" required />
-											<label for="workspace" class="control-label">someone@example.com</label>
+											<label style="padding-left:5px" for="workspace" class="control-label">.muscles.com</label>
 							</div>
 								<br>
 									<div class="input-group" >
