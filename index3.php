@@ -12,7 +12,7 @@ error_reporting(0);
 	?>
 	<?php
 
-$conn = mysqli_connect("localhost","root","");
+$conn = mysqli_connect("localhost","admin","M0n@rch$");
     if ($conn->connect_error) {
     die("Connection failed: " . $conn->connect_error);
      } 
