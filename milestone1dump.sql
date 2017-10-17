@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Oct 17, 2017 at 05:23 PM
+-- Generation Time: Oct 17, 2017 at 05:32 PM
 -- Server version: 5.7.14
 -- PHP Version: 5.6.25
 
@@ -28,7 +28,6 @@ USE `slack`;
 -- Table structure for table `users`
 --
 
-DROP TABLE IF EXISTS `users`;
 CREATE TABLE `users` (
   `id` int(20) NOT NULL,
   `workspace` varchar(100) NOT NULL
@@ -47,7 +46,6 @@ INSERT INTO `users` (`id`, `workspace`) VALUES
 -- Table structure for table `users_channel`
 --
 
-DROP TABLE IF EXISTS `users_channel`;
 CREATE TABLE `users_channel` (
   `id` int(20) NOT NULL DEFAULT '0',
   `channels` varchar(100) NOT NULL,
@@ -70,7 +68,6 @@ INSERT INTO `users_channel` (`id`, `channels`, `ch_id`) VALUES
 -- Table structure for table `users_info`
 --
 
-DROP TABLE IF EXISTS `users_info`;
 CREATE TABLE `users_info` (
   `id` int(20) NOT NULL DEFAULT '0',
   `user_email` varchar(100) NOT NULL DEFAULT '',
@@ -96,13 +93,12 @@ INSERT INTO `users_info` (`id`, `user_email`, `user_pass`, `user_name`) VALUES
 -- Table structure for table `users_message`
 --
 
-DROP TABLE IF EXISTS `users_message`;
 CREATE TABLE `users_message` (
   `mess_id` int(20) NOT NULL,
   `ch_id` int(20) NOT NULL DEFAULT '0',
   `messages` varchar(100) NOT NULL,
   `user_name` varchar(100) NOT NULL,
-  `date` timestamp(6) NOT NULL
+  `date` timestamp(5) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
@@ -110,35 +106,35 @@ CREATE TABLE `users_message` (
 --
 
 INSERT INTO `users_message` (`mess_id`, `ch_id`, `messages`, `user_name`, `date`) VALUES
-(8, 1, 'hello guys!', 'Tom Mater', '2017-10-17 11:48:43.000000'),
-(9, 1, 'hey how are you?', 'Tom Mater', '2017-10-17 12:09:32.000000'),
-(17, 1, 'good', 'Tom Mater', '2017-10-17 12:42:01.000000'),
-(18, 1, 'cool', 'Tom Mater', '2017-10-17 12:43:03.000000'),
-(19, 1, 'can', 'Tom Mater', '2017-10-17 13:06:41.000000'),
-(20, 4, 'hello', 'Tom Mater', '2017-10-17 13:07:40.000000'),
-(21, 3, 'hey', 'Tom Mater', '2017-10-17 13:18:20.000000'),
-(22, 2, 'good!', 'Tom Mater', '2017-10-17 13:23:28.000000'),
-(23, 1, 'wassup', 'Finn McMissile', '2017-10-17 14:58:39.000000'),
-(24, 1, 'what about nutrition?', 'Lightning McQueen', '2017-10-17 16:21:30.000000'),
-(25, 3, 'Crossfit is great', 'Lightning McQueen', '2017-10-17 16:22:05.000000'),
-(26, 3, 'Can you help me with that?', 'Lightning McQueen', '2017-10-17 16:22:36.000000'),
-(27, 2, 'How about a good protein diet plan', 'Lightning McQueen', '2017-10-17 16:23:11.000000'),
-(28, 4, 'workouts!!!!!', 'Lightning McQueen', '2017-10-17 16:23:31.000000'),
-(29, 4, 'its great', 'Lightning McQueen', '2017-10-17 16:24:12.000000'),
-(30, 1, 'hey everyone', 'Doc Hudson', '2017-10-17 16:25:20.000000'),
-(31, 1, 'Hola!!!!!!', 'Doc Hudson', '2017-10-17 16:25:36.000000'),
-(32, 4, 'Could you guyss help me with the workout plan', 'Doc Hudson', '2017-10-17 16:26:24.000000'),
-(33, 4, 'please', 'Doc Hudson', '2017-10-17 16:26:30.000000'),
-(34, 3, 'awesomee', 'Doc Hudson', '2017-10-17 16:26:37.000000'),
-(35, 3, 'good channel!!!', 'Doc Hudson', '2017-10-17 16:26:50.000000'),
-(36, 2, 'hellooooo', 'Doc Hudson', '2017-10-17 16:27:00.000000'),
-(37, 2, 'help me', 'Doc Hudson', '2017-10-17 16:27:25.000000'),
-(38, 1, 'help me', 'Doc Hudson', '2017-10-17 16:28:19.000000'),
-(39, 1, 'hiiiiii', 'Sally Carrera', '2017-10-17 16:31:27.000000'),
-(40, 4, 'hello everyone', 'Sally Carrera', '2017-10-17 16:31:49.000000'),
-(41, 3, 'good job!!!', 'Sally Carrera', '2017-10-17 16:32:03.000000'),
-(42, 2, 'thats a nice channel', 'Sally Carrera', '2017-10-17 16:32:23.000000'),
-(43, 2, 'help me with the nutrition!!!', 'Sally Carrera', '2017-10-17 16:32:36.000000');
+(8, 1, 'hello guys!', 'Tom Mater', '2017-10-17 11:48:43.00000'),
+(9, 1, 'hey how are you?', 'Tom Mater', '2017-10-17 12:09:32.00000'),
+(17, 1, 'good', 'Tom Mater', '2017-10-17 12:42:01.00000'),
+(18, 1, 'cool', 'Tom Mater', '2017-10-17 12:43:03.00000'),
+(19, 1, 'can', 'Tom Mater', '2017-10-17 13:06:41.00000'),
+(20, 4, 'hello', 'Tom Mater', '2017-10-17 13:07:40.00000'),
+(21, 3, 'hey', 'Tom Mater', '2017-10-17 13:18:20.00000'),
+(22, 2, 'good!', 'Tom Mater', '2017-10-17 13:23:28.00000'),
+(23, 1, 'wassup', 'Finn McMissile', '2017-10-17 14:58:39.00000'),
+(24, 1, 'what about nutrition?', 'Lightning McQueen', '2017-10-17 16:21:30.00000'),
+(25, 3, 'Crossfit is great', 'Lightning McQueen', '2017-10-17 16:22:05.00000'),
+(26, 3, 'Can you help me with that?', 'Lightning McQueen', '2017-10-17 16:22:36.00000'),
+(27, 2, 'How about a good protein diet plan', 'Lightning McQueen', '2017-10-17 16:23:11.00000'),
+(28, 4, 'workouts!!!!!', 'Lightning McQueen', '2017-10-17 16:23:31.00000'),
+(29, 4, 'its great', 'Lightning McQueen', '2017-10-17 16:24:12.00000'),
+(30, 1, 'hey everyone', 'Doc Hudson', '2017-10-17 16:25:20.00000'),
+(31, 1, 'Hola!!!!!!', 'Doc Hudson', '2017-10-17 16:25:36.00000'),
+(32, 4, 'Could you guyss help me with the workout plan', 'Doc Hudson', '2017-10-17 16:26:24.00000'),
+(33, 4, 'please', 'Doc Hudson', '2017-10-17 16:26:30.00000'),
+(34, 3, 'awesomee', 'Doc Hudson', '2017-10-17 16:26:37.00000'),
+(35, 3, 'good channel!!!', 'Doc Hudson', '2017-10-17 16:26:50.00000'),
+(36, 2, 'hellooooo', 'Doc Hudson', '2017-10-17 16:27:00.00000'),
+(37, 2, 'help me', 'Doc Hudson', '2017-10-17 16:27:25.00000'),
+(38, 1, 'help me', 'Doc Hudson', '2017-10-17 16:28:19.00000'),
+(39, 1, 'hiiiiii', 'Sally Carrera', '2017-10-17 16:31:27.00000'),
+(40, 4, 'hello everyone', 'Sally Carrera', '2017-10-17 16:31:49.00000'),
+(41, 3, 'good job!!!', 'Sally Carrera', '2017-10-17 16:32:03.00000'),
+(42, 2, 'thats a nice channel', 'Sally Carrera', '2017-10-17 16:32:23.00000'),
+(43, 2, 'help me with the nutrition!!!', 'Sally Carrera', '2017-10-17 16:32:36.00000');
 
 --
 -- Indexes for dumped tables
