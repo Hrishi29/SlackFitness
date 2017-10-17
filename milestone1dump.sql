@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Oct 17, 2017 at 03:39 PM
+-- Generation Time: Oct 17, 2017 at 04:55 PM
 -- Server version: 5.7.14
 -- PHP Version: 5.6.25
 
@@ -112,7 +112,27 @@ INSERT INTO `users_message` (`mess_id`, `ch_id`, `messages`, `user_name`, `date`
 (20, 4, 'hello', 'Tom Mater', '2017-10-17 13:07:40.000000'),
 (21, 3, 'hey', 'Tom Mater', '2017-10-17 13:18:20.000000'),
 (22, 2, 'good!', 'Tom Mater', '2017-10-17 13:23:28.000000'),
-(23, 1, 'wassup', 'Finn McMissile', '2017-10-17 14:58:39.000000');
+(23, 1, 'wassup', 'Finn McMissile', '2017-10-17 14:58:39.000000'),
+(24, 1, 'what about nutrition?', 'Lightning McQueen', '2017-10-17 16:21:30.000000'),
+(25, 3, 'Crossfit is great', 'Lightning McQueen', '2017-10-17 16:22:05.000000'),
+(26, 3, 'Can you help me with that?', 'Lightning McQueen', '2017-10-17 16:22:36.000000'),
+(27, 2, 'How about a good protein diet plan', 'Lightning McQueen', '2017-10-17 16:23:11.000000'),
+(28, 4, 'workouts!!!!!', 'Lightning McQueen', '2017-10-17 16:23:31.000000'),
+(29, 4, 'its great', 'Lightning McQueen', '2017-10-17 16:24:12.000000'),
+(30, 1, 'hey everyone', 'Doc Hudson', '2017-10-17 16:25:20.000000'),
+(31, 1, 'Hola!!!!!!', 'Doc Hudson', '2017-10-17 16:25:36.000000'),
+(32, 4, 'Could you guyss help me with the workout plan', 'Doc Hudson', '2017-10-17 16:26:24.000000'),
+(33, 4, 'please', 'Doc Hudson', '2017-10-17 16:26:30.000000'),
+(34, 3, 'awesomee', 'Doc Hudson', '2017-10-17 16:26:37.000000'),
+(35, 3, 'good channel!!!', 'Doc Hudson', '2017-10-17 16:26:50.000000'),
+(36, 2, 'hellooooo', 'Doc Hudson', '2017-10-17 16:27:00.000000'),
+(37, 2, 'help me', 'Doc Hudson', '2017-10-17 16:27:25.000000'),
+(38, 1, 'help me', 'Doc Hudson', '2017-10-17 16:28:19.000000'),
+(39, 1, 'hiiiiii', 'Sally Carrera', '2017-10-17 16:31:27.000000'),
+(40, 4, 'hello everyone', 'Sally Carrera', '2017-10-17 16:31:49.000000'),
+(41, 3, 'good job!!!', 'Sally Carrera', '2017-10-17 16:32:03.000000'),
+(42, 2, 'thats a nice channel', 'Sally Carrera', '2017-10-17 16:32:23.000000'),
+(43, 2, 'help me with the nutrition!!!', 'Sally Carrera', '2017-10-17 16:32:36.000000');
 
 --
 -- Indexes for dumped tables
@@ -162,7 +182,7 @@ ALTER TABLE `users_channel`
 -- AUTO_INCREMENT for table `users_message`
 --
 ALTER TABLE `users_message`
-  MODIFY `mess_id` int(20) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=24;
+  MODIFY `mess_id` int(20) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=44;
 --
 -- Constraints for dumped tables
 --
