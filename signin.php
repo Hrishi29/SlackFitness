@@ -9,7 +9,7 @@ if(!isset($_SESSION['workspace'])){
 
 
 if(isset($_SESSION['user_name'])) {
-   header("Location:login.php");	
+   header("Location:signin.php");	
 
 }	
 error_reporting(0);

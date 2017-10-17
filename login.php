@@ -27,17 +27,20 @@ $_SESSION['user_pass']=$_POST['user_pass'];
 	
 	mysqli_select_db($conn,'slack');
 	
-	$r1=mysqli_query($conn,"select user_email,user_pass from users where user_email='".$_SESSION['user_email']."' and user_pass='".$_SESSION['user_pass']."'");
-    $r2=mysqli_fetch_array($r1);
-	
-	 if($r2['user_email']==$_SESSION['user_email'] && $r2['user_pass']==$_SESSION['user_pass'])
-	
-	{
+	 $r1=mysqli_query($conn,"select user_email,user_pass from users_info where user_email='".$_SESSION['user_email']."' and user_pass='".$_SESSION['user_pass']."'");
+     $r2=mysqli_fetch_array($r1);
+   
+      if($r2['user_email']==$_SESSION['user_email'] && $r2['user_pass']==$_SESSION['user_pass'])
+         {
+          
+			 $result=mysqli_query($conn,"select user_name from users_info where user_email='".$_SESSION['user_email']."' and user_pass='".$_SESSION['user_pass']."'");
+		  
+	$row=mysqli_fetch_array($result);
 		
+	$_SESSION['user_name'] = $row['user_name'];
+	header("Location:index.php");
 	
-	echo "welcome!";
-	}
-	
+	 }
 	else 
 	{
 	
