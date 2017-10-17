@@ -59,7 +59,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
   
   
   
-	$conn = mysqli_connect("localhost","root","");
+	$conn = mysqli_connect("localhost","admin","M0n@rch$");
     if ($conn->connect_error) {
     die("Connection failed: " . $conn->connect_error);
      } 
