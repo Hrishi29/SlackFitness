@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Oct 17, 2017 at 05:23 PM
+-- Generation Time: Oct 17, 2017 at 05:02 PM
 -- Server version: 5.7.14
 -- PHP Version: 5.6.25
 
@@ -19,8 +19,6 @@ SET time_zone = "+00:00";
 --
 -- Database: `slack`
 --
-CREATE DATABASE IF NOT EXISTS `slack` DEFAULT CHARACTER SET latin1 COLLATE latin1_swedish_ci;
-USE `slack`;
 
 -- --------------------------------------------------------
 
@@ -28,7 +26,6 @@ USE `slack`;
 -- Table structure for table `users`
 --
 
-DROP TABLE IF EXISTS `users`;
 CREATE TABLE `users` (
   `id` int(20) NOT NULL,
   `workspace` varchar(100) NOT NULL
@@ -47,7 +44,6 @@ INSERT INTO `users` (`id`, `workspace`) VALUES
 -- Table structure for table `users_channel`
 --
 
-DROP TABLE IF EXISTS `users_channel`;
 CREATE TABLE `users_channel` (
   `id` int(20) NOT NULL DEFAULT '0',
   `channels` varchar(100) NOT NULL,
@@ -70,7 +66,6 @@ INSERT INTO `users_channel` (`id`, `channels`, `ch_id`) VALUES
 -- Table structure for table `users_info`
 --
 
-DROP TABLE IF EXISTS `users_info`;
 CREATE TABLE `users_info` (
   `id` int(20) NOT NULL DEFAULT '0',
   `user_email` varchar(100) NOT NULL DEFAULT '',
@@ -96,7 +91,6 @@ INSERT INTO `users_info` (`id`, `user_email`, `user_pass`, `user_name`) VALUES
 -- Table structure for table `users_message`
 --
 
-DROP TABLE IF EXISTS `users_message`;
 CREATE TABLE `users_message` (
   `mess_id` int(20) NOT NULL,
   `ch_id` int(20) NOT NULL DEFAULT '0',
