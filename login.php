@@ -20,7 +20,7 @@ $_SESSION['user_pass']=$_POST['user_pass'];
 	
   
   
-	$conn = mysqli_connect("localhost","admin","M0n@rch$");
+	$conn = mysqli_connect("localhost","root","");
     if ($conn->connect_error) {
     die("Connection failed: " . $conn->connect_error);
      } 
