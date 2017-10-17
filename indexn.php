@@ -35,7 +35,7 @@ error_reporting(0);
         <!-- Sidebar -->
         <div id="sidebar-wrapper">
             <ul class="sidebar-nav">
-                <li class="sidebar-brand">
+               <li class="sidebar-brand">
                     <a href="index.php">
                         <?php echo $_SESSION['workspace']; ?>
                     </a>
@@ -49,7 +49,6 @@ error_reporting(0);
                 <li class="sidebar-brand">
                     <a>Channels</a>
                 </li>
-				
 				
 				<?php
 
@@ -76,7 +75,7 @@ $conn = mysqli_connect("localhost","root","");
 
 ?>		  
           <li>
-                    <a href="indexn.php"><span style="padding-right:5px">#</span><?php echo $r2['channels']; ?></a>
+                    <a class="actives" style="color:white !important;" href="indexn.php"><span style="padding-right:5px">#</span><?php echo $r2['channels']; ?></a>
 		  </li>			
 		  
 		  
@@ -98,7 +97,7 @@ $conn = mysqli_connect("localhost","root","");
 		
       <li>
           
-                    <a  href="indexc.php"><span style="padding-right:5px">#</span><?php echo $r24['channels']; ?></a>
+                    <a href="indexc.php"><span style="padding-right:5px">#</span><?php echo $r24['channels']; ?></a>
 		  </li>			
 		  
 		  
@@ -145,7 +144,7 @@ $conn = mysqli_connect("localhost","root","");
 		
       <li>
           
-                    <a class="actives" style="color:white !important;" href="index.php"><span style="padding-right:5px">#</span><?php echo $r23['channels']; ?></a>
+                    <a  href="index.php"><span style="padding-right:5px">#</span><?php echo $r23['channels']; ?></a>
 		  </li>			
 		  
 		  
@@ -156,7 +155,7 @@ $conn = mysqli_connect("localhost","root","");
 
 
 		 <li class="sidebar-brand">
-                    <a href="#">
+                    <a>
                         Direct Messages
                     </a>
           </li>
@@ -202,7 +201,7 @@ $conn = mysqli_connect("localhost","root","");
 		  
 		  
 	
-	     $r33=mysqli_query($conn,"select *from users_message where ch_id='1'");
+	     $r33=mysqli_query($conn,"select *from users_message where ch_id='2'");
      
 	     while($r34=mysqli_fetch_array($r33))
 	       {
@@ -253,7 +252,7 @@ $conn->close();
 										<div class="col-sm-3 col-md-3">
 										</div>
 										<div class="col-sm-9 col-md-9">
-											<form class="navbar-form" action="index1.php" method="post">
+											<form class="navbar-form" action="index2.php" method="post">
 												<div class="row">
 					<div class="input-group input-group-lg col-lg-10">
 						

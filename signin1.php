@@ -51,6 +51,7 @@ error_reporting(0);
 			<div style="margin-top:150px" class="col-md-4 col-sm-4 col-md-offset-4">
 				
 	<center>
+			<h2 style="font-weight:bold">Invalid Username and Password!</h2> 	
 			<h3 style="font-weight:bold">Sign in to <?php echo $_SESSION['workspace']; ?></h3>
 			<h5><?php echo $_SESSION['workspace']; ?>.fitness.com</h5>
 	</center>		

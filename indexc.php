@@ -50,7 +50,6 @@ error_reporting(0);
                     <a>Channels</a>
                 </li>
 				
-				
 				<?php
 
 $conn = mysqli_connect("localhost","root","");
@@ -98,7 +97,7 @@ $conn = mysqli_connect("localhost","root","");
 		
       <li>
           
-                    <a  href="indexc.php"><span style="padding-right:5px">#</span><?php echo $r24['channels']; ?></a>
+                    <a class="actives" style="color:white !important;" href="indexc.php"><span style="padding-right:5px">#</span><?php echo $r24['channels']; ?></a>
 		  </li>			
 		  
 		  
@@ -145,7 +144,7 @@ $conn = mysqli_connect("localhost","root","");
 		
       <li>
           
-                    <a class="actives" style="color:white !important;" href="index.php"><span style="padding-right:5px">#</span><?php echo $r23['channels']; ?></a>
+                    <a  href="index.php"><span style="padding-right:5px">#</span><?php echo $r23['channels']; ?></a>
 		  </li>			
 		  
 		  
@@ -202,7 +201,7 @@ $conn = mysqli_connect("localhost","root","");
 		  
 		  
 	
-	     $r33=mysqli_query($conn,"select *from users_message where ch_id='1'");
+	     $r33=mysqli_query($conn,"select *from users_message where ch_id='3'");
      
 	     while($r34=mysqli_fetch_array($r33))
 	       {
@@ -253,7 +252,7 @@ $conn->close();
 										<div class="col-sm-3 col-md-3">
 										</div>
 										<div class="col-sm-9 col-md-9">
-											<form class="navbar-form" action="index1.php" method="post">
+											<form class="navbar-form" action="index3.php" method="post">
 												<div class="row">
 					<div class="input-group input-group-lg col-lg-10">
 						
