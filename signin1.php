@@ -3,12 +3,12 @@
 session_start();//session starts here
 
 
-if(!isset($_SESSION['workspace'])){
+if(!isset($_SESSION['workspace'])){  //if the current workspace is not accessing the webpage then it will automatically be redirected to workspace.php 
    header("Location:workspace.php");
 }
 
 
-if(isset($_SESSION['user_name'])) {
+if(isset($_SESSION['user_name'])) { // if the current user is in session he will be automatically redirected to index.php
    header("Location:index.php");	
 
 }	
@@ -16,81 +16,71 @@ error_reporting(0);
 	?>
 
 <!DOCTYPE html>
-<html lang="en">
-<head>
-  <title>Slack</title>
-  <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css"><!-- getting the bootstrap css file for predefined components  -->
+	<html lang="en">
+		<head>
+			<title>Slack</title>
+				<meta charset="utf-8">
+				<meta name="viewport" content="width=device-width, initial-scale=1">
+				<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css"><!-- getting the bootstrap css file for predefined components  -->
 
-  <style>
-	#bannerimage {
-  width: 100%;
-  background-image: url(image1.png);
-  height: 700px;
-  background-repeat: no-repeat;
-  background-position: center;
-  -webkit-background-size: cover;
-    -moz-background-size: cover;
-    -o-background-size: cover;
-    background-size: cover;
+				<style>
+					#bannerimage {
+					width: 100%;
+					background-image: url(image1.png);
+					height: 700px;
+					background-repeat: no-repeat;
+					background-position: center;
+					-webkit-background-size: cover;
+					-moz-background-size: cover;
+					-o-background-size: cover;
+					background-size: cover;
   
-}
+					}
 	
 	
 	
-	</style>
-  </head>
+				</style>
+		</head>
   
 
 
-<body>
-<div id="bannerimage">
-	<div class="container">
-		<div class="row">
-			<div style="margin-top:150px" class="col-md-4 col-sm-4 col-md-offset-4">
+		<body>
+			<div id="bannerimage">
+				<div class="container">
+					<div class="row">
+						<div style="margin-top:150px" class="col-md-4 col-sm-4 col-md-offset-4">
 				
-	<center>
-			<h2 style="font-weight:bold">Invalid Username and Password!</h2> 	
-			<h3 style="font-weight:bold">Sign in to <?php echo $_SESSION['workspace']; ?></h3>
-			<h5><?php echo $_SESSION['workspace']; ?>.fitness.com</h5>
-	</center>		
+							<center>
+								<h2 style="font-weight:bold">Invalid Username and Password!</h2> 	
+								<h3 style="font-weight:bold">Sign in to <?php echo $_SESSION['workspace']; ?></h3>
+								<h5><?php echo $_SESSION['workspace']; ?>.fitness.com</h5>
+							</center>		
 	
-		<h5 style="font-weight:bold">Enter your email address and password</h5>
+								<h5 style="font-weight:bold">Enter your email address and password</h5>
 					
-						<form   method="post" action="login.php">
-							<div class="input-group">
-								<span class="input-group-addon"><i class="glyphicon glyphicon-user"></i></span>
-									<input id="email" type="text" class="form-control" name="user_email" placeholder="Email" required>
-							</div>
+							<form   method="post" action="login.php">
+								<div class="input-group">
+									<span class="input-group-addon"><i class="glyphicon glyphicon-user"></i></span>
+										<input id="email" type="text" class="form-control" name="user_email" placeholder="Email" required>
+								</div>
 							
-							<br>
+								<br>
 							
-							<div class="input-group">
-								<span class="input-group-addon"><i class="glyphicon glyphicon-lock"></i></span>
-									<input id="password" type="password" class="form-control" name="user_pass" placeholder="Password" required>
-							</div>
+								<div class="input-group">
+									<span class="input-group-addon"><i class="glyphicon glyphicon-lock"></i></span>
+										<input id="password" type="password" class="form-control" name="user_pass" placeholder="Password" required>
+								</div>
 							
-							<br>
-							<div class="input-group">
-							<button  class="btn btn-md btn-success"  type="submit" value="submit" name="submit">Sign In</button>
-							</div>
-						</form>
+								<br>
+								<div class="input-group">
+									<button  class="btn btn-md btn-success"  type="submit" value="submit" name="submit">Sign In</button>
+								</div>
+							</form>
 									
 									
-										
-									
-							
-						
-			
-		
-			</div>
-		</div>
-	</div>
-
-
-
-	
-</div>	
- </body>
+						</div>
+					</div>
+				</div>
+			</div>	
+		</body>
 </html>	

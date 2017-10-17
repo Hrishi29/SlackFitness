@@ -2,7 +2,7 @@
 
 session_start();//session starts here
 
-if(!isset($_SESSION['user_name'])) {
+if(!isset($_SESSION['user_name'])) { // if the current user is not in session he will be automatically redirected to signin.php
    header("Location:signin.php");	
 
 }	
@@ -14,92 +14,84 @@ error_reporting(0);
 
 
 <!DOCTYPE html>
-<html lang="en">
-<head>
-  <title>Slack</title>
-	<meta charset="utf-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    
-	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css"><!-- getting the bootstrap css file for predefined components  -->
+	<html lang="en">
+		<head>
+			<title>Slack</title>
+			<meta charset="utf-8">
+			<meta http-equiv="X-UA-Compatible" content="IE=edge">
+			<meta name="viewport" content="width=device-width, initial-scale=1">
+			<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css"><!-- getting the bootstrap css file for predefined components  -->
   <!-- Custom CSS -->
-    <link href="css/sidebar.css" rel="stylesheet">	
+			<link href="css/sidebar.css" rel="stylesheet">	
   
   
-  </head>
+		</head>
 
-<body>
+		<body>
 
-    <div id="wrapper">
+			<div id="wrapper">
 
         <!-- Sidebar -->
-        <div id="sidebar-wrapper">
-            <ul class="sidebar-nav">
-                <li class="sidebar-brand">
-                    <a href="index.php">
-                        <?php echo $_SESSION['workspace']; ?>
-                    </a>
-                </li>
-                <li class="sidebar-brand">
-                    <a style="color:white !important;" class="actives" href="index.php"><?php echo $_SESSION['user_name']; ?></a>
-                </li>
-				<li>
-				<a style="color:white !important;" href="signout.php" class="btn btn-danger btn-sm" role="button">Sign Out</a>
-				</li>
-                <li class="sidebar-brand">
-                    <a>Channels</a>
-                </li>
+				<div id="sidebar-wrapper">
+					<ul class="sidebar-nav">
+						<li class="sidebar-brand">
+							<a href="index.php">
+								<?php echo $_SESSION['workspace']; ?>
+							</a>
+						</li>
+					<li class="sidebar-brand">
+						<a style="color:white !important;" class="actives" href="index.php"><?php echo $_SESSION['user_name']; ?></a>
+					</li>
+					<li>
+						<a style="color:white !important;" href="signout.php" class="btn btn-danger btn-sm" role="button">Sign Out</a>
+					</li>
+					<li class="sidebar-brand">
+						<a>Channels</a>
+					</li>
 				
 				
-				<?php
+		<?php
 
-$conn = mysqli_connect("localhost","admin","M0n@rch$");
-    if ($conn->connect_error) {
-    die("Connection failed: " . $conn->connect_error);
-     } 
+			$conn = mysqli_connect("localhost","admin","M0n@rch$");
+			if ($conn->connect_error) {
+				die("Connection failed: " . $conn->connect_error);
+			} 
 	
-	mysqli_select_db($conn,'slack');
+				mysqli_select_db($conn,'slack');
 	
-	
-	
-	
-	
-	
-	
-	 $r1=mysqli_query($conn,"select channels from users_channel where channels='".nutrition."'");
-     
-	 while($r2=mysqli_fetch_array($r1))
-	 {
-	 
-   
-      
-
-?>		  
-          <li>
-                    <a href="indexn.php"><span style="padding-right:5px">#</span><?php echo $r2['channels']; ?></a>
-		  </li>			
-		  
-		  
-<?php
-	 }
-?>	 
-
-<?php
-
- $r14=mysqli_query($conn,"select channels from users_channel where channels='".crossfit."'");
-     
-	 while($r24=mysqli_fetch_array($r14))
-	 {
-	 
-   
-      
-
-?>		 
+				$r1=mysqli_query($conn,"select channels from users_channel where channels='".nutrition."'");
 		
-      <li>
-          
-                    <a  href="indexc.php"><span style="padding-right:5px">#</span><?php echo $r24['channels']; ?></a>
-		  </li>			
+				while($r2=mysqli_fetch_array($r1))
+					{
+	 
+   
+      
+
+		?>		  
+					<li>
+						<a href="indexn.php"><span style="padding-right:5px">#</span><?php echo $r2['channels']; ?></a>
+					</li>			
+		  
+		  
+		<?php
+			}
+		?>	 
+
+		<?php
+
+			$r14=mysqli_query($conn,"select channels from users_channel where channels='".crossfit."'");
+     
+			while($r24=mysqli_fetch_array($r14))
+				{
+	 
+   
+      
+
+		?>		 
+		
+			<li>
+				<a  href="indexc.php"><span style="padding-right:5px">#</span><?php echo $r24['channels']; ?></a>
+			</li>			
 		  
 		  
 		  
