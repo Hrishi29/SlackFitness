@@ -69,10 +69,8 @@ session_start();
 					if ($_SERVER["REQUEST_METHOD"] == "POST") // post method used for form submission
 					{
 						include 'query.php'; //includes the query.php file
-						$r1=mysqli_query($conn,"select workspace from users where workspace='".$search."'");
-						$r2=mysqli_fetch_array($r1);
-	
-						if($r2['workspace']!= $search)
+						
+					    if($r2['workspace']!= $search)
 	
 						{
 		
