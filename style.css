@@ -1,0 +1,40 @@
+/*
+css file
+*/
+
+#banner{
+	
+	
+	
+    margin:0; 
+	padding:0;
+	
+
+ 
+}
+
+#banner-sign {
+		
+  width: 100%;
+  background-image: url(image1.png);
+  height: 400px;
+  background-repeat: no-repeat;
+  background-position: center;
+  
+    background-size: cover;
+  
+}
+
+.adjust{
+	
+	
+	height:400px;
+	background-size: cover;
+	
+
+}
+	
+.well{
+		border: 1px solid black;
+background-color: rgba(255,255,255,0.6); 
+}
