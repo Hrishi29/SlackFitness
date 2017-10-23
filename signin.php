@@ -3,12 +3,12 @@
 session_start();//session starts here
 
 
-if(!isset($_SESSION['workspace'])){
+if(!isset($_SESSION['workspace'])){ //only users within workspace
    header("Location:workspace.php");
 }
 
 
-if(isset($_SESSION['user_name'])) {
+if(isset($_SESSION['user_name'])) { // if user in session jump to index page 
    header("Location:index.php");	
 
 }	
@@ -89,7 +89,7 @@ error_reporting(0);
 							
 							<br>
 							<div class="input-group">
-							<button  class="btn btn-md btn-success"  type="submit1" value="submit1" name="submit1">Sign In</button>
+							<button  class="btn btn-md btn-success"  type="submit" value="submit1" name="submit1">Sign In</button>
 							</div>
 						</form>
 									

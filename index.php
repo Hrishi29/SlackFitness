@@ -2,7 +2,7 @@
 
 session_start();//session starts here
 
-if(!isset($_SESSION['user_name'])) { // if the current user is not in session he will be automatically redirected to signin.php
+if(!isset($_SESSION['user_name'])) {
    header("Location:signin.php");	
 
 }	
@@ -14,137 +14,97 @@ error_reporting(0);
 
 
 <!DOCTYPE html>
-	<html lang="en">
-		<head>
-			<title>Slack</title>
-			<meta charset="utf-8">
-			<meta http-equiv="X-UA-Compatible" content="IE=edge">
-			<meta name="viewport" content="width=device-width, initial-scale=1">
-			<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css"><!-- getting the bootstrap css file for predefined components  -->
+<html lang="en">
+<head>
+  <title>Slack</title>
+	<meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    
+	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css"><!-- getting the bootstrap css file for predefined components  -->
   <!-- Custom CSS -->
-			<link href="css/sidebar.css" rel="stylesheet">	
+    <link href="css/sidebar.css" rel="stylesheet">	
   
   
-		</head>
+  </head>
 
-		<body>
+<body>
 
-			<div id="wrapper">
+    <div id="wrapper">
 
         <!-- Sidebar -->
-				<div id="sidebar-wrapper">
-					<ul class="sidebar-nav">
-						<li class="sidebar-brand">
-							<a href="index.php">
-								<?php echo $_SESSION['workspace']; ?>
-							</a>
-						</li>
-					<li class="sidebar-brand">
-						<a style="color:white !important;" class="actives" href="index.php"><?php echo $_SESSION['user_name']; ?></a>
-					</li>
-					<li>
-						<a style="color:white !important;" href="signout.php" class="btn btn-danger btn-sm" role="button">Sign Out</a>
-					</li>
-					<li class="sidebar-brand">
-						<a>Channels</a>
-					</li>
+        <div id="sidebar-wrapper">
+            <ul class="sidebar-nav">
+                <li class="sidebar-brand">
+                    <a href="index.php">
+                        <?php echo $_SESSION['workspace']; ?>
+                    </a>
+                </li>
+                <li class="sidebar-brand">
+                    <a style="color:white !important;" class="actives" href="index.php"><?php echo $_SESSION['user_name']; ?></a>
+                </li>
+				<li>
+				<a style="color:white !important;" href="signout.php" class="btn btn-danger btn-sm" role="button">Sign Out</a>
+				</li>
+                <li class="sidebar-brand">
+                    <a>Channels</a>
+                </li>
 				
 				
-		<?php
+				<?php
 
-			$conn = mysqli_connect("localhost","admin","M0n@rch$");
-			if ($conn->connect_error) {
-				die("Connection failed: " . $conn->connect_error);
-			} 
-	
-				mysqli_select_db($conn,'slack');
-	
-				$r1=mysqli_query($conn,"select channels from users_channel where channels='".nutrition."'");
 		
-				while($r2=mysqli_fetch_array($r1))
-					{
+	 include 'connect.php';
 	 
-   
-      
-
-		?>		  
-					<li>
-						<a href="indexn.php"><span style="padding-right:5px">#</span><?php echo $r2['channels']; ?></a>
-					</li>			
-		  
-		  
-		<?php
-			}
-		?>	 
-
-		<?php
-
-			$r14=mysqli_query($conn,"select channels from users_channel where channels='".crossfit."'");
+	 
+	if ($_SERVER["REQUEST_METHOD"] == "POST" || $_SERVER["REQUEST_METHOD"] == "GET" ) {
+	
+	include 'query.php';
+	
+	} 
+	
+	
+	
+	 $r1=mysqli_query($conn,"select *from users_channel where channels!='".$_SESSION['chname']."'");
      
-			while($r24=mysqli_fetch_array($r14))
-				{
+	 while($r2=mysqli_fetch_array($r1))
+	 {
 	 
-   
+		$chname = $r2['channels'];
+		$chid = $r2['ch_id'];
       
-
-		?>		 
 		
-			<li>
-				<a  href="indexc.php"><span style="padding-right:5px">#</span><?php echo $r24['channels']; ?></a>
-			</li>			
-		  
+	  
+
+?>		  
+          <li>
+				<?php	
+					echo '<a href="index.php?chid=' . $chid . '&chname=' . $chname . '"># ' . $r2['channels'] . '</a>';
+                    
+				?>
+		 </li>			
 		  
 		  
 <?php
 	 }
 ?>	 
+ 
 
-<?php
 
- $r15=mysqli_query($conn,"select channels from users_channel where channels='".workouts."'");
-     
-	 while($r25=mysqli_fetch_array($r15))
-	 {
-	 
-   
-      
-
-?>		 
+		 
 		
       <li>
+				<?php	
+					echo '<a class="actives" style="color:white !important;" href="index.php?chid=' . $_SESSION['chid'] . '&chname=' . $_SESSION['chname'] . '"># ' . $_SESSION['chname'] . '</a>';
+                    
+				?>
           
-                    <a href="indexw.php"><span style="padding-right:5px">#</span><?php echo $r25['channels']; ?></a>
+                    
 		  </li>			
 		  
 		  
 		  
-<?php
-	 }
-?>	 
-
-
-<?php
-
- $r13=mysqli_query($conn,"select channels from users_channel where channels='".general."'");
-     
-	 while($r23=mysqli_fetch_array($r13))
-	 {
-	 
-   
-      
-
-?>		 
-		
-      <li>
-          
-                    <a class="actives" style="color:white !important;" href="index.php"><span style="padding-right:5px">#</span><?php echo $r23['channels']; ?></a>
-		  </li>			
-		  
-		  
-		  
-<?php
-	 }
-?>	 
+ 
 
 
 		 <li class="sidebar-brand">
@@ -193,8 +153,10 @@ error_reporting(0);
 	 <?php
 		  
 		  
-	
-	     $r33=mysqli_query($conn,"select *from users_message where ch_id='1'");
+		 $r55=mysqli_query($conn,"select ch_id from users_channel where channels='".$_SESSION['chname']."'");
+		 $r56=mysqli_fetch_array($r55);
+		 $_SESSION['chid']=$r56['ch_id'];
+	     $r33=mysqli_query($conn,"select *from users_message where ch_id='".$_SESSION['chid']."'");
      
 	     while($r34=mysqli_fetch_array($r33))
 	       {
@@ -245,7 +207,7 @@ $conn->close();
 										<div class="col-sm-3 col-md-3">
 										</div>
 										<div class="col-sm-9 col-md-9">
-											<form class="navbar-form" action="index1.php" method="post">
+											<form class="navbar-form" action="index.php" method="post">
 												<div class="row">
 					<div class="input-group input-group-lg col-lg-10">
 						
@@ -253,7 +215,7 @@ $conn->close();
 						
 						</div>
 							<div class="input-group input-group-btn col-lg-2">
-								<button name="submit" value="submit" class="btn btn-success btn-lg" type="submit">
+								<button name="submit2" value="submit2" class="btn btn-success btn-lg" type="submit">
 									Post
 								</button>
 							</div>
