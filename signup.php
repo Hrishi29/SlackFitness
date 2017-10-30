@@ -44,14 +44,23 @@ if(!isset($_SESSION['workspace'])){ //only users within workspace
 
 <div class="form-group">
     <label for="email">Email address: <?php
-
+$user_mess="";
 include 'connect.php';
 	 
 	 
 					if ($_SERVER["REQUEST_METHOD"] == "POST") {
-	
+						
+						$user_pass=$_POST['pass'];
+						$user_passw=$_POST['passw'];
+						if ($user_pass!=$user_passw)
+							{
+								$user_mess="Passwords Do Not Match!";
+							}
+						
+						else {
+							
 					$user_email=$_POST['user_email'];//same	
-	
+					$user_name=$_POST['user_name'];
 					$check_email_query="select * from users_info WHERE user_email='$user_email'";
 					$run_query=mysqli_query($conn,$check_email_query);
 
@@ -66,13 +75,28 @@ include 'connect.php';
     }
 	
 else {
+	
+	$user_email=$_POST['user_email'];
+	$user_pass=$_POST['pass'];
+	$user_name=$_POST['user_name'];
+	
+$insert_user="INSERT INTO users_info (id, user_name, user_pass,  user_email) VALUES ('1', '$user_name', '$user_pass', '$user_email')";
 
-echo "<script>alert('success')</script>";
+    if(mysqli_query($conn,$insert_user))
+    {
+				  $_SESSION['chname'] = "general";
+				  $_SESSION['user_name']=$user_name;
+				  
+        echo '<script language="javascript">';
+        echo 'alert("Successfully Registered"); location.href="index.php"';
+        echo '</script>';
+    }
 
+	
 
 
 }	
-	
+					}
 					} 
 	
 
@@ -96,10 +120,10 @@ echo "<script>alert('success')</script>";
     <input name="pass" type="password" placeholder="Enter password" class="form-control" id="pwd" required>
   </div>
   <div class="form-group">
-    <label for="rpwd">Confirm Password:</label>
+    <label for="rpwd">Confirm Password:<?php echo $user_mess; ?></label>
     <input name="passw" type="password" placeholder="Confirm password" class="form-control" id="rpwd" required>
   </div>
-  <button type="submit" value="submit3" name="submit3"  onclick="return Validate()" class="btn btn-default">Submit</button>
+  <button type="submit" value="submit3" name="submit3"  class="btn btn-default">Submit</button>
 </form>
 
 
@@ -107,20 +131,6 @@ echo "<script>alert('success')</script>";
 </div>
 </div>
 
-<script type="text/javascript">
-    function Validate() {
-        var password = document.getElementById("pwd").value;
-        var confirmPassword = document.getElementById("rpwd").value;
-		       
-if (password != confirmPassword) {
-            alert(".");
-            return false;
-        }
-
-
-        return true;
-    }
-</script>
 
 </body>
 
