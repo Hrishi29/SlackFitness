@@ -20,15 +20,128 @@ error_reporting(0);
 	<meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>	
+  
 	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css"><!-- getting the bootstrap css file for predefined components  -->
   <!-- Custom CSS -->
     <link href="css/sidebar.css" rel="stylesheet">	
+  <style>
   
+  
+  
+  </style>
   
   </head>
 
 <body>
+
+
+<!-- Modal FRONT -->
+<div id="myModal" class="modal fade" role="dialog">
+ 
+ <div class="modal-dialog">
+
+    <!-- Modal content-->
+	<div class="container">
+	<div class="row">
+	
+        <div class="col-md-6">
+    <div class="modal-content">
+      <div class="modal-header" style="background-color:#030778">
+        <button type="button" class="close" data-dismiss="modal">&times;</button>
+        <h3 class="modal-title" style="font-weight:bolder;font-size:2.5em; color:white">Create Channel</h3>
+      </div>
+      <div class="modal-body">
+        
+		
+		 <form role="form" method="post" action="index.php">
+            <div class="form-group">
+              <label for="cname">Channel Name</label>
+              <input type="text" name="chname" class="form-control" id="cname" placeholder="Enter name" required>
+			  Names must be lowercase, without spaces or periods
+            </div>
+            
+			<ul class="nav nav-pills">
+    <li class="active"><a data-toggle="pill" href="#private">Private</a></li>
+    <li><a data-toggle="pill" href="#public">Public</a></li>
+            </ul>
+			
+  <br>
+  
+  <div class="tab-content">
+    <div id="private" class="tab-pane fade in active">
+	
+		<div class="form-group">
+              <label for="invites">Send Invites To:(Optional)</label>
+              
+			  <select multiple class="form-control" id="invites" name="formInvites[]">
+			  <?php
+			  
+			  include 'connect.php';
+			  
+			  $rinvites=mysqli_query($conn,"select *from users_info where user_name!='".$_SESSION['user_name']."' and user_email!='".$_SESSION['user_email']."'");
+     
+					while($r29=mysqli_fetch_array($rinvites))
+						{
+	 
+			  ?>
+			  
+                   
+			   <option value="<?php echo $r29['user_email']; ?>"><h2>Name:</h2><?php echo $r29['user_name'] ?> <span style="margin-left:4px; font-weight:bold !important;" >Email id: </span> <?php echo $r29['user_email']; ?></option>
+			  
+			  <?php
+		
+		
+		}
+				
+				
+				?>
+				
+			</select>
+			<br>
+			 Hold ctrl or shift (or drag with the mouse) to select more than one 
+            </div>
+            
+      
+      <button type="submit" class="btn btn-success btn-sm"><span class="glyphicon glyphicon-off"></span> Create Channel</button>
+	  
+    </div>
+	
+	
+	
+    <div id="public" class="tab-pane fade">
+	
+		<button type="submit" name="submit4" value="submit4" class="btn btn-success btn-sm"><span class="glyphicon glyphicon-off"></span> Create Channel</button>
+     </div>
+    
+  </div>
+			
+             
+  <br>
+            
+          </form>
+			
+		
+				
+      <div class="modal-footer">
+		
+    
+     <button type="button"  data-dismiss="modal" class="btn btn-danger custom bold">Back</button>
+	
+       
+      </div>
+	  
+    </div>
+	</div>
+</div>
+</div>
+  </div>
+  </div>
+  
+</div>
+
+
 
     <div id="wrapper">
 
@@ -47,36 +160,36 @@ error_reporting(0);
 				<a style="color:white !important;" href="signout.php" class="btn btn-danger btn-sm" role="button">Sign Out</a>
 				</li>
                 <li class="sidebar-brand">
-                    <a>Channels</a>
+                    <a data-toggle="modal" href="#myModal" >Channels <span class="glyphicon glyphicon-plus-sign" style="margin-top:2px"></span></a>
                 </li>
 				
 				
 				<?php
 
 		
-	 include 'connect.php';
+					
 	 
 	 
-	if ($_SERVER["REQUEST_METHOD"] == "POST" || $_SERVER["REQUEST_METHOD"] == "GET" ) {
+					if ($_SERVER["REQUEST_METHOD"] == "POST" || $_SERVER["REQUEST_METHOD"] == "GET" ) {
 	
-	include 'query.php';
+					include 'query.php';
 	
-	} 
+					} 
 	
 	
 	
-	 $r1=mysqli_query($conn,"select *from users_channel where channels!='".$_SESSION['chname']."'");
+					$r1=mysqli_query($conn,"select *from users_channel where channels!='".$_SESSION['chname']."' and user_email='".$_SESSION['user_email']."'");
      
-	 while($r2=mysqli_fetch_array($r1))
-	 {
+					while($r2=mysqli_fetch_array($r1))
+						{
 	 
-		$chname = $r2['channels'];
-		$chid = $r2['ch_id'];
+							$chname = $r2['channels'];
+							$chid = $r2['ch_id'];
       
 		
 	  
 
-?>		  
+				?>		  
           <li>
 				<?php	
 					echo '<a href="index.php?chid=' . $chid . '&chname=' . $chname . '"># ' . $r2['channels'] . '</a>';
@@ -85,9 +198,9 @@ error_reporting(0);
 		 </li>			
 		  
 		  
-<?php
-	 }
-?>	 
+				<?php
+					}
+				?>	 
  
 
 
@@ -114,29 +227,29 @@ error_reporting(0);
           </li>
 		  
 		  
-		  <?php
+				<?php
 		  
 		  
 	
-	     $r11=mysqli_query($conn,"select user_name from users_info where not user_name='".$_SESSION['user_name']."'");
+					$r11=mysqli_query($conn,"select user_name from users_info where not user_name='".$_SESSION['user_name']."'");
      
-	     while($r22=mysqli_fetch_array($r11))
-	       {
+					while($r22=mysqli_fetch_array($r11))
+						{
 	 
    
       
 
-?>	
+				?>	
 		   <li>
                     <a href="#page-content-wrapper"><?php echo $r22['user_name']; ?></a>
 		  </li>			
 		  
 
-<?php
+				<?php
 
 
-		   }
-?>
+					}
+				?>
 
 					
 				
@@ -150,43 +263,43 @@ error_reporting(0);
                 <div class="row">
 				<div  class="col-lg-12">
 				
-	 <?php
+				<?php
 		  
 		  
-		 $r55=mysqli_query($conn,"select ch_id from users_channel where channels='".$_SESSION['chname']."'");
-		 $r56=mysqli_fetch_array($r55);
-		 $_SESSION['chid']=$r56['ch_id'];
-	     $r33=mysqli_query($conn,"select *from users_message where ch_id='".$_SESSION['chid']."'");
+					$r55=mysqli_query($conn,"select ch_id from users_channel where channels='".$_SESSION['chname']."'");
+					$r56=mysqli_fetch_array($r55);
+					$_SESSION['chid']=$r56['ch_id'];
+					$r33=mysqli_query($conn,"select *from users_message where ch_id='".$_SESSION['chid']."'");
      
-	     while($r34=mysqli_fetch_array($r33))
-	       {
+					while($r34=mysqli_fetch_array($r33))
+						{
 	 
    
       
 
-?>				
+				?>				
 				
 				
 			<div  class="row">			
-        <div class="col-sm-2 text-center">
-          <img src="user-image.jpg" class="img-circle" height="65" width="65" alt="Avatar">
-        </div>
-        <div class="col-sm-10">
-          <h4><?php echo $r34['user_name'];?><small style="margin-left:10px"><?php echo $r34['date'];?></small></h4>
-          <p><?php echo $r34['messages'];?></p>
-          <hr>
+				<div class="col-sm-2 text-center">
+					<img src="user-image.jpg" class="img-circle" height="65" width="65" alt="Avatar">
+				</div>
+				<div class="col-sm-10">
+					<h4><?php echo $r34['user_name'];?><small style="margin-left:10px"><?php echo $r34['date'];?></small></h4>
+					<p><?php echo $r34['messages'];?></p>
+				<hr>
 		  
-        </div>
+				</div>
 		
 			</div>
 
 		
-<?php
-		   }
+				<?php
+					}
 		   
 		   
-$conn->close();		   
-?>
+				$conn->close();		   
+				?>
 					
 
                     </div>
