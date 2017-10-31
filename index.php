@@ -50,12 +50,23 @@ error_reporting(0);
     <div class="modal-content">
       <div class="modal-header" style="background-color:#030778">
         <button type="button" class="close" data-dismiss="modal">&times;</button>
-        <h3 class="modal-title" style="font-weight:bolder;font-size:2.5em; color:white">Create Channel</h3>
+        <h3 class="modal-title" style="font-weight:bolder;font-size:2.5em; color:white">Channels</h3>
       </div>
       <div class="modal-body">
-        
+        <ul class="nav nav-pills">
+			<li class="active"><a data-toggle="pill" href="#home">Create Channels</a></li>
+			<li><a data-toggle="pill" href="#home1">Browse Channels</a></li>
+			<li><a data-toggle="pill" href="#home2">Invites</a></li>
+			
+		</ul>
+		<hr>
 		
-		 <form role="form" method="post" action="index.php">
+		<div class="tab-content">
+		
+		
+			 <div id="home" class="tab-pane fade in active">
+		
+		 <form method="post" action="index.php">
             <div class="form-group">
               <label for="cname">Channel Name</label>
               <input type="text" name="chname" class="form-control" id="cname" placeholder="Enter name" required>
@@ -132,7 +143,94 @@ error_reporting(0);
        
       </div>
 	  
-    </div>
+    
+		</div>
+		
+		<div id="home1" class="tab-pane fade">
+		
+		<h4>Channels you can join to:</h4>
+	  
+
+      <div style="max-height:200px; overflow-y:auto;"class="well">
+      <form method="post" action="index.php">
+	  	<ul class="list-group">
+		   
+<?php
+	
+	 $ichannels=mysqli_query($conn,"select *from unique_channel where users_email='".$_SESSION['user_email']."'");
+     
+					while($r59=mysqli_fetch_array($ichannels))
+						{
+	 
+						
+
+?> 
+
+		   
+			<li class="list-group-item"># <?php echo $r59['channels1']; ?></li><button style="margin:5px 0 5px 0" type="submit" value="<?php echo $r59['channels1']; ?>" name="jchannel" class="btn btn-primary btn-sm">Join Channel</button>
+			
+	
+<?php
+
+						}
+?>
+	</ul>	
+			
+			
+	  </form>	
+	  </div>
+
+		
+		
+		
+      <h4>Channels you belong to:</h4>
+	  
+
+      <div style="max-height:200px; overflow-y:auto;"class="well">
+      
+	  	<ul class="list-group">
+		   
+<?php
+	
+	 $jchannels=mysqli_query($conn,"select *from users_channel where user_email='".$_SESSION['user_email']."'");
+     
+					while($r59=mysqli_fetch_array($jchannels))
+						{
+	 
+						
+
+?> 
+
+		   
+			<li class="list-group-item"># <?php echo $r59['channels']; ?></li>
+			<br>
+			
+	
+<?php
+
+						}
+?>
+	</ul>	
+			
+			
+	  	
+	  </div>
+
+	<div class="modal-footer">
+		
+    
+     <button type="button"  data-dismiss="modal" class="btn btn-danger custom bold">Back</button>
+	
+       
+      </div>
+	  	
+	
+	</div>
+		
+		
+	</div>
+	
+	</div>
 	</div>
 </div>
 </div>
@@ -184,7 +282,7 @@ error_reporting(0);
 						{
 	 
 							$chname = $r2['channels'];
-							$chid = $r2['ch_id'];
+							
       
 		
 	  
@@ -192,7 +290,7 @@ error_reporting(0);
 				?>		  
           <li>
 				<?php	
-					echo '<a href="index.php?chid=' . $chid . '&chname=' . $chname . '"># ' . $r2['channels'] . '</a>';
+					echo '<a href="index.php?chname=' . $chname . '"># ' . $r2['channels'] . '</a>';
                     
 				?>
 		 </li>			
@@ -208,7 +306,7 @@ error_reporting(0);
 		
       <li>
 				<?php	
-					echo '<a class="actives" style="color:white !important;" href="index.php?chid=' . $_SESSION['chid'] . '&chname=' . $_SESSION['chname'] . '"># ' . $_SESSION['chname'] . '</a>';
+					echo '<a class="actives" style="color:white !important;" href="index.php?chname=' . $_SESSION['chname'] . '"># ' . $_SESSION['chname'] . '</a>';
                     
 				?>
           
@@ -266,10 +364,7 @@ error_reporting(0);
 				<?php
 		  
 		  
-					$r55=mysqli_query($conn,"select ch_id from users_channel where channels='".$_SESSION['chname']."'");
-					$r56=mysqli_fetch_array($r55);
-					$_SESSION['chid']=$r56['ch_id'];
-					$r33=mysqli_query($conn,"select *from users_message where ch_id='".$_SESSION['chid']."'");
+					$r33=mysqli_query($conn,"select *from users_message where channel_name='".$_SESSION['chname']."'");
      
 					while($r34=mysqli_fetch_array($r33))
 						{
