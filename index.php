@@ -115,7 +115,7 @@ error_reporting(0);
             </div>
             
       
-      <button type="submit" class="btn btn-success btn-sm"><span class="glyphicon glyphicon-off"></span> Create Channel</button>
+      <button type="submit" name="submit6" value="submit6" class="btn btn-success btn-sm"><span class="glyphicon glyphicon-off"></span> Create Channel</button>
 	  
     </div>
 	
@@ -202,7 +202,7 @@ error_reporting(0);
 ?> 
 
 		   
-			<li class="list-group-item"># <?php echo $r59['channels']; ?></li>
+			<li class="list-group-item">#<?php echo $r59['channels']; ?></li>
 			<br>
 			
 	
@@ -226,8 +226,55 @@ error_reporting(0);
 	  	
 	
 	</div>
+	
+	<div id="home2" class="tab-pane fade">
+		
+		<h4>You have following invites:</h4>
+	  
+
+      <div style="max-height:400px; overflow-y:auto;"class="well">
+      <form method="post" action="index.php">
+	  	<ul class="list-group">
+		   
+<?php
+	
+	 $ichannels1=mysqli_query($conn,"select *from unique_channel where users_email='".$_SESSION['user_email']."'");
+     
+					while($r591=mysqli_fetch_array($ichannels1))
+						{
+	 
+						
+
+?> 
+
+		   
+			<li class="list-group-item">You have been invited by <?php echo $r591['invitor']; ?> to join the channel: <span style="font-weight:bold">#<?php echo $r591['channels1']; ?></span></li><button style="margin:5px 0 5px 0" type="submit" value="<?php echo $r591['channels1']; ?>" name="jchannel" class="btn btn-primary btn-sm">Join Channel</button>
+			
+	
+<?php
+
+						}
+?>
+	</ul>	
+			
+			
+	  </form>	
+	  </div>
+
 		
 		
+		
+		
+		<div class="modal-footer">
+		
+    
+     <button type="button"  data-dismiss="modal" class="btn btn-danger custom bold">Back</button>
+	
+       
+      </div>
+	
+		
+		</div>
 	</div>
 	
 	</div>
@@ -258,7 +305,7 @@ error_reporting(0);
 				<a style="color:white !important;" href="signout.php" class="btn btn-danger btn-sm" role="button">Sign Out</a>
 				</li>
                 <li class="sidebar-brand">
-                    <a data-toggle="modal" href="#myModal" >Channels <span class="glyphicon glyphicon-plus-sign" style="margin-top:2px"></span></a>
+                    <a style="color:white !important;" data-toggle="modal" href="#myModal" >Channels <span class="glyphicon glyphicon-plus-sign" style="margin-top:2px"></span></a>
                 </li>
 				
 				

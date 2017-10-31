@@ -42,8 +42,9 @@
 		
 		$chname = mysqli_real_escape_string($conn,test_input($_POST["chname"]));
 		$user_email=$_SESSION['user_email'];
+		$invitor=$_SESSION['user_name'];
 		$insert_channel=mysqli_query($conn," INSERT INTO users_channel (id, channels, user_email) VALUES ('1', '$chname', '$user_email')")  ;
-		$insert4_channel=mysqli_query($conn," INSERT INTO public_channels (p_channel) VALUES ('$chname')")  ;
+		$insert4_channel=mysqli_query($conn," INSERT INTO public_channels (p_channel, invitor) VALUES ('$chname', '$invitor')")  ;
 
 		
 		$r101=mysqli_query($conn,"select user_email from users_info where user_email!='".$_SESSION['user_email']."'");
@@ -51,11 +52,35 @@
 					{
 	 
 					$user_email=$r202['user_email'];
-					$insert3_channel=mysqli_query($conn," INSERT INTO unique_channel (channels1, users_email) VALUES ('$chname', '$user_email')")  ;
+					$insert3_channel=mysqli_query($conn," INSERT INTO unique_channel (channels1, users_email, invitor) VALUES ('$chname', '$user_email', '$invitor')")  ;
 
 					}
 	}	
 
+	
+	if(isset($_POST['submit6'])) {	
+	
+	
+	$chname = mysqli_real_escape_string($conn,test_input($_POST["chname"]));
+		$user_email=$_SESSION['user_email'];
+		$invitor=$_SESSION['user_name'];
+		$insert_channel=mysqli_query($conn," INSERT INTO users_channel (id, channels, user_email) VALUES ('1', '$chname', '$user_email')")  ;
+		
+		if(isset($_POST['formInvites'])) {
+			
+			foreach ($_POST['formInvites'] as $a){
+			$insert4_channel=mysqli_query($conn," INSERT INTO unique_channel (channels1, users_email, invitor) VALUES ('$chname', '$a', '$invitor')")  ;
+			
+			
+			}
+ 
+		
+		
+		}
+	}	
+
+	
+	
 	
 	
 	if(isset($_POST['submit'])) { // for workspace.php page
