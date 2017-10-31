@@ -41,6 +41,28 @@
 	if(isset($_POST['submit4'])) { 
 		
 		$chname = mysqli_real_escape_string($conn,test_input($_POST["chname"]));
+		
+		
+					$check_email_query="select * from users_channel WHERE channels='$chname'";
+					$run_query=mysqli_query($conn,$check_email_query);
+
+    
+					
+					
+					if(mysqli_num_rows($run_query)>0)
+    {
+			
+			echo '<script language="javascript">';
+        echo 'alert("Channel name exists! Please try another one."); location.href="index.php"';
+        echo '</script>';
+		 exit();
+		
+    }
+	
+			
+		else {	  
+		
+		
 		$user_email=$_SESSION['user_email'];
 		$invitor=$_SESSION['user_name'];
 		$insert_channel=mysqli_query($conn," INSERT INTO users_channel (id, channels, user_email) VALUES ('1', '$chname', '$user_email')")  ;
@@ -56,7 +78,7 @@
 
 					}
 	}	
-
+	}
 	
 	if(isset($_POST['submit6'])) {	
 	
@@ -91,6 +113,8 @@
 	
 		
 	}	
+	
+
 
 	if(isset($_POST['submit1'])) {  //for signin.php
 		

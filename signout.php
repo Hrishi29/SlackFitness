@@ -1,12 +1,12 @@
 
 <?php
 
-session_start(); //session starts here
+session_start();
 
 
-session_unset(); //unsetting all the session variables
+session_unset(); 
 
- header("Location:signin.php"); //redirecting to signin page
+ header("Location:signin.php");
 
 ?>
 

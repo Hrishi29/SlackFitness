@@ -37,8 +37,8 @@ error_reporting(0);
 
 	<div id="banner-sign" class="container">
 		<div  class="row">
-			<div style="margin-top:150px" class="col-md-4 col-sm-4 col-md-offset-4">
-				
+			<div style="margin-top:200px" class="col-md-6 col-sm-2 col-sm-offset-2 col-md-offset-3">
+			<div class="well well-sm">	
 	<center>
 	
 		<?php
@@ -89,7 +89,7 @@ error_reporting(0);
 							
 							<br>
 							<div class="input-group">
-							<button  class="btn btn-md btn-success"  type="submit" value="submit1" name="submit1">Sign In</button>
+							<button  class="btn btn-md btn-success"  type="submit" value="submit1" name="submit1">Sign In</button><a style="margin-left:340px; font-weight:bold" href="signup.php">Don't have an account? Sign Up</a>
 							</div>
 						</form>
 									
@@ -99,7 +99,7 @@ error_reporting(0);
 							
 						
 			
-		
+		</div>
 			</div>
 		</div>
 	</div>

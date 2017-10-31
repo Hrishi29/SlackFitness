@@ -70,7 +70,7 @@ error_reporting(0);
             <div class="form-group">
               <label for="cname">Channel Name</label>
               <input type="text" name="chname" class="form-control" id="cname" placeholder="Enter name" required>
-			  Names must be lowercase, without spaces or periods
+			  
             </div>
             
 			<ul class="nav nav-pills">
@@ -90,6 +90,7 @@ error_reporting(0);
 			  <?php
 			  
 			  include 'connect.php';
+			  
 			  
 			  $rinvites=mysqli_query($conn,"select *from users_info where user_name!='".$_SESSION['user_name']."' and user_email!='".$_SESSION['user_email']."'");
      
@@ -412,7 +413,7 @@ error_reporting(0);
 		  
 		  
 					$r33=mysqli_query($conn,"select *from users_message where channel_name='".$_SESSION['chname']."'");
-     
+					
 					while($r34=mysqli_fetch_array($r33))
 						{
 	 
@@ -429,6 +430,16 @@ error_reporting(0);
 				<div class="col-sm-10">
 					<h4><?php echo $r34['user_name'];?><small style="margin-left:10px"><?php echo $r34['date'];?></small></h4>
 					<p><?php echo $r34['messages'];?></p>
+					
+					
+					
+					
+
+					<form action="index.php" method="post"> 
+					<button type="submit" class="btn btn-success btn-xs">Reply</button> 
+					<button style="margin-left:30px;margin-right:5px" class="btn btn-default btn-xs" type="submit" value="<?php echo $r34['mess_id'];?>" name="th_up"><span class="glyphicon glyphicon-thumbs-up"></span></button><?php echo $r34['thumbsup'];?>  
+					<button style="margin-left:30px;margin-right:5px" class="btn btn-default btn-xs" type="submit" value="<?php echo $r34['mess_id'];?>" name="th_down"><span class="glyphicon glyphicon-thumbs-down"></span></button><?php echo $r34['thumbsdown'];?>
+					</form>
 				<hr>
 		  
 				</div>

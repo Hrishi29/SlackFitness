@@ -50,8 +50,8 @@ include 'connect.php';
 	 
 					if ($_SERVER["REQUEST_METHOD"] == "POST") {
 						
-						$user_pass=$_POST['pass'];
-						$user_passw=$_POST['passw'];
+						$user_pass=mysqli_real_escape_string($conn,test_input($_POST['pass']));
+						$user_passw=mysqli_real_escape_string($conn,test_input($_POST['passw']));
 						if ($user_pass!=$user_passw)
 							{
 								$user_mess="Passwords Do Not Match!";
@@ -59,8 +59,8 @@ include 'connect.php';
 						
 						else {
 							
-					$user_email=$_POST['user_email'];//same	
-					$user_name=$_POST['user_name'];
+					$user_email=mysqli_real_escape_string($conn,test_input($_POST['user_email']));//same	
+					$user_name=mysqli_real_escape_string($conn,test_input($_POST['user_name']));
 					$check_email_query="select * from users_info WHERE user_email='$user_email'";
 					$run_query=mysqli_query($conn,$check_email_query);
 
@@ -76,9 +76,6 @@ include 'connect.php';
 	
 else {
 	
-	$user_email=$_POST['user_email'];
-	$user_pass=$_POST['pass'];
-	$user_name=$_POST['user_name'];
 	
 $insert_user="INSERT INTO users_info (id, user_name, user_pass,  user_email) VALUES ('1', '$user_name', '$user_pass', '$user_email')";
 
@@ -86,6 +83,19 @@ $insert_user="INSERT INTO users_info (id, user_name, user_pass,  user_email) VAL
     {
 				  $_SESSION['chname'] = "general";
 				  $_SESSION['user_name']=$user_name;
+				  $_SESSION['user_email']=$user_email;
+				  $insert1_channel=mysqli_query($conn," INSERT INTO users_channel (id, channels, user_email) VALUES ('1', 'general', '$user_email')")  ;
+				  
+					$r103=mysqli_query($conn,"select  *from public_channels");
+					while($r203=mysqli_fetch_array($r103))
+					{
+	 
+					$pchannel=$r203['p_channel'];
+					$invitor=$r203['invitor'];
+					$insert2_channel=mysqli_query($conn," INSERT INTO unique_channel (channels1, users_email, invitor) VALUES ('$pchannel', '$user_email', '$user_email')")  ;
+
+					}
+
 				  
         echo '<script language="javascript">';
         echo 'alert("Successfully Registered"); location.href="index.php"';
@@ -99,8 +109,13 @@ $insert_user="INSERT INTO users_info (id, user_name, user_pass,  user_email) VAL
 					}
 					} 
 	
+function test_input($data) { // function for mysql injections
+  $data = trim($data);
+  $data = stripslashes($data);
+  $data = htmlspecialchars($data);
+  return $data;	
 
-
+}
 	
 	$conn->close();
 	
