@@ -36,6 +36,56 @@ error_reporting(0);
 
 <body>
 
+<div id="myModal1" class="modal fade" role="dialog">
+ <center class="dialogStyle">
+ <div class="modal-dialog">
+
+    <!-- Modal content-->
+	<div class="container">
+	<div class="row">
+	
+        <div class="col-md-6">
+    <div class="modal-content">
+      <div class="modal-header" style="background-color:#030778">
+        <button type="button" class="close" data-dismiss="modal">&times;</button>
+        <h3 class="modal-title" style="font-weight:bolder;font-size:2.5em; color:white">Profile</h3>
+      </div>
+      <div class="modal-body">
+        <center>
+		
+		<img src="user-image.jpg" class="img-rounded responsive" name="user_image"  width="170" height="130"> 
+			
+			<br>
+			<br>
+			<br>
+			<br>
+		<div><span style="font-weight:bold">Username: </span><span><?php echo $_SESSION['user_name']; ?></span></div>
+		
+		<br>
+		<br>
+		<div><span style="font-weight:bold">Email-Id: </span><span><?php echo $_SESSION['user_email']; ?></span></div>
+		<br>
+		
+		
+		</center>		
+      <div class="modal-footer">
+		
+    
+    <button type="button"  data-dismiss="modal" class="btn btn-danger custom bold">Back</button>
+	
+       
+      </div>
+    </div>
+	</div>
+</div>
+</div>
+  </div>
+  </div>
+  </center>
+</div>
+
+
+
 
 <!-- Modal FRONT -->
 <div id="myModal" class="modal fade" role="dialog">
@@ -300,7 +350,7 @@ error_reporting(0);
                     </a>
                 </li>
                 <li class="sidebar-brand">
-                    <a style="color:white !important;" class="actives" href="index.php"><?php echo $_SESSION['user_name']; ?></a>
+                    <a style="color:white !important;" class="actives" data-toggle="modal" href="#myModal1"><?php echo $_SESSION['user_name']; ?></a>
                 </li>
 				<li>
 				<a style="color:white !important;" href="signout.php" class="btn btn-danger btn-sm" role="button">Sign Out</a>
@@ -437,8 +487,8 @@ error_reporting(0);
 
 					<form action="index.php" method="post"> 
 					<button type="submit" class="btn btn-success btn-xs">Reply</button> 
-					<button style="margin-left:30px;margin-right:5px" class="btn btn-default btn-xs" type="submit" value="<?php echo $r34['mess_id'];?>" name="th_up"><span class="glyphicon glyphicon-thumbs-up"></span></button><?php echo $r34['thumbsup'];?>  
-					<button style="margin-left:30px;margin-right:5px" class="btn btn-default btn-xs" type="submit" value="<?php echo $r34['mess_id'];?>" name="th_down"><span class="glyphicon glyphicon-thumbs-down"></span></button><?php echo $r34['thumbsdown'];?>
+					<button style="margin-left:30px;margin-right:5px" class="btn btn-default btn-xs" type="submit" value="<?php echo $r34['mess_id'];?>" name="th_up"><span class="glyphicon glyphicon-thumbs-up"></span></button>0  
+					<button style="margin-left:30px;margin-right:5px" class="btn btn-default btn-xs" type="submit" value="<?php echo $r34['mess_id'];?>" name="th_down"><span class="glyphicon glyphicon-thumbs-down"></span></button>0
 					</form>
 				<hr>
 		  
