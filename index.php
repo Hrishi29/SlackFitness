@@ -87,6 +87,9 @@ error_reporting(0);
 
 
 
+
+
+
 <!-- Modal FRONT -->
 <div id="myModal" class="modal fade" role="dialog">
  
@@ -486,16 +489,50 @@ error_reporting(0);
 					
 
 					<form action="index.php" method="post"> 
-					<button type="submit" class="btn btn-success btn-xs">Reply</button> 
-					<button style="margin-left:30px;margin-right:5px" class="btn btn-default btn-xs" type="submit" value="<?php echo $r34['mess_id'];?>" name="th_up"><span class="glyphicon glyphicon-thumbs-up"></span></button>0  
-					<button style="margin-left:30px;margin-right:5px" class="btn btn-default btn-xs" type="submit" value="<?php echo $r34['mess_id'];?>" name="th_down"><span class="glyphicon glyphicon-thumbs-down"></span></button>0
+					<a href="#" data-toggle="popover" data-html="true" data-placement="bottom" data-content='<form method="post" action="index.php"><input name="popform" type="text"/></form>'  >Reply</a> 
+					<button style="margin-left:30px;margin-right:5px" class="btn btn-default btn-xs" type="submit" value="<?php echo $r34['mess_id'];?>" name="th_up"><span class="glyphicon glyphicon-thumbs-up"></span></button>
+					<?php
+
+						$reactionsup=mysqli_query($conn,"select thumbsup from reactions where mess_id='".$r34['mess_id']."'");
+						$sum = 0;
+					
+					while($r3461=mysqli_fetch_array($reactionsup))
+						{
+		
+							$sum = $sum + $r3461['thumbsup'];
+									
+		
+						}
+						
+						echo $sum;
+					?>
+			
+					<button style="margin-left:30px;margin-right:5px" class="btn btn-default btn-xs" type="submit" value="<?php echo $r34['mess_id'];?>" name="th_down"><span class="glyphicon glyphicon-thumbs-down"></span></button>
+					<?php
+
+						$reactionsdown=mysqli_query($conn,"select thumbsdown from reactions where mess_id='".$r34['mess_id']."'");
+						$sum1 = 0;
+					
+					while($r3462=mysqli_fetch_array($reactionsdown))
+						{
+		
+							$sum1 = $sum1 + $r3462['thumbsdown'];
+									
+		
+						}
+						
+						echo $sum1;
+					?>
+			
 					</form>
 				<hr>
 		  
 				</div>
 		
 			</div>
-
+			
+			
+			
 		
 				<?php
 					}
@@ -527,7 +564,7 @@ error_reporting(0);
 												<div class="row">
 					<div class="input-group input-group-lg col-lg-10">
 						
-						<input type="text" name="message_post" class="form-control" placeholder="Message">
+						<textarea type="text" name="message_post" class="form-control" placeholder="Message"></textarea>
 						
 						</div>
 							<div class="input-group input-group-btn col-lg-2">
@@ -548,7 +585,15 @@ error_reporting(0);
 
 
     </div>
-    <!-- /#wrapper -->
+	<!-- /#wrapper -->
+	
+	<script>
+$(document).ready(function(){
+	
+    $('[data-toggle="popover"]').popover(); 
+});
+</script>
+	
 </body>
 
 </html>
