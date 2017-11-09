@@ -163,6 +163,31 @@ if(isset($_POST['th_down'])) { // for index.php after posting the reactions for 
 	}	
 	}
 	
+	
+	if(isset($_POST['subform'])) {
+		
+		$sub_formid=mysqli_real_escape_string($conn,test_input($_POST['subform']));
+		$pop_form=mysqli_real_escape_string($conn,test_input($_POST['popform']));
+		$user_email=$_SESSION['user_email'];
+		$user_name=$_SESSION['user_name'];
+	    $chname=$_SESSION['chname'];
+	
+	if($pop_form=="")
+	{
+		
+	
+	}
+	
+	else {
+	$insert_channels=mysqli_query($conn," INSERT INTO reply_message (mess_id, channel_name, message, user_email, user_name, date) VALUES ('$sub_formid', '$chname', '$pop_form', '$user_email', '$user_name', CURRENT_TIMESTAMP())")  ;
+
+	}
+
+		
+		
+	
+	}	
+	
 	if(isset($_POST['submit6'])) {	
 	
 	

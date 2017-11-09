@@ -489,7 +489,7 @@ error_reporting(0);
 					
 
 					<form action="index.php" method="post"> 
-					<a href="#" data-toggle="popover" data-html="true" data-placement="bottom" data-content='<form method="post" action="index.php"><input name="popform" type="text"/></form>'  >Reply</a> 
+					<a href="#" data-toggle="popover"  data-html="true" data-placement="bottom" data-content='<form method="post" action="index.php"><textarea style="height:30px" name="popform" type="text"></textarea><br><button name="subform" value="<?php echo $r34['mess_id'];?>" class="btn btn-danger btn-xs" type="">Post</button></form>'  >Reply</a> 
 					<button style="margin-left:30px;margin-right:5px" class="btn btn-default btn-xs" type="submit" value="<?php echo $r34['mess_id'];?>" name="th_up"><span class="glyphicon glyphicon-thumbs-up"></span></button>
 					<?php
 
@@ -592,6 +592,8 @@ $(document).ready(function(){
 	
     $('[data-toggle="popover"]').popover(); 
 });
+
+
 </script>
 	
 </body>
