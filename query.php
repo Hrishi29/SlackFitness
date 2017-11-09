@@ -94,9 +94,16 @@ if(isset($_POST['th_down'])) { // for index.php after posting the reactions for 
 	$user_name=$_SESSION['user_name'];
 	$chname=$_SESSION['chname'];
 	
+	if($message_post=="")
+	{
+		
+	
+	}
+	
+	else {
 	$insert_channel=mysqli_query($conn," INSERT INTO users_message (channel_name, messages, user_name, date) VALUES ('$chname', '$message_post', '$user_name', CURRENT_TIMESTAMP())")  ;
 
-     
+	}
 
 	}
 	
