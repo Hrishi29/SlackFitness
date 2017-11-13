@@ -17,7 +17,7 @@
 	$user_email=$_SESSION['user_email'];
 	
 	
-	$retreiv=mysqli_query($conn,"select  * from reactions where user_email='".$user_email."' and mess_id='".$message_id."' and thumbsup=1");
+	$retreiv=mysqli_query($conn,"select  * from reactions where user_email='".$user_email."' and mess_id='".$message_id."' and thumbsup=1 and reply_id=0");
 	$retreive=mysqli_fetch_array($retreiv);
 	
 	
@@ -40,7 +40,7 @@
 	
 	 
 		
-			$insert_reaction= mysqli_query($conn," INSERT INTO reactions (mess_id, user_email, thumbsup, thumbsdown) VALUES ('$message_id', '$user_email', '1', '0')")  ;
+			$insert_reaction= mysqli_query($conn," INSERT INTO reactions (mess_id, user_email, thumbsup, thumbsdown, reply_id) VALUES ('$message_id', '$user_email', '1', '0', '0')")  ;
     			
 
 	}
@@ -54,7 +54,7 @@ if(isset($_POST['th_down'])) { // for index.php after posting the reactions for 
   
 	$user_email=$_SESSION['user_email'];	
 	 	
-	$retre=mysqli_query($conn,"select  * from reactions where user_email='".$user_email."' and mess_id='".$message_id."' and thumbsdown=-1");
+	$retre=mysqli_query($conn,"select  * from reactions where user_email='".$user_email."' and mess_id='".$message_id."' and thumbsdown=-1 and reply_id=0");
 	$retrei=mysqli_fetch_array($retre);
 	
 	
@@ -77,7 +77,7 @@ if(isset($_POST['th_down'])) { // for index.php after posting the reactions for 
 	
 	 
 		
-			$insert_reaction1= mysqli_query($conn," INSERT INTO reactions (mess_id, user_email, thumbsup, thumbsdown) VALUES ('$message_id', '$user_email', '0', '-1')")  ;
+			$insert_reaction1= mysqli_query($conn," INSERT INTO reactions (mess_id, user_email, thumbsup, thumbsdown, reply_id) VALUES ('$message_id', '$user_email', '0', '-1', '0')")  ;
     			
 
 	}	
@@ -86,6 +86,97 @@ if(isset($_POST['th_down'])) { // for index.php after posting the reactions for 
 	
 	}
 
+	
+	if(isset($_POST['th_up1'])) { // for index.php after posting the reactions for thumbs up
+	
+	list($message_id, $reply_id) = explode(' ', $_POST['th_up1']);
+	
+	
+  
+	$user_email=$_SESSION['user_email'];
+	
+	
+	$retreiv=mysqli_query($conn,"select  * from reactions where user_email='".$user_email."' and reply_id='".$reply_id."' and mess_id='".$message_id."' and thumbsup=1");
+	$retreive=mysqli_fetch_array($retreiv);
+	
+	
+
+    
+					
+					
+					if($retreive['thumbsup']==1)
+    {
+		 
+			
+    }
+	
+	
+	
+	
+	else {
+		
+	 	
+	
+			
+			$insert_reaction= mysqli_query($conn," INSERT INTO reactions (mess_id, user_email, thumbsup, thumbsdown, reply_id) VALUES ('$message_id', '$user_email', '1', '0', '$reply_id')")  ;
+    			
+
+	}
+
+	}
+
+if(isset($_POST['th_down1'])) { // for index.php after posting the reactions for thumbs down
+	
+	list($message_id, $reply_id) = explode(' ', $_POST['th_down1']);
+	  
+  
+	$user_email=$_SESSION['user_email'];	
+	 	
+	$retre=mysqli_query($conn,"select  * from reactions where user_email='".$user_email."' and mess_id='".$message_id."' and reply_id='".$reply_id."' and thumbsdown=-1");
+	$retrei=mysqli_fetch_array($retre);
+	
+	
+
+    
+					
+					
+					if($retrei['thumbsdown']==-1)
+    {
+		 
+			
+    }
+	
+	
+	
+	
+	else {
+		
+	 	
+	
+	 
+		
+			$insert_reaction1= mysqli_query($conn," INSERT INTO reactions (mess_id, user_email, thumbsup, thumbsdown, reply_id) VALUES ('$message_id', '$user_email', '0', '-1', '$reply_id')")  ;
+    			
+
+	}	
+	
+		
+	
+	}
+
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
 	if(isset($_POST['submit2'])) { // for index.php after posting the message and then inserting into database
 	
 	$message_post=mysqli_real_escape_string($conn,test_input($_POST['message_post']));//here getting result from the post array after submitting the form.

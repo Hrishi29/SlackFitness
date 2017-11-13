@@ -480,7 +480,7 @@ error_reporting(0);
 				<div class="col-sm-2 text-center">
 					<img src="user-image.jpg" class="img-circle" height="65" width="65" alt="Avatar">
 				</div>
-				<div class="col-sm-10">
+				<div id="<?php echo $r34['mess_id'];?>"  class="col-sm-10">
 					<h4><?php echo $r34['user_name'];?><small style="margin-left:10px"><?php echo $r34['date'];?></small></h4>
 					<p><?php echo $r34['messages'];?></p>
 					
@@ -489,11 +489,12 @@ error_reporting(0);
 					
 
 					<form action="index.php" method="post"> 
-					<a href="#" data-toggle="popover"  data-html="true" data-placement="bottom" data-content='<form method="post" action="index.php"><textarea style="height:30px" name="popform" type="text"></textarea><br><button name="subform" value="<?php echo $r34['mess_id'];?>" class="btn btn-danger btn-xs" type="">Post</button></form>'  >Reply</a> 
+					<a href="#<?php echo $r34['mess_id'];?>"  data-toggle="popover"  data-html="true" data-placement="bottom" data-content='<form method="post" action="index.php"><textarea style="height:30px" name="popform" type="text"></textarea><br><button  name="subform" value="<?php echo $r34['mess_id'];?>" class="btn btn-danger btn-xs" type="">Post</button></form>'  >Reply</a> 
+			
 					<button style="margin-left:30px;margin-right:5px" class="btn btn-default btn-xs" type="submit" value="<?php echo $r34['mess_id'];?>" name="th_up"><span class="glyphicon glyphicon-thumbs-up"></span></button>
 					<?php
 
-						$reactionsup=mysqli_query($conn,"select thumbsup from reactions where mess_id='".$r34['mess_id']."'");
+						$reactionsup=mysqli_query($conn,"select thumbsup from reactions where mess_id='".$r34['mess_id']."' and reply_id=0");
 						$sum = 0;
 					
 					while($r3461=mysqli_fetch_array($reactionsup))
@@ -510,7 +511,7 @@ error_reporting(0);
 					<button style="margin-left:30px;margin-right:5px" class="btn btn-default btn-xs" type="submit" value="<?php echo $r34['mess_id'];?>" name="th_down"><span class="glyphicon glyphicon-thumbs-down"></span></button>
 					<?php
 
-						$reactionsdown=mysqli_query($conn,"select thumbsdown from reactions where mess_id='".$r34['mess_id']."'");
+						$reactionsdown=mysqli_query($conn,"select thumbsdown from reactions where mess_id='".$r34['mess_id']."' and reply_id=0");
 						$sum1 = 0;
 					
 					while($r3462=mysqli_fetch_array($reactionsdown))
@@ -530,11 +531,86 @@ error_reporting(0);
 				</div>
 		
 			</div>
+			<?php
 			
+			$r73=mysqli_query($conn,"select *from reply_message where mess_id='".$r34['mess_id']."' and channel_name='".$_SESSION['chname']."'");
+					
+					while($r74=mysqli_fetch_array($r73))
+						{
+	 
+			$space=' ';
+			
+			?>
+			
+			
+			
+			<div  class="row">			
+				<div id="textbox" class="col-sm-2 col-md-2"></div>
+				<div style="margin-left:-30px" class="col-sm-2 col-md-2 text-center">
+					<img src="user-image.jpg" class="img-circle" height="65" width="65" alt="Avatar">
+				</div>
+				
+				<div class="col-sm-8 col-md-8">
+					<h4><?php echo $r74['user_name'];?><small style="margin-left:10px"><?php echo $r74['date'];?></small></h4>
+					<p><?php echo $r74['message'];?></p>
+					
+					
+					
+					
+
+					<form action="index.php" method="post"> 
+					<a href="#" data-toggle="popover"  data-html="true" data-placement="bottom" data-content='<form method="post" action="index.php"><textarea style="height:30px" name="popform" type="text"></textarea><br><button id="moveright" name="subform" value="<?php echo $r74['mess_id'];?>" class="btn btn-danger btn-xs" type="">Post</button></form>'  >Reply</a> 
+					<button style="margin-left:30px;margin-right:5px" class="btn btn-default btn-xs" type="submit" value="<?php echo $r74['mess_id']; echo $space; echo $r74['reply_id']; ?>" name="th_up1"><span class="glyphicon glyphicon-thumbs-up"></span></button>
+					<?php
+
+						$reactionsups=mysqli_query($conn,"select thumbsup from reactions where mess_id='".$r74['mess_id']."' and reply_id='".$r74['reply_id']."'");
+						$sum3 = 0;
+					
+					while($r4461=mysqli_fetch_array($reactionsups))
+						{
+		
+							$sum3 = $sum3 + $r4461['thumbsup'];
+									
+		
+						}
+						
+						echo $sum3;
+					?>
+			
+					<button style="margin-left:30px;margin-right:5px" class="btn btn-default btn-xs" type="submit" value="<?php echo $r74['mess_id']; echo $space; echo $r74['reply_id']; ?>" name="th_down1"><span class="glyphicon glyphicon-thumbs-down"></span></button>
+					<?php
+
+						$reactionsdowns=mysqli_query($conn,"select thumbsdown from reactions where mess_id='".$r74['mess_id']."' and reply_id='".$r74['reply_id']."'");
+						$sum4 = 0;
+					
+					while($r4462=mysqli_fetch_array($reactionsdowns))
+						{
+		
+							$sum4 = $sum4 + $r4462['thumbsdown'];
+									
+		
+						}
+						
+						echo $sum4;
+					?>
+			
+					</form>
+				<hr>
+		  
+				</div>
+		
+			</div>
 			
 			
 		
+		
+		
+		
+		
 				<?php
+						}
+				
+				
 					}
 		   
 		   
@@ -545,7 +621,17 @@ error_reporting(0);
                     </div>
                 </div>
 				
-				
+				<div class="row">
+				<center>
+					<ul class="pager">
+					<li><a href="#">Previous</a></li>
+					<li><a href="#">Next</a></li>
+					</ul>
+				</center>
+				</div>
+				<br>
+				<br>
+				<div class="row" id="what"></div>
 		
 		
             </div>
@@ -567,8 +653,8 @@ error_reporting(0);
 						<textarea type="text" name="message_post" class="form-control" placeholder="Message"></textarea>
 						
 						</div>
-							<div class="input-group input-group-btn col-lg-2">
-								<button name="submit2" value="submit2" class="btn btn-success btn-lg" type="submit">
+							<div  class="input-group input-group-btn col-lg-2">
+								<button  name="submit2" value="submit2" class="btn btn-success btn-lg" type="submit">
 									Post
 								</button>
 							</div>
@@ -591,8 +677,14 @@ error_reporting(0);
 $(document).ready(function(){
 	
     $('[data-toggle="popover"]').popover(); 
-});
-
+	
+	
+	$('html, body').animate({
+        scrollTop: $('#what').offset().top
+    });
+	
+	});
+	
 
 </script>
 	
