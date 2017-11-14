@@ -463,10 +463,30 @@ error_reporting(0);
 				<div  class="col-lg-12">
 				
 				<?php
+						if($_SESSION['page_num'] == 1)
+					{
 		  
-		  
-					$r33=mysqli_query($conn,"select *from users_message where channel_name='".$_SESSION['chname']."'");
+					$r33=mysqli_query($conn,"(select *from users_message where channel_name='".$_SESSION['chname']."' ORDER BY mess_id DESC LIMIT 3)ORDER BY mess_id ASC");
+					$r1110=mysqli_query($conn,"(select *from users_message where channel_name='".$_SESSION['chname']."' ORDER BY mess_id DESC LIMIT 3)ORDER BY mess_id ASC");
 					
+					$r1009=mysqli_fetch_array($r1110);
+					$_SESSION['mess_id']=$r1009['mess_id'];
+					
+	
+						}
+						
+						else{
+							
+							
+							$r33=mysqli_query($conn,"(select *from users_message WHERE mess_id < '".$_SESSION['mess_id']."' and channel_name='".$_SESSION['chname']."' ORDER BY mess_id DESC LIMIT 3)ORDER BY mess_id ASC");
+							$r1110=mysqli_query($conn,"(select *from users_message WHERE mess_id < '".$_SESSION['mess_id']."' and channel_name='".$_SESSION['chname']."' ORDER BY mess_id DESC LIMIT 3)ORDER BY mess_id ASC");
+					
+					
+					$r1009=mysqli_fetch_array($r1110);
+					$_SESSION['mess_id']=$r1009['mess_id'];
+					
+							
+						}
 					while($r34=mysqli_fetch_array($r33))
 						{
 	 
@@ -624,8 +644,18 @@ error_reporting(0);
 				<div class="row">
 				<center>
 					<ul class="pager">
-					<li><a href="#">Previous</a></li>
-					<li><a href="#">Next</a></li>
+					<?php	
+					echo '<li><a href="index.php?pagenum=2">Previous</a></li>';
+				
+					if($_SESSION['page_num'] == 1){
+					
+					}
+					
+					else{
+					echo '<li><a href="index.php?pagenum=3">Next</a></li>';
+						
+					}
+					?>
 					</ul>
 				</center>
 				</div>

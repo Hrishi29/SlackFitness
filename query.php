@@ -1,9 +1,18 @@
 <?php 
 
-	if($_GET['chname'] ) { // for index.php page for login into respective channesla
+	if(isset($_GET['chname']) ) { // for index.php page for login into respective channesla
  
 		
         $_SESSION['chname']=mysqli_real_escape_string($conn,test_input($_GET['chname']));
+				
+		
+	}
+	
+	if(isset($_GET['pagenum']) ) { // for index.php page for login into respective channesla
+ 
+		
+        $_SESSION['page_num']=mysqli_real_escape_string($conn,test_input($_GET['pagenum']));
+		 
 				
 		
 	}
@@ -193,7 +202,7 @@ if(isset($_POST['th_down1'])) { // for index.php after posting the reactions for
 	
 	else {
 	$insert_channel=mysqli_query($conn," INSERT INTO users_message (channel_name, messages, user_name, date) VALUES ('$chname', '$message_post', '$user_name', CURRENT_TIMESTAMP())")  ;
-
+	
 	}
 
 	}
@@ -331,6 +340,8 @@ if(isset($_POST['th_down1'])) { // for index.php after posting the reactions for
 					$row=mysqli_fetch_array($result);
 					$_SESSION['chname'] = "general";   // setting the default channel on load
 					$_SESSION['user_name'] = $row['user_name'];
+					$_SESSION['page_num'] = 1;
+					
 					header("Location:index.php"); //success
 	
 				}
