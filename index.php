@@ -413,9 +413,11 @@ error_reporting(0);
           
                     
 		  </li>			
-		  
-		  
-		  
+		  <!--
+		  <li>
+				<a style="color:white !important; margin-left:-5px" href="signout.php" class="btn btn-success btn-sm" role="button">Archive</a>
+				</li>
+		  -->
  
 
 
@@ -462,6 +464,7 @@ error_reporting(0);
                 <div class="row">
 				<div  class="col-lg-12">
 				
+				
 				<?php
 						if($_SESSION['page_num'] == 1)
 					{
@@ -475,7 +478,7 @@ error_reporting(0);
 	
 						}
 						
-						else{
+						else if($_SESSION['page_num'] == 2){
 							
 							
 							$r33=mysqli_query($conn,"(select *from users_message WHERE mess_id < '".$_SESSION['mess_id']."' and channel_name='".$_SESSION['chname']."' ORDER BY mess_id DESC LIMIT 3)ORDER BY mess_id ASC");
@@ -484,8 +487,30 @@ error_reporting(0);
 					
 					$r1009=mysqli_fetch_array($r1110);
 					$_SESSION['mess_id']=$r1009['mess_id'];
+					 echo '<script language="javascript">';
+        echo 'alert("'.$_SESSION['mess_id'].'")';
+        echo '</script>';
+		
+							
+						}
+						
+						else {
+						
+						$r1110=mysqli_query($conn,"(select *from users_message WHERE mess_id >= '".$_SESSION['mess_id']."' and channel_name='".$_SESSION['chname']."' ORDER BY mess_id ASC LIMIT 3)ORDER BY mess_id DESC");
+							$r1009=mysqli_fetch_array($r1110);
+							$_SESSION['mess_id']=$r1009['mess_id'];
 					
 							
+							$r33=mysqli_query($conn,"select *from users_message WHERE mess_id > '".$_SESSION['mess_id']."' and channel_name='".$_SESSION['chname']."' ORDER BY mess_id ASC LIMIT 3");
+							$r1003=mysqli_query($conn,"select *from users_message WHERE mess_id > '".$_SESSION['mess_id']."' and channel_name='".$_SESSION['chname']."' ORDER BY mess_id ASC LIMIT 3");
+					
+					
+					$r1004=mysqli_fetch_array($r1003);
+					$_SESSION['mess_id']=$r1004['mess_id'];
+					
+						
+						
+						
 						}
 					while($r34=mysqli_fetch_array($r33))
 						{
@@ -498,17 +523,40 @@ error_reporting(0);
 				
 			<div  class="row">			
 				<div class="col-sm-2 text-center">
-					<img src="user-image.jpg" class="img-circle" height="65" width="65" alt="Avatar">
+					<img src="user_images/<?php 
+					
+					$rnew=mysqli_query($conn,"select  *from users_info WHERE user_name = '".$r34['user_name']."'");
+					$rnew2=mysqli_fetch_array($rnew);
+					
+					echo $rnew2['user_pic']; ?>" class="img-circle" height="65" width="65">
 				</div>
 				<div id="<?php echo $r34['mess_id'];?>"  class="col-sm-10">
 					<h4><?php echo $r34['user_name'];?><small style="margin-left:10px"><?php echo $r34['date'];?></small></h4>
 					<p><?php echo $r34['messages'];?></p>
 					
+					<?php
 					
+					$posting=mysqli_query($conn,"select  *from img_post WHERE mess_id = '".$r34['mess_id']."'");
+					while($posting2=mysqli_fetch_array($posting))
+					{
+					if($posting2['post_img']!=NULL) {
 					
+					?>
+					<img src="<?php
+
+						
+					
+					echo $r34['post_img']; ?>" class="img-rounded" height="400" width="450">
+					<br>
+					<br>
+					<?php
+					}
+					}
+					?>
 					
 
 					<form action="index.php" method="post"> 
+					
 					<a href="#<?php echo $r34['mess_id'];?>"  data-toggle="popover"  data-html="true" data-placement="bottom" data-content='<form method="post" action="index.php"><textarea style="height:30px" name="popform" type="text"></textarea><br><button  name="subform" value="<?php echo $r34['mess_id'];?>" class="btn btn-danger btn-xs" type="">Post</button></form>'  >Reply</a> 
 			
 					<button style="margin-left:30px;margin-right:5px" class="btn btn-default btn-xs" type="submit" value="<?php echo $r34['mess_id'];?>" name="th_up"><span class="glyphicon glyphicon-thumbs-up"></span></button>
@@ -567,7 +615,13 @@ error_reporting(0);
 			<div  class="row">			
 				<div id="textbox" class="col-sm-2 col-md-2"></div>
 				<div style="margin-left:-30px" class="col-sm-2 col-md-2 text-center">
-					<img src="user-image.jpg" class="img-circle" height="65" width="65" alt="Avatar">
+					<img src="user_images/<?php
+
+					$rnew3=mysqli_query($conn,"select  *from users_info WHERE user_name = '".$r74['user_name']."'");
+					$rnew4=mysqli_fetch_array($rnew3);
+							
+					
+					echo $rnew4['user_pic']; ?>" class="img-circle" height="65" width="65">
 				</div>
 				
 				<div class="col-sm-8 col-md-8">
@@ -577,8 +631,11 @@ error_reporting(0);
 					
 					
 					
+					
 
 					<form action="index.php" method="post"> 
+					
+					
 					<a href="#" data-toggle="popover"  data-html="true" data-placement="bottom" data-content='<form method="post" action="index.php"><textarea style="height:30px" name="popform" type="text"></textarea><br><button id="moveright" name="subform" value="<?php echo $r74['mess_id'];?>" class="btn btn-danger btn-xs" type="">Post</button></form>'  >Reply</a> 
 					<button style="margin-left:30px;margin-right:5px" class="btn btn-default btn-xs" type="submit" value="<?php echo $r74['mess_id']; echo $space; echo $r74['reply_id']; ?>" name="th_up1"><span class="glyphicon glyphicon-thumbs-up"></span></button>
 					<?php
@@ -644,9 +701,18 @@ error_reporting(0);
 				<div class="row">
 				<center>
 					<ul class="pager">
-					<?php	
+					<?php
+					
+					$r3003=mysqli_query($conn,"select *from users_message where channel_name='".$_SESSION['chname']."'");
+					$r3004=mysqli_fetch_array($r3003);
+					if($_SESSION['mess_id']==$r3004['mess_id']){
+						
+					}
+					else{
 					echo '<li><a href="index.php?pagenum=2">Previous</a></li>';
-				
+					
+					}
+					
 					if($_SESSION['page_num'] == 1){
 					
 					}
@@ -676,15 +742,20 @@ error_reporting(0);
 										<div class="col-sm-3 col-md-3">
 										</div>
 										<div class="col-sm-9 col-md-9">
-											<form class="navbar-form" action="index.php" method="post">
+											<form class="navbar-form" action="index.php" method="post" enctype="multipart/form-data">
 												<div class="row">
 					<div class="input-group input-group-lg col-lg-10">
 						
 						<textarea type="text" name="message_post" class="form-control" placeholder="Message"></textarea>
 						
 						</div>
+						<div  class="input-group input-group-btn col-lg-2">
+								<button  style="margin-left:-5px" name="" value="" class="btn btn-basic btn-lg" type="">
+									<span class="glyphicon glyphicon-paperclip"></span>
+								</button>
+							</div>
 							<div  class="input-group input-group-btn col-lg-2">
-								<button  name="submit2" value="submit2" class="btn btn-success btn-lg" type="submit">
+								<button style="margin-left:5px" name="submit2" value="submit2" class="btn btn-success btn-lg" type="submit">
 									Post
 								</button>
 							</div>
