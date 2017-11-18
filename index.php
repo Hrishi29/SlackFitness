@@ -342,6 +342,208 @@ error_reporting(0);
 
 
 
+<!-- Modal FRONT -->
+<div id="myModal10" class="modal fade" role="dialog">
+ 
+ <div class="modal-dialog">
+
+    <!-- Modal content-->
+	<div class="container">
+	<div class="row">
+	
+        <div class="col-md-6">
+    <div class="modal-content">
+      <div class="modal-header" style="background-color:#030778">
+        <button type="button" class="close" data-dismiss="modal">&times;</button>
+        <h3 class="modal-title" style="font-weight:bolder;font-size:2.5em; color:white">Embed</h3>
+      </div>
+      <div class="modal-body">
+        <ul class="nav nav-pills">
+			<li class="active"><a data-toggle="pill" href="#home5">Image From Computer</a></li>
+			<li><a data-toggle="pill" href="#home6">Image From Web </a></li>
+			<li><a data-toggle="pill" href="#home7">Pretty Formatted Code</a></li>
+			
+		</ul>
+		<hr>
+		
+		<div class="tab-content">
+		
+		
+			 <div id="home5" class="tab-pane fade in active">
+		
+		 <form method="post" action="index.php" enctype="multipart/form-data">
+            <div class="form-group">
+			
+			<input style="margin-top:20px; margin-left:80px" type="file" name="post_image" accept="image/*" />
+
+			
+		
+			</div>
+			
+			<div class="form-group">
+			
+			<button type="submit" value="submit15" name="submit15"  class="btn btn-success">Upload</button>
+			
+            </div>
+			
+  <br>
+            
+          </form>
+			
+		
+				
+      <div class="modal-footer">
+		
+    
+     <button type="button"  data-dismiss="modal" class="btn btn-danger custom bold">Back</button>
+	
+       
+      </div>
+	  
+    
+		</div>
+		
+		<div id="home1" class="tab-pane fade">
+		
+		<h4>Channels you can join to:</h4>
+	  
+
+      <div style="max-height:200px; overflow-y:auto;"class="well">
+      <form method="post" action="index.php">
+	  	<ul class="list-group">
+		   
+<?php
+	
+	 $ichannels=mysqli_query($conn,"select *from unique_channel where users_email='".$_SESSION['user_email']."'");
+     
+					while($r59=mysqli_fetch_array($ichannels))
+						{
+	 
+						
+
+?> 
+
+		   
+			<li class="list-group-item"># <?php echo $r59['channels1']; ?></li><button style="margin:5px 0 5px 0" type="submit" value="<?php echo $r59['channels1']; ?>" name="jchannel" class="btn btn-primary btn-sm">Join Channel</button>
+			
+	
+<?php
+
+						}
+?>
+	</ul>	
+			
+			
+	  </form>	
+	  </div>
+
+		
+		
+		
+      <h4>Channels you belong to:</h4>
+	  
+
+      <div style="max-height:200px; overflow-y:auto;"class="well">
+      
+	  	<ul class="list-group">
+		   
+<?php
+	
+	 $jchannels=mysqli_query($conn,"select *from users_channel where user_email='".$_SESSION['user_email']."'");
+     
+					while($r59=mysqli_fetch_array($jchannels))
+						{
+	 
+						
+
+?> 
+
+		   
+			<li class="list-group-item">#<?php echo $r59['channels']; ?></li>
+			<br>
+			
+	
+<?php
+
+						}
+?>
+	</ul>	
+			
+			
+	  	
+	  </div>
+
+	<div class="modal-footer">
+		
+    
+     <button type="button"  data-dismiss="modal" class="btn btn-danger custom bold">Back</button>
+	
+       
+      </div>
+	  	
+	
+	</div>
+	
+	<div id="home2" class="tab-pane fade">
+		
+		<h4>You have following invites:</h4>
+	  
+
+      <div style="max-height:400px; overflow-y:auto;"class="well">
+      <form method="post" action="index.php">
+	  	<ul class="list-group">
+		   
+<?php
+	
+	 $ichannels1=mysqli_query($conn,"select *from unique_channel where users_email='".$_SESSION['user_email']."'");
+     
+					while($r591=mysqli_fetch_array($ichannels1))
+						{
+	 
+						
+
+?> 
+
+		   
+			<li class="list-group-item">You have been invited by <?php echo $r591['invitor']; ?> to join the channel: <span style="font-weight:bold">#<?php echo $r591['channels1']; ?></span></li><button style="margin:5px 0 5px 0" type="submit" value="<?php echo $r591['channels1']; ?>" name="jchannel" class="btn btn-primary btn-sm">Join Channel</button>
+			
+	
+<?php
+
+						}
+?>
+	</ul>	
+			
+			
+	  </form>	
+	  </div>
+
+		
+		
+		
+		
+		<div class="modal-footer">
+		
+    
+     <button type="button"  data-dismiss="modal" class="btn btn-danger custom bold">Back</button>
+	
+       
+      </div>
+	
+		
+		</div>
+	</div>
+	
+	</div>
+	</div>
+</div>
+</div>
+  </div>
+  </div>
+  
+</div>
+
+
     <div id="wrapper">
 
         <!-- Sidebar -->
@@ -742,7 +944,7 @@ error_reporting(0);
 										<div class="col-sm-3 col-md-3">
 										</div>
 										<div class="col-sm-9 col-md-9">
-											<form class="navbar-form" action="index.php" method="post" enctype="multipart/form-data">
+											<form class="navbar-form" action="index.php" method="post" >
 												<div class="row">
 					<div class="input-group input-group-lg col-lg-10">
 						
@@ -750,8 +952,8 @@ error_reporting(0);
 						
 						</div>
 						<div  class="input-group input-group-btn col-lg-2">
-								<button  style="margin-left:-5px" name="" value="" class="btn btn-basic btn-lg" type="">
-									<span class="glyphicon glyphicon-paperclip"></span>
+								<button  style="margin-left:-5px" data-toggle="modal" data-target="#myModal10" class="btn btn-basic btn-lg" type="button">
+									<span class="glyphicon glyphicon-plus"></span>
 								</button>
 							</div>
 							<div  class="input-group input-group-btn col-lg-2">
