@@ -542,7 +542,7 @@ error_reporting(0);
 					if($posting2['post_img']!=NULL) {
 					
 					?>
-					<img src="<?php
+					<img src="post_images/<?php
 
 						
 					
