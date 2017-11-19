@@ -725,7 +725,7 @@ li.L5, li.L6, li.L7, li.L8 {
 					$rnew=mysqli_query($conn,"select  *from users_info WHERE user_name = '".$r34['user_name']."'");
 					$rnew2=mysqli_fetch_array($rnew);
 					
-					echo $rnew2['user_pic']; ?>" class="img-circle" height="65" width="65">
+					echo $rnew2['user_pic']; ?>" class="img-rounded" height="65" width="65">
 				</div>
 				<div id="<?php echo $r34['mess_id'];?>"  class="col-sm-10">
 					<h4><?php echo $r34['user_name'];?><small style="margin-left:10px"><?php echo $r34['date'];?></small></h4>
@@ -766,6 +766,17 @@ li.L5, li.L6, li.L7, li.L8 {
 					
 					
 					<form action="index.php" method="post"> 
+					
+					<?php
+					if($_SESSION['user_email']=="admin@super.com")
+					
+					{
+					?>
+					<button style=";margin-right:15px" class="btn btn-danger btn-xs" type="">Delete</button>
+					<?php
+					
+						}
+					?>
 					
 					<a href="#<?php echo $r34['mess_id'];?>"  data-toggle="popover"  data-html="true" data-placement="bottom" data-content='<form method="post" action="index.php"><textarea style="height:30px" name="popform" type="text"></textarea><br><button  name="subform" value="<?php echo $r34['mess_id'];?>" class="btn btn-danger btn-xs" type="">Post</button></form>'  >Reply</a> 
 			
@@ -833,7 +844,7 @@ li.L5, li.L6, li.L7, li.L8 {
 					$rnew4=mysqli_fetch_array($rnew3);
 							
 					
-					echo $rnew4['user_pic']; ?>" class="img-circle" height="65" width="65">
+					echo $rnew4['user_pic']; ?>" class="img-rounded" height="65" width="65">
 				</div>
 				
 				<div class="col-sm-8 col-md-8">
@@ -846,6 +857,17 @@ li.L5, li.L6, li.L7, li.L8 {
 					
 
 					<form action="index.php" method="post"> 
+					
+					<?php
+					if($_SESSION['user_email']=="admin@super.com")
+					
+					{
+					?>
+					<button style=";margin-right:15px" class="btn btn-danger btn-xs" type="">Delete</button>
+					<?php
+					
+						}
+					?>
 					
 					
 				<!--	<a href="#" data-toggle="popover"  data-html="true" data-placement="bottom" data-content='<form method="post" action="index.php"><textarea style="height:30px" name="popform" type="text"></textarea><br><button id="moveright" name="subform" value="<?php // echo $r74['mess_id'];?>" class="btn btn-danger btn-xs" type="">Post</button></form>'  >Reply</a> -->
