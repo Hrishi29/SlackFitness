@@ -308,9 +308,165 @@ if(isset($_POST['th_down1'])) { // for index.php after posting the reactions for
 		
 		}
 	}	
+	
+	
+	
+	
+	if(isset($_POST['submit17'])) { // formatted code
+						
+						
+				$post_code=mysqli_real_escape_string($conn,test_input($_POST['post_code']));
+				
+					
+					$message_post=mysqli_real_escape_string($conn,test_input($_POST['mess_code']));	
+					$user_name=$_SESSION['user_name'];
+					$chname=$_SESSION['chname'];
+		
+		if($message_post==''){
+	
+		$post_insert=mysqli_query($conn," INSERT INTO users_message (channel_name, user_name, date, format_code) VALUES ('$chname', '$user_name', CURRENT_TIMESTAMP(), '$post_code') ")  ;
+		}
+		
+		else{
+			
+			$post_insert=mysqli_query($conn," INSERT INTO users_message (channel_name, messages, user_name, date, format_code) VALUES ('$chname', '$message_post', '$user_name', CURRENT_TIMESTAMP(), '$post_code') ")  ;
+		
+			
+		}
+		
+					
+					
+				
+	
+				
+	
+	
+	
+	}
+	
+	
+	
+	
+	
+	
+	
+	if(isset($_POST['submit16'])) { // images from file
+						
+						
+				$url=$_POST["post_url"];
+				$data = file_get_contents($url);
+				
+				
+				// $imgExt = strtolower(pathinfo($data,PATHINFO_EXTENSION));
+				// valid image extensions
+		//	$valid_extensions = array('jpeg', 'jpg', 'png', 'gif'); // valid extensions
+				$upload_dir = 'post_images/';
+		       $userpic = rand(1000,1000000).".jpeg";
+		
+				$new = $upload_dir.$userpic;
+				
+			//	 $new = $upload_dir.$userpic;
+				$success=file_put_contents($new, $data);
+				
+				if($success){
+					
+					$message_post=mysqli_real_escape_string($conn,test_input($_POST['mess_url']));	
+					$user_name=$_SESSION['user_name'];
+					$chname=$_SESSION['chname'];
+		
+		if($message_post==''){
+	
+		$post_insert=mysqli_query($conn," INSERT INTO users_message (channel_name, user_name, date, post_img) VALUES ('$chname', '$user_name', CURRENT_TIMESTAMP(), '$userpic') ")  ;
+		}
+		
+		else{
+			
+			$post_insert=mysqli_query($conn," INSERT INTO users_message (channel_name, messages, user_name, date, post_img) VALUES ('$chname', '$message_post', '$user_name', CURRENT_TIMESTAMP(), '$userpic') ")  ;
+		
+			
+		}
+		
+					
+					
+				}
+	
+				
+	
+	
+	
+	}
+	
+	
+	
 
 	
+						if(isset($_POST['submit15'])) { // images from file
+						
+						
+						
+						$imgFile = $_FILES['post_image']['name'];
+						$tmp_dir = $_FILES['post_image']['tmp_name'];
+						$imgSize = $_FILES['post_image']['size'];
+						
+						$upload_dir = 'post_images/'; // upload directory
 	
+			$imgExt = strtolower(pathinfo($imgFile,PATHINFO_EXTENSION)); // get image extension
+		
+			// valid image extensions
+			$valid_extensions = array('jpeg', 'jpg', 'png', 'gif'); // valid extensions
+		
+			// rename uploading image
+			$userpic = rand(1000,1000000).".".$imgExt;
+				
+			// allow valid image file formats
+			if(in_array($imgExt, $valid_extensions)){			
+				// Check file size '5MB'
+				if($imgSize < 1000000000)				{
+					
+					move_uploaded_file($tmp_dir,$upload_dir.$userpic);
+				}
+				else{
+					
+					 echo '<script language="javascript">';
+        echo 'alert("Large: Should be less than 10MB")';
+        echo '</script>';
+		$errMSG = "Sorry, your file is too large it should be less then 5MB";
+				}
+			}
+			else{
+				
+				
+			 echo '<script language="javascript">';
+        echo 'alert("Error: Only JPG, JPEG, PNG & GIF files are allowed.")';
+        echo '</script>';
+		$errMSG = "Sorry, only JPG, JPEG, PNG & GIF files are allowed.";
+			}
+			
+			
+			
+		// if no error occured, continue ....	
+		if(!isset($errMSG))
+		{
+			
+		$message_post=mysqli_real_escape_string($conn,test_input($_POST['mess_post']));	
+		$user_name=$_SESSION['user_name'];
+	    $chname=$_SESSION['chname'];
+		
+		if($message_post==''){
+	
+		$post_insert=mysqli_query($conn," INSERT INTO users_message (channel_name, user_name, date, post_img) VALUES ('$chname', '$user_name', CURRENT_TIMESTAMP(), '$userpic') ")  ;
+		}
+		
+		else{
+			
+			$post_insert=mysqli_query($conn," INSERT INTO users_message (channel_name, messages, user_name, date, post_img) VALUES ('$chname', '$message_post', '$user_name', CURRENT_TIMESTAMP(), '$userpic') ")  ;
+		
+			
+		}
+		
+		}
+	
+						}
 	
 	
 	if(isset($_POST['submit'])) { // for workspace.php page
@@ -335,12 +491,13 @@ if(isset($_POST['th_down1'])) { // for index.php after posting the reactions for
 			if($r2['user_email']==$_SESSION['user_email'] && $r2['user_pass']==$_SESSION['user_pass']) //check for valid email and password
 				{
           
-					$result=mysqli_query($conn,"select user_name from users_info where user_email='".$_SESSION['user_email']."' and user_pass='".$_SESSION['user_pass']."'");
+					$result=mysqli_query($conn,"select * from users_info where user_email='".$_SESSION['user_email']."' and user_pass='".$_SESSION['user_pass']."'");
 					 
 					$row=mysqli_fetch_array($result);
 					$_SESSION['chname'] = "general";   // setting the default channel on load
 					$_SESSION['user_name'] = $row['user_name'];
 					$_SESSION['page_num'] = 1;
+					$_SESSION['user_pic'] = $row['user_pic'];
 					
 					header("Location:index.php"); //success
 	

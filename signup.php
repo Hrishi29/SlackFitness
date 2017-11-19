@@ -30,12 +30,19 @@ if(!isset($_SESSION['workspace'])){ //only users within workspace
 
 <h2>Sign Up</h2>
 
-<img src="user-image.jpg" class="img-rounded responsive" name="user_image"  width="170" height="130"> 
 
-<input style="margin-top:20px; margin-left:80px" type="file" name="user_image" accept="image/*" />
+
+<form action="signup.php" method="post" enctype="multipart/form-data">
+	<!--Select image to upload:
+    <input type="file" name="fileToUpload" id="fileToUpload"> -->
+    <img src="user-image.jpg" class="img-rounded responsive"   width="170" height="130"> 
+
+	<input style="margin-top:20px; margin-left:80px" type="file" name="user_image" accept="image/*" />
+
+
 
 </center>
-<form action="signup.php" method="post">
+
 	<div style="margin-top:50px" class="form-group">
     <label for="user">Username:</label>
     <input name="user_name" type="text" class="form-control" placeholder="Enter username" id="user" required>
@@ -50,6 +57,49 @@ include 'connect.php';
 	 
 					if ($_SERVER["REQUEST_METHOD"] == "POST") {
 						
+						$imgFile = $_FILES['user_image']['name'];
+						$tmp_dir = $_FILES['user_image']['tmp_name'];
+						$imgSize = $_FILES['user_image']['size'];
+						
+					if($imgFile) {	
+						
+						$upload_dir = 'user_images/'; // upload directory
+	
+			$imgExt = strtolower(pathinfo($imgFile,PATHINFO_EXTENSION)); // get image extension
+		
+			// valid image extensions
+			$valid_extensions = array('jpeg', 'jpg', 'png', 'gif'); // valid extensions
+		
+			// rename uploading image
+			$userpic = rand(1000,1000000).".".$imgExt;
+				
+			// allow valid image file formats
+			if(in_array($imgExt, $valid_extensions)){			
+				// Check file size '5MB'
+				if($imgSize < 50000000)				{
+					move_uploaded_file($tmp_dir,$upload_dir.$userpic);
+				}
+				else{
+					 echo '<script language="javascript">';
+        echo 'alert("Large: Should be less than 5MB")';
+        echo '</script>';
+		
+				}
+			}
+			else{
+			 echo '<script language="javascript">';
+        echo 'alert("Error")';
+        echo '</script>';
+		
+			}
+					}
+					
+					
+					else {
+			
+								$userpic = "user-image.jpg";
+						
+					}					
 						$user_pass=mysqli_real_escape_string($conn,test_input($_POST['pass']));
 						$user_passw=mysqli_real_escape_string($conn,test_input($_POST['passw']));
 						if ($user_pass!=$user_passw)
@@ -58,6 +108,7 @@ include 'connect.php';
 							}
 						
 						else {
+							
 							
 					$user_email=mysqli_real_escape_string($conn,test_input($_POST['user_email']));//same	
 					$user_name=mysqli_real_escape_string($conn,test_input($_POST['user_name']));
@@ -74,13 +125,18 @@ include 'connect.php';
 		
     }
 	
+
 else {
 	
+		
 	
-$insert_user="INSERT INTO users_info (id, user_name, user_pass,  user_email) VALUES ('1', '$user_name', '$user_pass', '$user_email')";
+	
+	
+$insert_user="INSERT INTO users_info (id, user_pic, user_name, user_pass,  user_email) VALUES ('1', '$userpic', '$user_name', '$user_pass', '$user_email')";
 
     if(mysqli_query($conn,$insert_user))
-    {
+    {				
+				  $_SESSION['user_pic'] = $userpic;	
 				  $_SESSION['chname'] = "general";
 				  $_SESSION['user_name']=$user_name;
 				  $_SESSION['user_email']=$user_email;
@@ -89,17 +145,17 @@ $insert_user="INSERT INTO users_info (id, user_name, user_pass,  user_email) VAL
 					$r103=mysqli_query($conn,"select  *from public_channels");
 					while($r203=mysqli_fetch_array($r103))
 					{
-	 
+					
 					$pchannel=$r203['p_channel'];
 					$invitor=$r203['invitor'];
 					$insert2_channel=mysqli_query($conn," INSERT INTO unique_channel (channels1, users_email, invitor) VALUES ('$pchannel', '$user_email', '$user_email')")  ;
-
+					$_SESSION['page_num'] = 1;
+					
 					}
 
 				  
-        echo '<script language="javascript">';
-        echo 'alert("Successfully Registered"); location.href="index.php"';
-        echo '</script>';
+       header("Location:index.php");	
+
     }
 
 	
@@ -107,6 +163,8 @@ $insert_user="INSERT INTO users_info (id, user_name, user_pass,  user_email) VAL
 
 }	
 					}
+					
+					
 					} 
 	
 function test_input($data) { // function for mysql injections

@@ -22,16 +22,16 @@ error_reporting(0);
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
 	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>	
-  
+    <script src="https://cdn.rawgit.com/google/code-prettify/master/loader/run_prettify.js"></script>
 	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css"><!-- getting the bootstrap css file for predefined components  -->
   <!-- Custom CSS -->
     <link href="css/sidebar.css" rel="stylesheet">	
   <style>
-  
-  
-  
-  </style>
-  
+li.L0, li.L1, li.L2, li.L3,
+li.L5, li.L6, li.L7, li.L8 {
+  list-style-type: decimal !important;
+}
+</style>
   </head>
 
 <body>
@@ -53,12 +53,15 @@ error_reporting(0);
       <div class="modal-body">
         <center>
 		
-		<img src="user-image.jpg" class="img-rounded responsive" name="user_image"  width="170" height="130"> 
+		
+		
+		
+		<img src="user_images/<?php echo $_SESSION['user_pic']; ?>" class="img-rounded responsive" name="user_image"  width="200" height="200"> 
 			
 			<br>
 			<br>
-			<br>
-			<br>
+			
+		
 		<div><span style="font-weight:bold">Username: </span><span><?php echo $_SESSION['user_name']; ?></span></div>
 		
 		<br>
@@ -372,9 +375,21 @@ error_reporting(0);
 			 <div id="home5" class="tab-pane fade in active">
 		
 		 <form method="post" action="index.php" enctype="multipart/form-data">
+		 
+		    <div class="form-group">
+			
+			<label for="cmess">Enter Description: </label>
+			<textarea style="margin-top:20px;" class="form-control" type="text" name="mess_post" id="cmess" placeholder="(Optional)" ></textarea>
+
+			
+		
+			</div>
+			
+		 
+		 
             <div class="form-group">
 			
-			<input style="margin-top:20px; margin-left:80px" type="file" name="post_image" accept="image/*" />
+			<input style="margin-top:20px;" type="file" name="post_image" accept="image/*" />
 
 			
 		
@@ -403,75 +418,49 @@ error_reporting(0);
     
 		</div>
 		
-		<div id="home1" class="tab-pane fade">
+		<div id="home6" class="tab-pane fade">
 		
-		<h4>Channels you can join to:</h4>
-	  
+		<h4>Preview</h4>
+		
+		<!--<div  id="image_preview"></div>-->
 
-      <div style="max-height:200px; overflow-y:auto;"class="well">
-      <form method="post" action="index.php">
-	  	<ul class="list-group">
-		   
-<?php
-	
-	 $ichannels=mysqli_query($conn,"select *from unique_channel where users_email='".$_SESSION['user_email']."'");
-     
-					while($r59=mysqli_fetch_array($ichannels))
-						{
-	 
-						
-
-?> 
-
-		   
-			<li class="list-group-item"># <?php echo $r59['channels1']; ?></li><button style="margin:5px 0 5px 0" type="submit" value="<?php echo $r59['channels1']; ?>" name="jchannel" class="btn btn-primary btn-sm">Join Channel</button>
+     <br>
+       <form method="post" action="index.php" enctype="multipart/form-data">
+		 
+		    <div class="form-group">
 			
-	
-<?php
+			<label for="curl">Enter Description: </label>
+			<textarea style="margin-top:20px;" class="form-control" type="text" name="mess_url" id="curl" placeholder="(Optional)" ></textarea>
 
-						}
-?>
-	</ul>	
 			
+		
+			</div>
 			
-	  </form>	
-	  </div>
+		 <br>
+		 
+            <div class="form-group">
+			
+			<label for="purl">Enter URL: </label>
+			<input style="margin-top:20px; "  onchange="preview_image();" class="form-control" type="text" name="post_url" id="purl" placeholder="Enter URL"  required />
+
+			
+		
+			</div>
+			
+			<div class="form-group">
+			
+			<button type="submit" value="submit16" name="submit16"  class="btn btn-success">Upload</button>
+			
+            </div>
+			
+  <br>
+            
+          </form>
+		
 
 		
 		
 		
-      <h4>Channels you belong to:</h4>
-	  
-
-      <div style="max-height:200px; overflow-y:auto;"class="well">
-      
-	  	<ul class="list-group">
-		   
-<?php
-	
-	 $jchannels=mysqli_query($conn,"select *from users_channel where user_email='".$_SESSION['user_email']."'");
-     
-					while($r59=mysqli_fetch_array($jchannels))
-						{
-	 
-						
-
-?> 
-
-		   
-			<li class="list-group-item">#<?php echo $r59['channels']; ?></li>
-			<br>
-			
-	
-<?php
-
-						}
-?>
-	</ul>	
-			
-			
-	  	
-	  </div>
 
 	<div class="modal-footer">
 		
@@ -484,40 +473,46 @@ error_reporting(0);
 	
 	</div>
 	
-	<div id="home2" class="tab-pane fade">
+	<div id="home7" class="tab-pane fade">
 		
-		<h4>You have following invites:</h4>
-	  
-
-      <div style="max-height:400px; overflow-y:auto;"class="well">
-      <form method="post" action="index.php">
-	  	<ul class="list-group">
-		   
-<?php
-	
-	 $ichannels1=mysqli_query($conn,"select *from unique_channel where users_email='".$_SESSION['user_email']."'");
-     
-					while($r591=mysqli_fetch_array($ichannels1))
-						{
-	 
-						
-
-?> 
-
-		   
-			<li class="list-group-item">You have been invited by <?php echo $r591['invitor']; ?> to join the channel: <span style="font-weight:bold">#<?php echo $r591['channels1']; ?></span></li><button style="margin:5px 0 5px 0" type="submit" value="<?php echo $r591['channels1']; ?>" name="jchannel" class="btn btn-primary btn-sm">Join Channel</button>
+		
+		 <form method="post" action="index.php">
+		 
+		    <div class="form-group">
 			
-	
-<?php
+			<label for="durl">Enter Description: </label>
+			<textarea style="margin-top:20px;" class="form-control" name="mess_code" id="durl" placeholder="(Optional)"></textarea>
 
-						}
-?>
-	</ul>	
+			
+		
+			</div>
+			
+		 <br>
+		 
+            <div class="form-group">
+			
+			<label for="eurl">Paste Code: </label>
 			
 			
-	  </form>	
-	  </div>
+			
+			<textarea style="margin-top:20px; height:100px "  class="form-control"  name="post_code" id="eurl" placeholder="Enter Code"  required></textarea>
 
+			
+		
+			</div>
+			
+			
+			
+			
+			<div class="form-group">
+			
+			<button type="submit" value="submit17" name="submit17"  class="btn btn-success">Upload</button>
+			
+            </div>
+			
+  <br>
+            
+          </form>
 		
 		
 		
@@ -738,10 +733,8 @@ error_reporting(0);
 					
 					<?php
 					
-					$posting=mysqli_query($conn,"select  *from img_post WHERE mess_id = '".$r34['mess_id']."'");
-					while($posting2=mysqli_fetch_array($posting))
-					{
-					if($posting2['post_img']!=NULL) {
+					
+					if($r34['post_img']!=NULL) {
 					
 					?>
 					<img src="post_images/<?php
@@ -752,11 +745,26 @@ error_reporting(0);
 					<br>
 					<br>
 					<?php
+					
 					}
+					
+					if($r34['format_code']!=NULL) {
+					
+					?>
+					
+					<pre class="prettyprint linenums">
+					
+					<?php echo $r34['format_code'];?>
+					
+					</pre>
+					<?php
+					
 					}
 					?>
 					
-
+					<br>
+					
+					
 					<form action="index.php" method="post"> 
 					
 					<a href="#<?php echo $r34['mess_id'];?>"  data-toggle="popover"  data-html="true" data-placement="bottom" data-content='<form method="post" action="index.php"><textarea style="height:30px" name="popform" type="text"></textarea><br><button  name="subform" value="<?php echo $r34['mess_id'];?>" class="btn btn-danger btn-xs" type="">Post</button></form>'  >Reply</a> 
@@ -778,7 +786,7 @@ error_reporting(0);
 						echo $sum;
 					?>
 			
-					<button style="margin-left:30px;margin-right:5px" class="btn btn-default btn-xs" type="submit" value="<?php echo $r34['mess_id'];?>" name="th_down"><span class="glyphicon glyphicon-thumbs-down"></span></button>
+					<button style="margin-left:30px;margin-right:10px" class="btn btn-default btn-xs" type="submit" value="<?php echo $r34['mess_id'];?>" name="th_down"><span class="glyphicon glyphicon-thumbs-down"></span></button>
 					<?php
 
 						$reactionsdown=mysqli_query($conn,"select thumbsdown from reactions where mess_id='".$r34['mess_id']."' and reply_id=0");
@@ -794,6 +802,7 @@ error_reporting(0);
 						
 						echo $sum1;
 					?>
+			
 			
 					</form>
 				<hr>
@@ -816,6 +825,7 @@ error_reporting(0);
 			
 			<div  class="row">			
 				<div id="textbox" class="col-sm-2 col-md-2"></div>
+			
 				<div style="margin-left:-30px" class="col-sm-2 col-md-2 text-center">
 					<img src="user_images/<?php
 
@@ -830,7 +840,7 @@ error_reporting(0);
 					<h4><?php echo $r74['user_name'];?><small style="margin-left:10px"><?php echo $r74['date'];?></small></h4>
 					<p><?php echo $r74['message'];?></p>
 					
-					
+					<br>
 					
 					
 					
@@ -838,7 +848,7 @@ error_reporting(0);
 					<form action="index.php" method="post"> 
 					
 					
-					<a href="#" data-toggle="popover"  data-html="true" data-placement="bottom" data-content='<form method="post" action="index.php"><textarea style="height:30px" name="popform" type="text"></textarea><br><button id="moveright" name="subform" value="<?php echo $r74['mess_id'];?>" class="btn btn-danger btn-xs" type="">Post</button></form>'  >Reply</a> 
+				<!--	<a href="#" data-toggle="popover"  data-html="true" data-placement="bottom" data-content='<form method="post" action="index.php"><textarea style="height:30px" name="popform" type="text"></textarea><br><button id="moveright" name="subform" value="<?php // echo $r74['mess_id'];?>" class="btn btn-danger btn-xs" type="">Post</button></form>'  >Reply</a> -->
 					<button style="margin-left:30px;margin-right:5px" class="btn btn-default btn-xs" type="submit" value="<?php echo $r74['mess_id']; echo $space; echo $r74['reply_id']; ?>" name="th_up1"><span class="glyphicon glyphicon-thumbs-up"></span></button>
 					<?php
 
@@ -877,6 +887,8 @@ error_reporting(0);
 				<hr>
 		  
 				</div>
+		
+				
 		
 			</div>
 			
@@ -989,6 +1001,20 @@ $(document).ready(function(){
 	});
 	
 
+	/*
+	function preview_image() 
+{
+ 
+	var total_file=document.getElementById("purl").value;
+	   <?php $data1; ?>  	=  var total_file;
+	    <?php  $data2 = file_get_contents($data1); 
+		$new = 'new_image.jpeg';
+		file_put_contents($new, $data2);   ?>
+ 
+  $('#image_preview').append("<img src='img20.jpg' class='img-circle' height='65' width='65'><br>");
+ 
+}
+	*/
 </script>
 	
 </body>
