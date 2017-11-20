@@ -8,6 +8,24 @@
 		
 	}
 	
+	if(isset($_GET['q']) ) { // for index.php page for login into respective channesla
+ $conn = mysqli_connect("localhost","root","");  //database connection
+    if ($conn->connect_error) {
+    die("Connection failed: " . $conn->connect_error);
+     } 
+	
+	mysqli_select_db($conn,'slack');  // selecting database
+		$ret=mysqli_real_escape_string($conn,test_input($_GET['q']));
+  echo '<script language="javascript">';
+        echo 'alert("'.$ret.'")';
+        echo '</script>';
+		$retreiv55=mysqli_query($conn,"select user_name from user_info where user_name LIKE '".$ret."'");
+        
+	}
+	 
+	
+	
+	
 	if(isset($_GET['pagenum']) ) { // for index.php page for login into respective channesla
  
 		
@@ -19,10 +37,25 @@
 	
 
 	
-	if(isset($_POST['channel_archive'])) {  // inserting channel status
+	if(isset($_POST['channel_archive1'])) {  // inserting channel status
+		
+		$archive_status = $_SESSION['chname'];
+		$insert_status= mysqli_query($conn," INSERT INTO archive (archive_channel, channels) VALUES ('archive', '$archive_status')")  ;
+    		echo '<script language="javascript">';
+        echo ' location.href="index.php"';
+        echo '</script>';
 		
 		
+	}
+	
+	if(isset($_POST['channel_archive2'])) {  // inserting channel status
 		
+		$archive_status = $_SESSION['chname'];
+		$insert_status= mysqli_query($conn," INSERT INTO archive (archive_channel, channels) VALUES ('unarchive', '$archive_status')")  ;
+    		
+			echo '<script language="javascript">';
+        echo 'location.href="index.php"';
+        echo '</script>';
 		
 	}
 	
@@ -541,7 +574,8 @@ if(isset($_POST['th_down1'])) { // for index.php after posting the reactions for
 	}
 	
 	
-
+	
+ 
 function test_input($data) { // function for mysql injections
   $data = trim($data);
   $data = stripslashes($data);
