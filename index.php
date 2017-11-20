@@ -586,7 +586,7 @@ li.L5, li.L6, li.L7, li.L8 {
 							<form>
 					<div style="margin-top:5px; margin-left:10px" class="col-md-3">
 					<div class="input-group">
-										<input type="text" id="search" class="form-control" placeholder="Search">
+										<input type="text" autocomplete="off" id="search" class="form-control" placeholder="Search">
 										
 
 										
@@ -644,6 +644,7 @@ li.L5, li.L6, li.L7, li.L8 {
 											}
 						}
 					?>
+					<div class="col-md-3"  id="display" style="" href=""></div>
 					
 			
 						</div>
@@ -774,7 +775,7 @@ li.L5, li.L6, li.L7, li.L8 {
 			
 		
 		
-      <div id="display" style="height:100px" href=""></div>
+      
 	  
     
 		
