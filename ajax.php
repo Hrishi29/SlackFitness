@@ -15,6 +15,8 @@
 	li:hover {
  
    cursor: pointer;
+   background-color: blue;
+   color: white;
 	}
 	
 	</style>
@@ -57,8 +59,8 @@ $conn = mysqli_connect("localhost","root","");  //database connection
    echo '
  <div class="container">
  <div class="row">
- <div class="col-md-2">
-<ul style="margin-top:-10px; margin-left:-4px; width:190px" class="list-group" style="list-style: none;>
+ <div class="col-md-4">
+<ul style="margin-top:-10px; margin-left:-4px; width:297px"  class="list-group" style="list-style: none;>
  
    ';
  
