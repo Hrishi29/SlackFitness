@@ -1,4 +1,27 @@
 
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <title>Slack</title>
+	<meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css"><!-- getting the bootstrap css file for predefined components  -->
+
+	<style>
+	
+	li:hover {
+ 
+   cursor: pointer;
+	}
+	
+	</style>
+	</head>
+
+
+
 <?php
 
 if (isset($_POST['search'])) {
@@ -18,7 +41,7 @@ $conn = mysqli_connect("localhost","root","");  //database connection
  
 //Search query.
  
-   $Query =mysqli_query($conn, "SELECT user_name FROM users_info WHERE user_name LIKE '%$Name%'");
+   $Query =mysqli_query($conn, "SELECT user_name FROM users_info WHERE user_name LIKE '$Name%' LIMIT 5");
  
 //Query execution
  
@@ -32,8 +55,10 @@ $conn = mysqli_connect("localhost","root","");  //database connection
    
   
    echo '
- 
-<ul>
+ <div class="container">
+ <div class="row">
+ <div class="col-md-2">
+<ul style="margin-top:-10px; margin-left:-4px; width:190px" class="list-group" style="list-style: none;>
  
    ';
  
@@ -49,15 +74,15 @@ $conn = mysqli_connect("localhost","root","");  //database connection
  
         By passing fetched result as parameter. -->
  
-   <li onclick='fill("<?php echo $Result['user_name']; ?>")'>
+   <li class="list-group-item" onclick='fill("<?php echo $Result['user_name']; ?>")'>
  
-   <a>
+   
  
    <!-- Assigning searched result in "Search box" in "search.php" file. -->
  
        <?php echo $Result['user_name']; ?>
  
-   </li></a>
+   </li>
  
    <!-- Below php code is just for closing parenthesis. Don't be confused. -->
  
@@ -69,3 +94,6 @@ $conn = mysqli_connect("localhost","root","");  //database connection
 ?>
  
 </ul>
+</div>
+</div>
+</div>
