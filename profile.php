@@ -38,6 +38,14 @@ if(isset($_POST['search_submit'])) {
 	
 	include 'connect.php';
 	
+	$profile_mess=mysqli_real_escape_string($conn,test_input($_POST['search_profile']));
+	
+	$profile1=mysqli_query($conn,"select  * from user_info where user_email='".$user_email."' and mess_id='".$message_id."' and thumbsup=1 and reply_id=0");
+	
+	
+	
+	
+	
 	function test_input($data) { // function for mysql injections
   $data = trim($data);
   $data = stripslashes($data);
