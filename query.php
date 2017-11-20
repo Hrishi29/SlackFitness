@@ -8,20 +8,6 @@
 		
 	}
 	
-	if(isset($_GET['q']) ) { // for index.php page for login into respective channesla
- $conn = mysqli_connect("localhost","root","");  //database connection
-    if ($conn->connect_error) {
-    die("Connection failed: " . $conn->connect_error);
-     } 
-	
-	mysqli_select_db($conn,'slack');  // selecting database
-		$ret=mysqli_real_escape_string($conn,test_input($_GET['q']));
-  echo '<script language="javascript">';
-        echo 'alert("'.$ret.'")';
-        echo '</script>';
-		$retreiv55=mysqli_query($conn,"select user_name from user_info where user_name LIKE '".$ret."'");
-        
-	}
 	 
 	
 	
