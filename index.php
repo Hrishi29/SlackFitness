@@ -545,7 +545,7 @@ li.L5, li.L6, li.L7, li.L8 {
 				<nav class="navbar navbar-inverse navbar-fixed-top">
 						<div class="container-fluid">
 							<div class="navbar-header">
-								<a style="font-weight:bold; font-size:2em; font-family:'Salsa'; color:orange" class="navbar-brand" href="index.php">Fitness</a>
+								<a style="font-weight:bold; font-size:2.5em; font-family:'Salsa'; color:orange" class="navbar-brand" href="index.php">Fitness</a>
 							</div>
 								<ul class="nav navbar-nav">
 									<?php
@@ -587,7 +587,11 @@ li.L5, li.L6, li.L7, li.L8 {
 					<div style="margin-top:5px; margin-left:10px" class="col-md-3">
 					<div class="input-group">
 										<input type="text" autocomplete="off" id="search" class="form-control" placeholder="Search">
-										
+										<div class="input-group-btn">
+											<button class="btn btn-default" type="submit">
+												<i class="glyphicon glyphicon-search"></i>
+											</button>
+										</div>
 
 										
 									</div>
@@ -615,7 +619,7 @@ li.L5, li.L6, li.L7, li.L8 {
 					
 					<form method="post" action="index.php">
 					
-					<button style="margin-left:-20px" class="btn btn-danger navbar-btn btn-sm"  name="channel_archive1" type="submit">Archive Channel</button>
+					<button style="margin-left:10px"  class="btn btn-danger navbar-btn btn-sm"  name="channel_archive1" type="submit">Archive Channel</button>
 					
 					</form>
 					<?php
@@ -633,7 +637,7 @@ li.L5, li.L6, li.L7, li.L8 {
 						
 						<form method="post" action="index.php">
 					
-					<button style="margin-left:-20px" class="btn btn-success navbar-btn btn-sm"  name="channel_archive2" type="submit">Unarchive Channel</button>
+					<button style="margin-left:10px" class="btn btn-success navbar-btn btn-sm"  name="channel_archive2" type="submit">Unarchive Channel</button>
 					
 					</form>
 						
@@ -657,7 +661,7 @@ li.L5, li.L6, li.L7, li.L8 {
         <div id="sidebar-wrapper">
             <ul class="sidebar-nav">
                 <li class="sidebar-brand">
-                    <a href="index.php">
+                    <a style="color:white !important;" href="index.php">
                         <?php echo $_SESSION['workspace']; ?>
                     </a>
                 </li>
@@ -668,7 +672,7 @@ li.L5, li.L6, li.L7, li.L8 {
 				<a style="color:white !important;" href="signout.php" class="btn btn-danger btn-sm" role="button">Sign Out</a>
 				</li>
                 <li class="sidebar-brand">
-                    <a style="color:white !important;" data-toggle="modal" href="#myModal" >Channels <span class="glyphicon glyphicon-plus-sign" style="margin-top:2px"></span></a>
+                    <a style="color:white !important; font-weight:bold" data-toggle="modal" href="#myModal" >Channels <span class="glyphicon glyphicon-plus-sign" style="margin-top:2px"></span></a>
                 </li>
 				
 				
@@ -731,7 +735,7 @@ li.L5, li.L6, li.L7, li.L8 {
 
 
 		 <li class="sidebar-brand">
-                    <a href="#">
+                    <a style="color:white !important; font-weight:bold" href="#">
                         Direct Messages
                     </a>
           </li>
