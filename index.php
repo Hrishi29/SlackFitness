@@ -24,6 +24,8 @@ error_reporting(0);
 	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>	
     <script src="https://cdn.rawgit.com/google/code-prettify/master/loader/run_prettify.js"></script>
 	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css"><!-- getting the bootstrap css file for predefined components  -->
+	
+
   <!-- Custom CSS -->
     <link href="css/sidebar.css" rel="stylesheet">	
   <style>
@@ -555,7 +557,7 @@ li.L5, li.L6, li.L7, li.L8 {
 										{
 										
 									?>
-									<li style="margin-left:180px" class="active"><a href="">#<?php echo $_SESSION['chname']; ?></a></li>
+									<li style="margin-left:180px" class="active"><a href="" style="font-size:1.5em; font-weight:bold">#<?php echo $_SESSION['chname']; ?></a></li>
 									
 							<?php
 							
@@ -566,7 +568,7 @@ li.L5, li.L6, li.L7, li.L8 {
 							?>
 							
 							
-									<li style="margin-left:180px; color:red;" data-toggle="tooltip" title="The channel is archived by admin!" class="active"><a href="#">#<?php echo $_SESSION['chname']; ?></a></li>
+									<li style="margin-left:180px;" ><a href="#" style="color:red; font-size:1.5em; font-weight:bold" data-toggle="tooltip" title="The channel is archived by admin!">#<?php echo $_SESSION['chname']; ?></a></li>
 									
 							
 							
@@ -577,6 +579,23 @@ li.L5, li.L6, li.L7, li.L8 {
 							?>
 							
 							</ul>
+							
+							
+							<!--       Search Users          -->
+							
+							<form>
+					<div style="margin-top:5px; margin-left:10px" class="col-md-3">
+					<div class="input-group">
+										<input type="text" id="search" class="form-control" placeholder="Search">
+										
+
+										
+									</div>
+					
+					</div>
+					</form>
+					
+							
 							
 							<?php
 					if($_SESSION['user_email']=="admin@super.com")    //for admin
@@ -596,7 +615,7 @@ li.L5, li.L6, li.L7, li.L8 {
 					
 					<form method="post" action="index.php">
 					
-					<button style="margin-left:10px" class="btn btn-danger navbar-btn btn-sm"  name="channel_archive" type="submit">Archive Channel</button>
+					<button style="margin-left:-20px" class="btn btn-danger navbar-btn btn-sm"  name="channel_archive1" type="submit">Archive Channel</button>
 					
 					</form>
 					<?php
@@ -611,9 +630,10 @@ li.L5, li.L6, li.L7, li.L8 {
 
 						?>
 						
+						
 						<form method="post" action="index.php">
 					
-					<button style="margin-left:10px" class="btn btn-success navbar-btn btn-sm"  name="channel_archive" type="submit">Unarchive Channel</button>
+					<button style="margin-left:-20px" class="btn btn-success navbar-btn btn-sm"  name="channel_archive2" type="submit">Unarchive Channel</button>
 					
 					</form>
 						
@@ -625,11 +645,7 @@ li.L5, li.L6, li.L7, li.L8 {
 						}
 					?>
 					
-							
-							
-							
-							
-								
+			
 						</div>
 				</nav>
 
@@ -755,6 +771,14 @@ li.L5, li.L6, li.L7, li.L8 {
             <div class="container-fluid">
                 <div class="row">
 				<div  class="col-lg-12">
+			
+		
+		
+      <div id="display" style="height:100px" href=""></div>
+	  
+    
+		
+			
 				
 				
 				<?php
@@ -1199,6 +1223,83 @@ $(document).ready(function(){
 	
 	});
 	
+	
+	
+	function fill(Value) {
+ 
+   //Assigning value to "search" div in "search.php" file.
+ 
+   $('#search').val(Value);
+ 
+   //Hiding "display" div in "search.php" file.
+ 
+   $('#display').hide();
+ 
+}
+ 
+$(document).ready(function() {
+ 
+   //On pressing a key on "Search box" in "search.php" file. This function will be called.
+ 
+   $("#search").keyup(function() {
+ 
+       //Assigning search box value to javascript variable named as "name".
+ 
+       var name = $('#search').val();
+ 
+       //Validating, if "name" is empty.
+ 
+       if (name == "") {
+ 
+           //Assigning empty value to "display" div in "search.php" file.
+ 
+           $("#display").html("");
+ 
+       }
+ 
+       //If name is not empty.
+ 
+       else {
+ 
+           //AJAX is called.
+ 
+           $.ajax({
+ 
+               //AJAX type is "Post".
+ 
+               type: "POST",
+ 
+               //Data will be sent to "ajax.php".
+ 
+               url: "ajax.php",
+ 
+               //Data, that will be sent to "ajax.php".
+ 
+               data: {
+ 
+                   //Assigning value of "name" into "search" variable.
+ 
+                   search: name
+ 
+               },
+ 
+               //If result found, this funtion will be called.
+ 
+               success: function(html) {
+ 
+                   //Assigning result to "display" div in "search.php" file.
+ 
+                   $("#display").html(html).show();
+ 
+               }
+ 
+           });
+ 
+       }
+ 
+   });
+ 
+});
 
 	/*
 	function preview_image() 

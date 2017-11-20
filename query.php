@@ -18,6 +18,16 @@
 	}
 	
 
+	
+	if(isset($_POST['channel_archive'])) {  // inserting channel status
+		
+		
+		
+		
+	}
+	
+	
+	
 	if(isset($_POST['th_up'])) { // for index.php after posting the reactions for thumbs up
 	
 	$message_id=mysqli_real_escape_string($conn,test_input($_POST['th_up']));//here getting result from the post array after submitting the form.
@@ -94,6 +104,19 @@ if(isset($_POST['th_down'])) { // for index.php after posting the reactions for 
 		
 	
 	}
+	
+	
+	
+	if(isset($_POST['admin_reply'])) { // for deletng reply messages
+	
+	
+	
+	$delete4=mysqli_query($conn,"delete from reply_message where reply_id='".$_POST['admin_reply']."'"); // from reply_message
+		
+	
+	
+	}
+	
 
 	
 	if(isset($_POST['th_up1'])) { // for index.php after posting the reactions for thumbs up
@@ -504,6 +527,20 @@ if(isset($_POST['th_down1'])) { // for index.php after posting the reactions for
 				}
 
 	}
+	
+	
+	if(isset($_POST['admin_post'])) { //admin message delete
+		
+		
+		$delete_postid=mysqli_real_escape_string($conn,test_input($_POST['admin_post']));
+		$delete=mysqli_query($conn,"delete from users_message where mess_id='".$delete_postid."'"); // from users_message
+		$delete1=mysqli_query($conn,"delete from reply_message where mess_id='".$delete_postid."'"); // from reply_message
+					
+		
+		
+	}
+	
+	
 
 function test_input($data) { // function for mysql injections
   $data = trim($data);
