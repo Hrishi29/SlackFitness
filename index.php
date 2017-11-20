@@ -538,6 +538,101 @@ li.L5, li.L6, li.L7, li.L8 {
   
 </div>
 
+		<!-- NavBar defined                                                                     -->
+
+				<nav class="navbar navbar-inverse navbar-fixed-top">
+						<div class="container-fluid">
+							<div class="navbar-header">
+								<a style="font-weight:bold; font-size:2em; font-family:'Salsa'; color:orange" class="navbar-brand" href="index.php">Fitness</a>
+							</div>
+								<ul class="nav navbar-nav">
+									<?php
+									$unarchive3 = mysqli_query($conn,"(select archive_channel from archive where channels='".$_SESSION['chname']."' ORDER BY arch_id DESC)");
+										$unarchive4=mysqli_fetch_array($unarchive3);
+										
+										
+										if($unarchive4['archive_channel']=="unarchive")
+										{
+										
+									?>
+									<li style="margin-left:180px" class="active"><a href="">#<?php echo $_SESSION['chname']; ?></a></li>
+									
+							<?php
+							
+										}
+										
+										else {
+							
+							?>
+							
+							
+									<li style="margin-left:180px; color:red;" data-toggle="tooltip" title="The channel is archived by admin!" class="active"><a href="#">#<?php echo $_SESSION['chname']; ?></a></li>
+									
+							
+							
+							<?php
+							
+										}
+							
+							?>
+							
+							</ul>
+							
+							<?php
+					if($_SESSION['user_email']=="admin@super.com")    //for admin
+					
+					{
+					
+
+							$unarchive5 = mysqli_query($conn,"(select archive_channel from archive where channels='".$_SESSION['chname']."' ORDER BY arch_id DESC)");
+										$unarchive6=mysqli_fetch_array($unarchive5);
+										
+										
+										if($unarchive6['archive_channel']=="unarchive")
+										{
+									
+						
+					?>
+					
+					<form method="post" action="index.php">
+					
+					<button style="margin-left:10px" class="btn btn-danger navbar-btn btn-sm"  name="channel_archive" type="submit">Archive Channel</button>
+					
+					</form>
+					<?php
+					
+										}
+										
+										
+										else
+											
+											{
+					
+
+						?>
+						
+						<form method="post" action="index.php">
+					
+					<button style="margin-left:10px" class="btn btn-success navbar-btn btn-sm"  name="channel_archive" type="submit">Unarchive Channel</button>
+					
+					</form>
+						
+						
+						
+						<?php
+						
+											}
+						}
+					?>
+					
+							
+							
+							
+							
+								
+						</div>
+				</nav>
+
 
     <div id="wrapper">
 
@@ -656,7 +751,7 @@ li.L5, li.L6, li.L7, li.L8 {
         <!-- /#sidebar-wrapper -->
 
         <!-- Page Content -->
-        <div id="page-content-wrapper">
+        <div style="margin-top:50px !important;" id="page-content-wrapper">
             <div class="container-fluid">
                 <div class="row">
 				<div  class="col-lg-12">
@@ -764,19 +859,7 @@ li.L5, li.L6, li.L7, li.L8 {
 					
 					<br>
 					
-					
 					<form action="index.php" method="post"> 
-					
-					<?php
-					if($_SESSION['user_email']=="admin@super.com")
-					
-					{
-					?>
-					<button style=";margin-right:15px" class="btn btn-danger btn-xs" type="">Delete</button>
-					<?php
-					
-						}
-					?>
 					
 					<a href="#<?php echo $r34['mess_id'];?>"  data-toggle="popover"  data-html="true" data-placement="bottom" data-content='<form method="post" action="index.php"><textarea style="height:30px" name="popform" type="text"></textarea><br><button  name="subform" value="<?php echo $r34['mess_id'];?>" class="btn btn-danger btn-xs" type="">Post</button></form>'  >Reply</a> 
 			
@@ -816,6 +899,28 @@ li.L5, li.L6, li.L7, li.L8 {
 			
 			
 					</form>
+					
+					
+					
+					<?php
+					if($_SESSION['user_email']=="admin@super.com")    //for admin
+					
+					{
+						
+						
+					?>
+					<br>
+					<form method="post" action="index.php">
+					
+					<button style=";margin-right:15px" class="btn btn-danger btn-xs" value="<?php echo $r34['mess_id']; ?>" name="admin_post" type="submit">Delete</button>
+					
+					</form>
+					<?php
+					
+						}
+					?>
+					
+					
 				<hr>
 		  
 				</div>
@@ -858,16 +963,6 @@ li.L5, li.L6, li.L7, li.L8 {
 
 					<form action="index.php" method="post"> 
 					
-					<?php
-					if($_SESSION['user_email']=="admin@super.com")
-					
-					{
-					?>
-					<button style=";margin-right:15px" class="btn btn-danger btn-xs" type="">Delete</button>
-					<?php
-					
-						}
-					?>
 					
 					
 				<!--	<a href="#" data-toggle="popover"  data-html="true" data-placement="bottom" data-content='<form method="post" action="index.php"><textarea style="height:30px" name="popform" type="text"></textarea><br><button id="moveright" name="subform" value="<?php // echo $r74['mess_id'];?>" class="btn btn-danger btn-xs" type="">Post</button></form>'  >Reply</a> -->
@@ -906,6 +1001,31 @@ li.L5, li.L6, li.L7, li.L8 {
 					?>
 			
 					</form>
+					
+					
+					<?php
+					if($_SESSION['user_email']=="admin@super.com")    //for admin
+					
+					{
+						
+						
+					?>
+					<br>
+					<form method="post" action="index.php">
+					
+					<button style=";margin-right:15px" class="btn btn-danger btn-xs" value="<?php echo $r74['reply_id'];?>" name="admin_reply" type="submit">Delete</button>
+					
+					</form>
+					<?php
+					
+						} 
+					?>
+					
+					
+					
+					
+					
+					
 				<hr>
 		  
 				</div>
@@ -927,7 +1047,7 @@ li.L5, li.L6, li.L7, li.L8 {
 					}
 		   
 		   
-				$conn->close();		   
+						   
 				?>
 					
 
@@ -978,6 +1098,19 @@ li.L5, li.L6, li.L7, li.L8 {
 										<div class="col-sm-3 col-md-3">
 										</div>
 										<div class="col-sm-9 col-md-9">
+										
+										
+										
+										<?php
+										
+										$unarchive = mysqli_query($conn,"(select archive_channel from archive where channels='".$_SESSION['chname']."' ORDER BY arch_id DESC)");
+										$unarchive1=mysqli_fetch_array($unarchive);
+										
+										
+										if($unarchive1['archive_channel']=="unarchive")
+										{
+											
+										?>
 											<form class="navbar-form" action="index.php" method="post" >
 												<div class="row">
 					<div class="input-group input-group-lg col-lg-10">
@@ -999,6 +1132,47 @@ li.L5, li.L6, li.L7, li.L8 {
 				</div>			
 					
 			</form>
+			
+			<?php
+			
+										}
+										
+										else {
+			?>
+	
+	
+								<form class="navbar-form" action="" method="" >
+												<div class="row">
+					<div class="input-group input-group-lg col-lg-10">
+						
+						<textarea type="text" name="" class="form-control" placeholder="Message"></textarea>
+						
+						</div>
+						<div  class="input-group input-group-btn col-lg-2">
+								<button  style="margin-left:-5px" data-toggle="modal" data-target="" class="btn btn-basic btn-lg" type="">
+									<span class="glyphicon glyphicon-plus"></span>
+								</button>
+							</div>
+							<div  class="input-group input-group-btn col-lg-2">
+								<button style="margin-left:5px" name="submit2" value="submit2" class="btn btn-success btn-lg" type="">
+									Post
+								</button>
+							</div>
+							
+				</div>			
+					
+			</form>
+	
+	
+	
+	
+			<?php
+			
+										}
+										
+			$conn->close();							
+			?>
+				
 	</div>
 	</div>
 	
@@ -1019,6 +1193,9 @@ $(document).ready(function(){
 	$('html, body').animate({
         scrollTop: $('#what').offset().top
     });
+	
+	
+	 $('[data-toggle="tooltip"]').tooltip();
 	
 	});
 	
