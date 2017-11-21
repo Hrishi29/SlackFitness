@@ -553,11 +553,11 @@ li.L5, li.L6, li.L7, li.L8 {
 										$unarchive4=mysqli_fetch_array($unarchive3);
 										
 										
-										if($unarchive4['archive_channel']=="unarchive")
+										if($unarchive4['archive_channel']=="archive")
 										{
 										
 									?>
-									<li style="margin-left:180px" class="active"><a href="" style="font-size:1.5em; font-weight:bold">#<?php echo $_SESSION['chname']; ?></a></li>
+									<li style="margin-left:180px;" ><a href="#" style="color:red; font-size:1.5em; font-weight:bold" data-toggle="tooltip" title="The channel is archived by admin!">#<?php echo $_SESSION['chname']; ?></a></li>
 									
 							<?php
 							
@@ -568,7 +568,8 @@ li.L5, li.L6, li.L7, li.L8 {
 							?>
 							
 							
-									<li style="margin-left:180px;" ><a href="#" style="color:red; font-size:1.5em; font-weight:bold" data-toggle="tooltip" title="The channel is archived by admin!">#<?php echo $_SESSION['chname']; ?></a></li>
+									
+									<li style="margin-left:180px" class="active"><a href="" style="font-size:1.5em; font-weight:bold">#<?php echo $_SESSION['chname']; ?></a></li>
 									
 							
 							
@@ -611,7 +612,7 @@ li.L5, li.L6, li.L7, li.L8 {
 										$unarchive6=mysqli_fetch_array($unarchive5);
 										
 										
-										if($unarchive6['archive_channel']=="unarchive")
+										if($unarchive6['archive_channel']=="archive")
 										{
 									
 						
@@ -619,7 +620,8 @@ li.L5, li.L6, li.L7, li.L8 {
 					
 					<form method="post" action="index.php">
 					
-					<button style="margin-left:100px"  class="btn btn-danger navbar-btn btn-sm"  name="channel_archive1" type="submit">Archive Channel</button>
+					<button style="margin-left:100px" class="btn btn-success navbar-btn btn-sm"  name="channel_archive2" type="submit">Unarchive Channel</button>
+					
 					
 					</form>
 					<?php
@@ -637,20 +639,32 @@ li.L5, li.L6, li.L7, li.L8 {
 						
 						<form method="post" action="index.php">
 					
-					<button style="margin-left:100px" class="btn btn-success navbar-btn btn-sm"  name="channel_archive2" type="submit">Unarchive Channel</button>
+					<button style="margin-left:100px"  class="btn btn-danger navbar-btn btn-sm"  name="channel_archive1" type="submit">Archive Channel</button>
+					
 					
 					</form>
 						
-						
+						<div class="col-md-3"  id="display" style="" href=""></div>
 						
 						<?php
 						
 											}
 						}
+						
+						else {
 					?>
-					<div class="col-md-3"  id="display" style="" href=""></div>
 					
+				
+			<br>
+			<br>
+			<br>
+			<div class="col-md-3"></div><div class="col-md-3"  id="display" style="margin-left:48px; margin-top:-6px" href=""></div>
+						
 			
+			<?php
+						}
+			
+			?>
 						</div>
 				</nav>
 
@@ -787,47 +801,19 @@ li.L5, li.L6, li.L7, li.L8 {
 				
 				
 				<?php
-						if($_SESSION['page_num'] == 1)
-					{
-		  
-					$r33=mysqli_query($conn,"(select *from users_message where channel_name='".$_SESSION['chname']."' ORDER BY mess_id DESC LIMIT 3)ORDER BY mess_id ASC");
-					$r1110=mysqli_query($conn,"(select *from users_message where channel_name='".$_SESSION['chname']."' ORDER BY mess_id DESC LIMIT 3)ORDER BY mess_id ASC");
-					
-					$r1009=mysqli_fetch_array($r1110);
-					$_SESSION['mess_id']=$r1009['mess_id'];
-					
-	
-						}
 						
-						else if($_SESSION['page_num'] == 2){
+					if($_SESSION['page_num'] >= 2){
 							
+							$limit_result=$_SESSION['page_num'];
+							$display_result=$limit_result*5;
+							$r33=mysqli_query($conn,"(select *from users_message WHERE channel_name='".$_SESSION['chname']."' ORDER BY mess_id DESC LIMIT $display_result)ORDER BY mess_id ASC LIMIT 5");
 							
-							$r33=mysqli_query($conn,"(select *from users_message WHERE mess_id < '".$_SESSION['mess_id']."' and channel_name='".$_SESSION['chname']."' ORDER BY mess_id DESC LIMIT 3)ORDER BY mess_id ASC");
-							$r1110=mysqli_query($conn,"(select *from users_message WHERE mess_id < '".$_SESSION['mess_id']."' and channel_name='".$_SESSION['chname']."' ORDER BY mess_id DESC LIMIT 3)ORDER BY mess_id ASC");
-					
-					
-					$r1009=mysqli_fetch_array($r1110);
-					$_SESSION['mess_id']=$r1009['mess_id'];
-					 echo '<script language="javascript">';
-        echo 'alert("'.$_SESSION['mess_id'].'")';
-        echo '</script>';
-		
 							
 						}
 						
-						else {
+						if($_SESSION['page_num'] == 1) {
 						
-						$r1110=mysqli_query($conn,"(select *from users_message WHERE mess_id >= '".$_SESSION['mess_id']."' and channel_name='".$_SESSION['chname']."' ORDER BY mess_id ASC LIMIT 3)ORDER BY mess_id DESC");
-							$r1009=mysqli_fetch_array($r1110);
-							$_SESSION['mess_id']=$r1009['mess_id'];
-					
-							
-							$r33=mysqli_query($conn,"select *from users_message WHERE mess_id > '".$_SESSION['mess_id']."' and channel_name='".$_SESSION['chname']."' ORDER BY mess_id ASC LIMIT 3");
-							$r1003=mysqli_query($conn,"select *from users_message WHERE mess_id > '".$_SESSION['mess_id']."' and channel_name='".$_SESSION['chname']."' ORDER BY mess_id ASC LIMIT 3");
-					
-					
-					$r1004=mysqli_fetch_array($r1003);
-					$_SESSION['mess_id']=$r1004['mess_id'];
+						$r33=mysqli_query($conn,"(select *from users_message where channel_name='".$_SESSION['chname']."' ORDER BY mess_id DESC LIMIT 5)ORDER BY mess_id ASC");
 					
 						
 						
@@ -1085,27 +1071,47 @@ li.L5, li.L6, li.L7, li.L8 {
 				
 				<div class="row">
 				<center>
-					<ul class="pager">
+				<ul class="pagination clicks">
+				
+    
+				
+				
+					
 					<?php
 					
 					$r3003=mysqli_query($conn,"select *from users_message where channel_name='".$_SESSION['chname']."'");
-					$r3004=mysqli_fetch_array($r3003);
-					if($_SESSION['mess_id']==$r3004['mess_id']){
+				
+						if($r3003){	
+											// Return the number of rows in result set
+							$rowcount=mysqli_num_rows($r3003);
+							
+							 $quotient=($rowcount/5);
+							 
+							 $remainder = $rowcount % 5;
 						
-					}
-					else{
-					echo '<li><a href="index.php?pagenum=2">Previous</a></li>';
+		
+							
+							
+					
+					   
+						$x=1;
+					
+					while ($x <= $quotient) {
+					
+					echo '<li '.(($_SESSION['page_num']==$x) ? 'class="active"' : '').'><a  href="index.php?pagenum='.$x.'" >'.$x.'</a></li>';
+					
+					$x++;
 					
 					}
 					
-					if($_SESSION['page_num'] == 1){
+					if($remainder > 0) {
 					
-					}
 					
-					else{
-					echo '<li><a href="index.php?pagenum=3">Next</a></li>';
+					echo '<li '.(($_SESSION['page_num']==$x) ? 'class="active"' : '').'><a href="index.php?pagenum='.$x.'">'.$x.'</a></li>';
+					
+						}
 						
-					}
+						}
 					?>
 					</ul>
 				</center>
@@ -1133,10 +1139,14 @@ li.L5, li.L6, li.L7, li.L8 {
 										<?php
 										
 										$unarchive = mysqli_query($conn,"(select archive_channel from archive where channels='".$_SESSION['chname']."' ORDER BY arch_id DESC)");
+										
+										if($unarchive) {
+										
 										$unarchive1=mysqli_fetch_array($unarchive);
 										
 										
-										if($unarchive1['archive_channel']=="unarchive")
+										
+										if(($unarchive1['archive_channel']=="unarchive") || ($unarchive1['archive_channel']==""))
 										{
 											
 										?>
@@ -1183,7 +1193,7 @@ li.L5, li.L6, li.L7, li.L8 {
 								</button>
 							</div>
 							<div  class="input-group input-group-btn col-lg-2">
-								<button style="margin-left:5px" name="submit2" value="submit2" class="btn btn-success btn-lg" type="">
+								<button style="margin-left:5px" class="btn btn-success btn-lg" type="">
 									Post
 								</button>
 							</div>
@@ -1196,9 +1206,14 @@ li.L5, li.L6, li.L7, li.L8 {
 	
 	
 			<?php
-			
 										}
 										
+										
+										}
+										
+					
+
+					
 			$conn->close();							
 			?>
 				
@@ -1304,6 +1319,47 @@ $(document).ready(function() {
  
    });
  
+});
+
+/*
+
+$(function() {
+    $('.clicks a').click(function() {
+       var pagi = $(this).text();
+
+		
+		$.ajax({
+ 
+               //AJAX type is "Post".
+ 
+               type: "POST",
+ 
+               //Data will be sent to "ajax.php".
+ 
+               url: "index.php",
+ 
+               //Data, that will be sent to "ajax.php".
+ 
+               data: {
+ 
+                   //Assigning value of "name" into "search" variable.
+ 
+                   pagin: pagi
+ 
+               },
+			   
+			   success: function(html) {
+ 
+ 
+						alert(pagin);
+                   //Assigning result to "display" div in "search.php" file.
+ 
+			   }
+			   
+		});
+		
+		
+    });
 });
 
 	/*
