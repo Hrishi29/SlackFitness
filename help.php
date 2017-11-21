@@ -151,6 +151,28 @@ if(!isset($_SESSION['workspace'])){ //only users within workspace
       </div>
     </div>
 	
+	<div class="panel panel-default">
+      <div class="panel-heading">
+        <h4 class="panel-title">
+          <a data-toggle="collapse" data-parent="#accordion1" href="#collapse6">Posting Image From Web</a>
+        </h4>
+      </div>
+      <div id="collapse6" class="panel-collapse collapse">
+        <div class="panel-body">Copy image address of the image you want to post from web. 
+		<br>
+		<br>
+		<img src="help_images/help7.png" class="img-rounded responsive" width="1100" height="500" >
+		<br>
+		<br>
+		You can enter description about the image topic or can directly post by clicking on the red upload button as displayed above.
+		<br>
+		<br>
+		
+		Done!
+		</div>
+      </div>
+    </div>
+	
 	</div>
 	
 </div>
