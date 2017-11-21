@@ -164,10 +164,35 @@ if(!isset($_SESSION['workspace'])){ //only users within workspace
 		<img src="help_images/help7.png" class="img-rounded responsive" width="1100" height="500" >
 		<br>
 		<br>
-		You can enter description about the image topic or can directly post by clicking on the green upload button as displayed above.
+		Click on the Plus icon at the bottom besides the Post button. A window will pop up as displayed below. 
 		<br>
 		<br>
-		<img src="help_images/help6.png" class="img-rounded responsive" width="1100" height="500" >
+		<img src="help_images/help8.png" class="img-rounded responsive" width="1100" height="500" >
+		<br>
+		<br>
+		Click on the Image From Web tab. You can enter description about the image topic or can directly post by pasting the code in the Enter Url box and then by clicking on the green upload button as displayed above.
+		<br>
+		<br>
+		
+		Done!
+		</div>
+      </div>
+    </div>
+	
+	<div class="panel panel-default">
+      <div class="panel-heading">
+        <h4 class="panel-title">
+          <a data-toggle="collapse" data-parent="#accordion1" href="#collapse7">Posting Code</a>
+        </h4>
+      </div>
+      <div id="collapse7" class="panel-collapse collapse">
+        <div class="panel-body">Click on the Plus icon at the bottom besides the Post button. A window will pop up as displayed below. 
+		<br>
+		<br>
+		<img src="help_images/help9.png" class="img-rounded responsive" width="1100" height="500" >
+		<br>
+		<br>
+		Click on the Pretty Formatted Code tab.You can enter description about the code topic or can directly post by pasting the code in the Paste code box and then clicking on the green upload button as displayed above.
 		<br>
 		<br>
 		
