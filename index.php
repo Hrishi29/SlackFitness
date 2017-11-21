@@ -583,12 +583,12 @@ li.L5, li.L6, li.L7, li.L8 {
 							
 							<!--       Search Users          -->
 							
-							<form>
-					<div style="margin-top:5px; margin-left:10px" class="col-md-3">
+							<form method="post" action="profile.php">
+					<div style="margin-top:7px; margin-left:10px" class="col-md-3">
 					<div class="input-group">
-										<input type="text" autocomplete="off" id="search" class="form-control" placeholder="Search">
+										<input type="text" autocomplete="off" id="search" name="search_profile" class="form-control" placeholder="Search">
 										<div class="input-group-btn">
-											<button class="btn btn-default" type="submit">
+											<button class="btn btn-default" name="search_submit" type="submit">
 												<i class="glyphicon glyphicon-search"></i>
 											</button>
 										</div>
@@ -619,7 +619,7 @@ li.L5, li.L6, li.L7, li.L8 {
 					
 					<form method="post" action="index.php">
 					
-					<button style="margin-left:10px"  class="btn btn-danger navbar-btn btn-sm"  name="channel_archive1" type="submit">Archive Channel</button>
+					<button style="margin-left:100px"  class="btn btn-danger navbar-btn btn-sm"  name="channel_archive1" type="submit">Archive Channel</button>
 					
 					</form>
 					<?php
@@ -637,7 +637,7 @@ li.L5, li.L6, li.L7, li.L8 {
 						
 						<form method="post" action="index.php">
 					
-					<button style="margin-left:10px" class="btn btn-success navbar-btn btn-sm"  name="channel_archive2" type="submit">Unarchive Channel</button>
+					<button style="margin-left:100px" class="btn btn-success navbar-btn btn-sm"  name="channel_archive2" type="submit">Unarchive Channel</button>
 					
 					</form>
 						
