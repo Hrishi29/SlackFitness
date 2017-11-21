@@ -201,6 +201,127 @@ if(!isset($_SESSION['workspace'])){ //only users within workspace
       </div>
     </div>
 	
+	<div class="panel panel-default">
+      <div class="panel-heading">
+        <h4 class="panel-title">
+          <a data-toggle="collapse" data-parent="#accordion1" href="#collapse8">Replies and Reactions</a>
+        </h4>
+      </div>
+      <div id="collapse8" class="panel-collapse collapse">
+        <div class="panel-body">You can reply to a post by clicking on the Reply text beneath every posted message. 
+		<br>
+		<br>
+		<img src="help_images/help10.png" class="img-rounded responsive" width="1100" height="500" >
+		<br>
+		<br>
+		You can give a +1 or -1 reaction to a post but only once per post as displayed above.
+		<br>
+		<br>
+		
+		Done!
+		</div>
+      </div>
+    </div>
+	
+	<div class="panel panel-default">
+      <div class="panel-heading">
+        <h4 class="panel-title">
+          <a data-toggle="collapse" data-parent="#accordion1" href="#collapse9">Navigate</a>
+        </h4>
+      </div>
+      <div id="collapse9" class="panel-collapse collapse">
+        <div class="panel-body">You can navigate through posts and fetch older messages by click on the blue page number buttons displayed at the bottom of the page as displayed below
+		<br>
+		<br>
+		<img src="help_images/help5.png" class="img-rounded responsive" width="1100" height="500" >
+		<br>
+		<br>
+		
+		
+		Done!
+		</div>
+      </div>
+    </div>
+	<br>
+	
+	<h2>Channels</h2>
+  
+  <div class="panel-group" id="accordion2">
+  <div class="panel panel-default">
+      <div class="panel-heading">
+        <h4 class="panel-title">
+          <a data-toggle="collapse" data-parent="#accordion2" href="#collapse11">List of Channels</a>
+        </h4>
+      </div>
+      <div id="collapse11" class="panel-collapse collapse">
+        <div class="panel-body">The channels which you are subscribed to appears on the left side of the screen with names preceeded by #.
+		<br>
+		<br>
+		<img src="help_images/help5.png" class="img-rounded responsive" width="1100" height="500" >
+		<br>
+		<br>
+        Done!
+		</div>
+      </div>
+    </div>
+  
+    <div class="panel panel-default">
+      <div class="panel-heading">
+        <h4 class="panel-title">
+          <a data-toggle="collapse" data-parent="#accordion2" href="#collapse10">Channels Creation</a>
+        </h4>
+      </div>
+      <div id="collapse10" class="panel-collapse collapse ">
+        <div class="panel-body">Click on the Channels Tab on the left side of the screen
+		<br>
+		<br>
+		<img src="help_images/help5.png" class="img-rounded responsive" width="1100" height="500" >
+		<br>
+		<br>
+		Type in the Channel name. The Channel name should be unique and should not start with #. 
+		<br>
+		<br>
+		<br>
+		<img src="help_images/help11.png" class="img-rounded responsive" width="1100" height="500" >
+		<br>
+		<br>
+		Select the Private or Public tab dependeing on your choice of channel creation. Select the multiple users from the list and then click on create channel diplayed above.    
+		<br>
+		<br>
+		
+		Done!
+		
+		</div>
+		
+      </div>
+    </div>
+    
+    <div class="panel panel-default">
+      <div class="panel-heading">
+        <h4 class="panel-title">
+          <a data-toggle="collapse" data-parent="#accordion2" href="#collapse12">Invites</a>
+        </h4>
+      </div>
+      <div id="collapse12" class="panel-collapse collapse">
+        <div class="panel-body">Click on the Channels Tab on the left side of the screen
+		<br>
+		<br>
+		<img src="help_images/help5.png" class="img-rounded responsive" width="1100" height="500" >
+		<br>
+		<br>
+		Click on the Invites Tab where you can see list of channels you have been invited by other users. 
+		<br>
+		<br>
+		<br>
+		<img src="help_images/help12.png" class="img-rounded responsive" width="1100" height="500" >
+		<br>
+		<br>
+		Done!
+		</div>
+      </div>
+    </div>
+  </div>
+	
 	</div>
 	
 </div>
