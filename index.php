@@ -644,16 +644,27 @@ li.L5, li.L6, li.L7, li.L8 {
 					
 					</form>
 						
-						
+						<div class="col-md-3"  id="display" style="" href=""></div>
 						
 						<?php
 						
 											}
 						}
+						
+						else {
 					?>
-					<div class="col-md-3"  id="display" style="" href=""></div>
 					
+			<br>		
+			<br>
+			<br>
+			<br>
+			<div class="col-md-3"></div><div class="col-md-3"  id="display" style="margin-left:48px; margin-top:-24px" href=""></div>
+						
 			
+			<?php
+						}
+			
+			?>
 						</div>
 				</nav>
 
@@ -1087,7 +1098,7 @@ li.L5, li.L6, li.L7, li.L8 {
 					
 					while ($x <= $quotient) {
 					
-					echo '<li><a href="index.php?pagenum='.$x.'" >'.$x.'</a></li>';
+					echo '<li '.(($_SESSION['page_num']==$x) ? 'class="active"' : '').'><a  href="index.php?pagenum='.$x.'" >'.$x.'</a></li>';
 					
 					$x++;
 					
@@ -1096,7 +1107,7 @@ li.L5, li.L6, li.L7, li.L8 {
 					if($remainder > 0) {
 					
 					
-					echo '<li><a href="index.php?pagenum='.$x.'">'.$x.'</a></li>';
+					echo '<li '.(($_SESSION['page_num']==$x) ? 'class="active"' : '').'><a href="index.php?pagenum='.$x.'">'.$x.'</a></li>';
 					
 						}
 						
@@ -1300,6 +1311,7 @@ $(document).ready(function() {
    });
  
 });
+
 /*
 
 $(function() {
