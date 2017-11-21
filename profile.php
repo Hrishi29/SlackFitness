@@ -30,7 +30,7 @@ if(!isset($_SESSION['workspace'])){ //only users within workspace
 <div class="col-md-6 col-md-offset-3">
 <center>
 
-<h2>Sign Up</h2>
+<h1 style="font-family: 'Salsa'">Profile Page</h2>
 
 <?php
 
@@ -42,27 +42,51 @@ if(isset($_POST['search_submit'])) {
 	
 	$profile1=mysqli_query($conn,"select  * from users_info where user_name='".$profile_mess."'");
 	
-	$profile2=mysqli_fetch_array($profile1) {
+	if($profile1){
+	
+	$profile2=mysqli_fetch_array($profile1) ;
 		
 	
-	}
+	
 	?>
 	
 	
-	<img src="user_images/<?php ?> class="img-rounded responsive"   width="170" height="130"> 
+	<img src="user_images/<?php echo $profile2['user_pic'];?>" class="img-rounded responsive"   width="200" height="200"> 
 
+	<br>
+	<br>
+	<br>
+	<p><h2 style="font-family: 'Salsa'">Username:</h2><span style="margin-left: 10px; font-family: 'Patua One'; font-size:2em; font-weight:bold"><?php echo $profile2['user_name'];?></span></p>
+	
+	<br>
 	
 	
+	<p><h2 style="font-family: 'Salsa'">Email Id:</h2><span style="margin-left: 10px; font-family: 'Patua One'; font-size:2em; font-weight:bold"><?php echo $profile2['user_email'];?></span></p>	
 	<?php
 	
+	
+	}
+	
+	else{
+		echo '<script language="javascript">';
+        echo 'location.href="index.php"';
+        echo '</script>';
+		
+		
+		
+	}
+	
+}
 	function test_input($data) { // function for mysql injections
   $data = trim($data);
   $data = stripslashes($data);
   $data = htmlspecialchars($data);
   return $data;	
 
+	}
 	
-}
+	
+
 
 ?>
 
