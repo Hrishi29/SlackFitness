@@ -142,7 +142,7 @@ if(!isset($_SESSION['workspace'])){ //only users within workspace
 		<img src="help_images/help6.png" class="img-rounded responsive" width="1100" height="500" >
 		<br>
 		<br>
-		You can enter description about the image topic or can directly post by clicking on the red upload button as displayed above.
+		You can enter description about the image topic or can directly post by clicking on the green upload button as displayed above.
 		<br>
 		<br>
 		
@@ -164,7 +164,10 @@ if(!isset($_SESSION['workspace'])){ //only users within workspace
 		<img src="help_images/help7.png" class="img-rounded responsive" width="1100" height="500" >
 		<br>
 		<br>
-		You can enter description about the image topic or can directly post by clicking on the red upload button as displayed above.
+		You can enter description about the image topic or can directly post by clicking on the green upload button as displayed above.
+		<br>
+		<br>
+		<img src="help_images/help6.png" class="img-rounded responsive" width="1100" height="500" >
 		<br>
 		<br>
 		
