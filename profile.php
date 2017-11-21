@@ -56,6 +56,57 @@ if(isset($_POST['search_submit'])) {
 
 	<br>
 	<br>
+	<?php
+	
+	
+	if (preg_match("/^[S-Zs-z]+/", $profile2['user_name'] ))
+	{
+	
+	?>
+	
+	
+	<img src="user_ratings/1.png" class="img-rounded responsive"   width="150" height="50"> 
+
+	
+	<?php
+	
+	}
+	
+	
+	
+	if (preg_match("/^[A-Ea-e]+/", $profile2['user_name'] ))
+	{
+	
+	?>
+	
+	
+	<img src="user_ratings/2.png" class="img-rounded responsive"   width="150" height="50"> 
+
+	
+	<?php
+	
+	}
+	
+	if (preg_match("/^[F-Rf-r]+/", $profile2['user_name'] ))
+	{
+	
+	?>
+	
+	
+	<img src="user_ratings/3.png" class="img-rounded responsive"   width="150" height="50"> 
+
+	
+	<?php
+	
+	}
+	
+	?>
+	
+	
+	
+	
+	
+	
 	<br>
 	<p><h2 style="font-family: 'Salsa'">Username:</h2><span style="margin-left: 10px; font-family: 'Patua One'; font-size:2em; font-weight:bold"><?php echo $profile2['user_name'];?></span></p>
 	
@@ -74,7 +125,7 @@ if(isset($_POST['search_submit'])) {
 											// Return the number of rows in result set
 							$rowcount=mysqli_num_rows($insert_posts);
 						    echo $rowcount;
-	
+							
 	
 					  }
 
@@ -90,7 +141,7 @@ if(isset($_POST['search_submit'])) {
 											// Return the number of rows in result set
 							$rowcount1=mysqli_num_rows($insert_posts1);
 						    echo $rowcount1;
-	
+							
 	
 					  }
 
@@ -105,7 +156,7 @@ if(isset($_POST['search_submit'])) {
 											// Return the number of rows in result set
 							$rowcount2=mysqli_num_rows($insert_posts2);
 						    echo $rowcount2;
-	
+							
 	
 					  }
 
