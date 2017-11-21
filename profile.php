@@ -193,7 +193,7 @@ if(isset($_POST['search_submit'])) {
 
 					  
 	}
-			else{?>None<?php }?></span></p>	
+			if($insert_posts5==""){?>None<?php }?></span></p>	
 	<br>
 	
 	

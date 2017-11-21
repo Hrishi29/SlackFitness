@@ -43,7 +43,7 @@ $conn = mysqli_connect("localhost","root","");  //database connection
  
 //Search query.
  
-   $Query =mysqli_query($conn, "SELECT user_name FROM users_info WHERE user_name LIKE '$Name%' LIMIT 5");
+   $Query =mysqli_query($conn, "SELECT user_name FROM users_info WHERE user_name LIKE '%$Name%' LIMIT 3");
  
 //Query execution
  
