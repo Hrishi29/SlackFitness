@@ -57,12 +57,19 @@ li.L5, li.L6, li.L7, li.L8 {
 		
 		
 		
+		<form action="index.php" method="post" enctype="multipart/form-data">
+		<img src="user_images/<?php echo $_SESSION['user_pic']; ?>" class="img-rounded responsive"   width="200" height="200"> 
+		<br>
+		<br>
+			<p><span style="font-weight:bold">Update Image:</span><input style="margin-top:20px; margin-left:80px" type="file" name="user_image1" accept="image/*" /></p>
 		
-		<img src="user_images/<?php echo $_SESSION['user_pic']; ?>" class="img-rounded responsive" name="user_image"  width="200" height="200"> 
 			
-			<br>
-			<br>
 			
+			<button type="submit" name="update_image" class="btn btn-danger ">Upload</button>
+		
+		</form>		
+		
+		<br>
 		
 		<div><span style="font-weight:bold">Username: </span><span><?php echo $_SESSION['user_name']; ?></span></div>
 		
