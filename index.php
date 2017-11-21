@@ -692,6 +692,9 @@ li.L5, li.L6, li.L7, li.L8 {
 				<li>
 				<a style="color:white !important;" href="signout.php" class="btn btn-danger btn-sm" role="button">Sign Out</a>
 				</li>
+				<li>
+				<a style="color:white !important;" href="help.php" class="btn btn-primary btn-sm" role="button">Help</a>
+				</li>
                 <li class="sidebar-brand">
                     <a style="color:white !important; font-weight:bold" data-toggle="modal" href="#myModal" >Channels <span class="glyphicon glyphicon-plus-sign" style="margin-top:2px"></span></a>
                 </li>
