@@ -105,10 +105,50 @@ if(!isset($_SESSION['workspace'])){ //only users within workspace
 		</div>
       </div>
     </div>
-	
-	<br>
-	
   </div> 
+  
+  <br>
+  
+	 <div class="panel-group" id="accordion1">
+	<h2>Posting</h2>
+	<div class="panel panel-default">
+      <div class="panel-heading">
+        <h4 class="panel-title">
+          <a data-toggle="collapse" data-parent="#accordion1" href="#collapse4">Posting Messages</a>
+        </h4>
+      </div>
+      <div id="collapse4" class="panel-collapse collapse">
+        <div class="panel-body">Type the message in the big text box at the bottom you want to post and click on the green Post button besides the box. 
+		<br>
+		<br>
+		<img src="help_images/help5.png" class="img-rounded responsive" width="1100" height="500" >
+		<br>
+		<br>
+		Done!
+		</div>
+      </div>
+    </div>
+	
+	<div class="panel panel-default">
+      <div class="panel-heading">
+        <h4 class="panel-title">
+          <a data-toggle="collapse" data-parent="#accordion1" href="#collapse5">Posting Image From Local Drive</a>
+        </h4>
+      </div>
+      <div id="collapse5" class="panel-collapse collapse">
+        <div class="panel-body">Click on the Plus icon at the bottom besides the Post button. A window will pop up as displayed below. 
+		<br>
+		<br>
+		<img src="help_images/help6.png" class="img-rounded responsive" width="1100" height="500" >
+		<br>
+		<br>
+		Done!
+		</div>
+      </div>
+    </div>
+	
+	</div>
+	
 </div>
 
 
