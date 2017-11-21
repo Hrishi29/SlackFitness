@@ -129,17 +129,20 @@ if(isset($_POST['search_submit'])) {
 	
 	<p><h2 style="font-family: 'Salsa'">Private Channels Owned:</h2><span style="font-family: 'Patua One'; font-size:2em; font-weight:bold"><?php 
 	
-	$insert_posts3 = mysqli_query($conn,"select  channels from users_channel where user_email='".$profile2['user_email']."'");
+	$insert_posts5 = mysqli_query($conn,"select  channel_name from private_channel where user_email='".$profile2['user_email']."'");
 	
-			while($insert_posts4=mysqli_fetch_array($insert_posts3))
+	if($insert_posts5){	
+			while($insert_posts6=mysqli_fetch_array($insert_posts5))
 						{
 							echo '#';
-							echo $insert_posts4['channels'];
+							echo $insert_posts6['channel_name'];
 							echo '<br>';
 	
 					  }
 
-			?></span></p>	
+					  
+	}
+			else{?>None<?php }?></span></p>	
 	<br>
 	
 	
@@ -163,7 +166,7 @@ if(isset($_POST['search_submit'])) {
 ?>
 
 
-<a href="index.php" class="btn btn-primary btn-lg" role="button">Back</a>
+<a href="index.php" style="margin-left:2px" class="btn btn-primary btn-lg" role="button">Back</a>
 	
 	<br>
 
