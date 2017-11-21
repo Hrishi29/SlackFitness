@@ -112,7 +112,35 @@ if(isset($_POST['search_submit'])) {
 			else{?>0<?php }?></span></p>	
 	<br>
 	
+	<p><h2 style="font-family: 'Salsa'">Channels Subscribed To:</h2><span style="font-family: 'Patua One'; font-size:2em; font-weight:bold"><?php 
 	
+	$insert_posts3 = mysqli_query($conn,"select  channels from users_channel where user_email='".$profile2['user_email']."'");
+	
+			while($insert_posts4=mysqli_fetch_array($insert_posts3))
+						{
+							echo '#';
+							echo $insert_posts4['channels'];
+							echo '<br>';
+	
+					  }
+
+			?></span></p>	
+	<br>
+	
+	<p><h2 style="font-family: 'Salsa'">Private Channels Owned:</h2><span style="font-family: 'Patua One'; font-size:2em; font-weight:bold"><?php 
+	
+	$insert_posts3 = mysqli_query($conn,"select  channels from users_channel where user_email='".$profile2['user_email']."'");
+	
+			while($insert_posts4=mysqli_fetch_array($insert_posts3))
+						{
+							echo '#';
+							echo $insert_posts4['channels'];
+							echo '<br>';
+	
+					  }
+
+			?></span></p>	
+	<br>
 	
 	
 	<?php
