@@ -62,6 +62,10 @@ if(isset($_POST['search_submit'])) {
 	
 	
 	<p><h2 style="font-family: 'Salsa'">Email Id:</h2><span style="margin-left: 10px; font-family: 'Patua One'; font-size:2em; font-weight:bold"><?php echo $profile2['user_email'];?></span></p>	
+	<br>
+	
+	<a href="index.php" class="btn btn-primary btn-md" role="button">Back</a>
+
 	<?php
 	
 	
