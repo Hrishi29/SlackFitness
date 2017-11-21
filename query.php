@@ -4,7 +4,9 @@
  
 		
         $_SESSION['chname']=mysqli_real_escape_string($conn,test_input($_GET['chname']));
-				
+		echo '<script language="javascript">';
+        echo ' location.href="index.php"';
+        echo '</script>';		
 		
 	}
 	
@@ -22,6 +24,7 @@
 	}
 	
 
+	
 	
 	if(isset($_POST['channel_archive1'])) {  // inserting channel status
 		
@@ -216,6 +219,78 @@ if(isset($_POST['th_down1'])) { // for index.php after posting the reactions for
 	}
 
 	
+	if(isset($_POST['update_image'])) { // update image
+						
+						
+						
+						$imgFile = $_FILES['user_image1']['name'];
+						$tmp_dir = $_FILES['user_image1']['tmp_name'];
+						$imgSize = $_FILES['user_image1']['size'];
+						
+						if($imgFile)
+		{
+		
+						
+						$upload_dir = 'user_images/'; // upload directory
+	
+			$imgExt = strtolower(pathinfo($imgFile,PATHINFO_EXTENSION)); // get image extension
+		
+			// valid image extensions
+			$valid_extensions = array('jpeg', 'jpg', 'png', 'gif'); // valid extensions
+		
+			// rename uploading image
+			$userpic = rand(1000,1000000).".".$imgExt;
+				
+			// allow valid image file formats
+			if(in_array($imgExt, $valid_extensions)){			
+				// Check file size '5MB'
+				if($imgSize < 1000000000)				{
+					
+					unlink($upload_dir.$_SESSION['user_pic']);
+					move_uploaded_file($tmp_dir,$upload_dir.$userpic);
+				}
+				else{
+					
+					 echo '<script language="javascript">';
+        echo 'alert("Large: Should be less than 10MB")';
+        echo '</script>';
+		$errMSG = "Sorry, your file is too large it should be less then 5MB";
+				}
+			}
+			else{
+				
+				
+			 echo '<script language="javascript">';
+        echo 'alert("Error: Only JPG, JPEG, PNG & GIF files are allowed.")';
+        echo '</script>';
+		$errMSG = "Sorry, only JPG, JPEG, PNG & GIF files are allowed.";
+			}
+		}
+		else
+		{
+			// if no image selected the old image remain as it is.
+			$userpic = $_SESSION['user_pic']; // old image from database
+		}	
+			
+			
+			
+		// if no error occured, continue ....	
+		if(!isset($errMSG))
+		{
+			$user_email=$_SESSION['user_email'];
+			 $_SESSION['user_pic'] = $userpic;
+		
+		$update_insert=mysqli_query($conn," UPDATE users_info SET user_pic = '$userpic' WHERE user_email = '$user_email'")  ;
+		echo '<script language="javascript">';
+        echo 'location.href="index.php"';
+        echo '</script>';
+		
+		}
+		
+		
+		
+	
+		}
 	
 	
 	
@@ -337,6 +412,7 @@ if(isset($_POST['th_down1'])) { // for index.php after posting the reactions for
 		$user_email=$_SESSION['user_email'];
 		$invitor=$_SESSION['user_name'];
 		$insert_channel=mysqli_query($conn," INSERT INTO users_channel (id, channels, user_email) VALUES ('1', '$chname', '$user_email')")  ;
+		$insert_private=mysqli_query($conn," INSERT INTO private_channel (channel_name, user_email) VALUES ('$chname', '$user_email')")  ;
 		
 		if(isset($_POST['formInvites'])) {
 			
