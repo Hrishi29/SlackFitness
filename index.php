@@ -363,7 +363,7 @@ li.L5, li.L6, li.L7, li.L8 {
 	<div class="container">
 	<div class="row">
 	
-        <div class="col-md-6">
+        <div class="col-md-8">
     <div class="modal-content">
       <div class="modal-header" style="background-color:#030778">
         <button type="button" class="close" data-dismiss="modal">&times;</button>
@@ -374,6 +374,7 @@ li.L5, li.L6, li.L7, li.L8 {
 			<li class="active"><a data-toggle="pill" href="#home5">Image From Computer</a></li>
 			<li><a data-toggle="pill" href="#home6">Image From Web </a></li>
 			<li><a data-toggle="pill" href="#home7">Pretty Formatted Code</a></li>
+			<li><a data-toggle="pill" href="#home8">File From Computer</a></li>
 			
 		</ul>
 		<hr>
@@ -394,11 +395,12 @@ li.L5, li.L6, li.L7, li.L8 {
 		
 			</div>
 			
+			<img id="blah" src="" alt="Image Preview" height="100" width="150" />
 		 
 		 
             <div class="form-group">
 			
-			<input style="margin-top:20px;" type="file" name="post_image" accept="image/*" />
+			<input id="imgInp" style="margin-top:20px;" type="file" name="post_image" accept="image/*" />
 
 			
 		
@@ -429,9 +431,9 @@ li.L5, li.L6, li.L7, li.L8 {
 		
 		<div id="home6" class="tab-pane fade">
 		
-		<h4>Preview</h4>
+	<!--	<h4>Preview</h4>
 		
-		<!--<div  id="image_preview"></div>-->
+		<div  id="image_preview"></div>-->
 
      <br>
        <form method="post" action="index.php" enctype="multipart/form-data">
@@ -447,15 +449,20 @@ li.L5, li.L6, li.L7, li.L8 {
 			
 		 <br>
 		 
+		 
+		 
             <div class="form-group">
 			
 			<label for="purl">Enter URL: </label>
-			<input style="margin-top:20px; "  onchange="preview_image();" class="form-control" type="text" name="post_url" id="purl" placeholder="Enter URL"  required />
+			<input id="working" oninput="preview_image()" style="margin-top:20px; "   class="form-control" type="text" name="post_url" id="purl" placeholder="Enter URL"  required />
 
 			
 		
 			</div>
+			<img id="workit" src="" alt="Image Preview" height="100" width="150" />
 			
+			<br>
+			<br>
 			<div class="form-group">
 			
 			<button type="submit" value="submit16" name="submit16"  class="btn btn-success">Upload</button>
@@ -536,6 +543,54 @@ li.L5, li.L6, li.L7, li.L8 {
 	
 		
 		</div>
+		
+		
+		<div id="home8" class="tab-pane fade">
+		
+		 <form method="post" action="index.php" enctype="multipart/form-data">
+		 
+		    <div class="form-group">
+			
+			<label for="filemess">Enter Description:</label>
+			<textarea style="margin-top:20px;" class="form-control" type="text" name="file_post" id="filemess" placeholder="(Optional)" ></textarea>
+
+			
+		
+			</div>
+			
+		 
+		 
+            <div class="form-group">
+			
+			<input style="margin-top:20px;" type="file" name="post_file"  />
+
+			
+		
+			</div>
+			
+			<div class="form-group">
+			
+			<button type="submit" value="submit50" name="submit50"  class="btn btn-success">Upload</button>
+			
+            </div>
+			
+  <br>
+            
+          </form>
+			
+		
+				
+      <div class="modal-footer">
+		
+    
+     <button type="button"  data-dismiss="modal" class="btn btn-danger custom bold">Back</button>
+	
+       
+      </div>
+	  
+    
+		</div>
+		
 	</div>
 	
 	</div>
@@ -769,7 +824,7 @@ li.L5, li.L6, li.L7, li.L8 {
 		  
 		  
 	
-					$r11=mysqli_query($conn,"select user_name from users_info where not user_name='".$_SESSION['user_name']."'");
+					$r11=mysqli_query($conn,"select  *from users_info where not user_name='".$_SESSION['user_name']."'");
      
 					while($r22=mysqli_fetch_array($r11))
 						{
@@ -779,7 +834,13 @@ li.L5, li.L6, li.L7, li.L8 {
 
 				?>	
 		   <li>
-                    <a href="#page-content-wrapper"><?php echo $r22['user_name']; ?></a>
+		   
+		  <?php 
+		   
+                   echo '<a href="index.php?dmid='.$r22['user_id'].'">  '.$r22['user_name'].' </a>'
+		  
+		  ?>
+		  
 		  </li>			
 		  
 
@@ -811,6 +872,8 @@ li.L5, li.L6, li.L7, li.L8 {
 				
 				
 				<?php
+				
+			
 						
 					if($_SESSION['page_num'] >= 2){
 							
@@ -840,12 +903,37 @@ li.L5, li.L6, li.L7, li.L8 {
 				
 			<div  class="row">			
 				<div class="col-sm-2 text-center">
-					<img src="user_images/<?php 
+				
+				<?php 
 					
 					$rnew=mysqli_query($conn,"select  *from users_info WHERE user_name = '".$r34['user_name']."'");
 					$rnew2=mysqli_fetch_array($rnew);
 					
-					echo $rnew2['user_pic']; ?>" class="img-rounded" height="65" width="65">
+					if($rnew2['user_pic']=="user-image.jpg")
+					{
+			
+
+				?>
+				
+					<img src="user-image.jpg" class="img-rounded" height="65" width="65">
+				
+				
+				<?php
+					}
+					else 
+					{	
+
+				?>	
+					
+					 
+				
+				
+					<img src="user_images/<?php echo $rnew2['user_pic']; ?>" class="img-rounded" height="65" width="65">
+					<?php
+					
+					}
+					
+					?>
 				</div>
 				<div id="<?php echo $r34['mess_id'];?>"  class="col-sm-10">
 					<h4><?php echo $r34['user_name'];?><small style="margin-left:10px"><?php echo $r34['date'];?></small></h4>
@@ -876,13 +964,27 @@ li.L5, li.L6, li.L7, li.L8 {
 					
 					<?php echo $r34['format_code'];?>
 					
+					
 					</pre>
+					<br>
 					<?php
 					
 					}
+					
+					if($r34['post_file']!=NULL) {
 					?>
 					
+					<a data-toggle="tooltip" title="Click to download!" href="post_file/<?php echo $r34['post_file']; ?>" class="btn btn-info btn-lg" download="<?php echo $r34['org_name'];   ?>">
+						<span class="glyphicon glyphicon-file"></span> <?php echo $r34['org_name'];   ?>
+					</a>
 					<br>
+					<br>
+					<?php
+					
+					}
+					
+					?>
+					
 					
 					<form action="index.php" method="post"> 
 					
@@ -968,13 +1070,39 @@ li.L5, li.L6, li.L7, li.L8 {
 				<div id="textbox" class="col-sm-2 col-md-2"></div>
 			
 				<div style="margin-left:-30px" class="col-sm-2 col-md-2 text-center">
-					<img src="user_images/<?php
+				
+				<?php
 
 					$rnew3=mysqli_query($conn,"select  *from users_info WHERE user_name = '".$r74['user_name']."'");
 					$rnew4=mysqli_fetch_array($rnew3);
-							
+						
+							if($rnew4['user_pic']=="user-image.jpg")
+							{
 					
-					echo $rnew4['user_pic']; ?>" class="img-rounded" height="65" width="65">
+					 ?>
+					
+					
+					<img src="user-image.jpg" class="img-rounded" height="65" width="65">
+					
+					<?php
+					
+							}
+							
+							else {
+					
+					?>
+					
+				
+					<img src="user_images/<?php echo $rnew4['user_pic'] ?>" class="img-rounded" height="65" width="65">
+					
+					<?php
+					
+							}
+					
+					?>
+					
+					
+					
 				</div>
 				
 				<div class="col-sm-8 col-md-8">
@@ -1330,6 +1458,29 @@ $(document).ready(function() {
    });
  
 });
+
+
+function readURL(input) {
+        if (input.files && input.files[0]) {
+            var reader = new FileReader();
+            
+            reader.onload = function (e) {
+                $('#blah').attr('src', e.target.result);
+            }
+            
+            reader.readAsDataURL(input.files[0]);
+        }
+    }
+    
+    $("#imgInp").change(function(){
+        readURL(this);
+    });
+	
+function preview_image() {
+    var x = document.getElementById("working").value;
+	document.getElementById("workit").src=x;
+    
+}
 
 /*
 
