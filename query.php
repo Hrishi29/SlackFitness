@@ -516,6 +516,80 @@ if(isset($_POST['th_down1'])) { // for index.php after posting the reactions for
 	
 	
 	
+					if(isset($_POST['submit50'])) { // file from computer
+						
+						
+						
+						$imgFile = $_FILES['post_file']['name'];
+						$tmp_dir = $_FILES['post_file']['tmp_name'];
+						$imgSize = $_FILES['post_file']['size'];
+						
+						$upload_dir = 'post_file/'; // upload directory
+	
+			$imgExt = strtolower(pathinfo($imgFile,PATHINFO_EXTENSION)); // get image extension
+		
+			// valid image extensions
+			$valid_extensions = array('zip', 'rar', 'xlsx', 'cad', 'pdf', 'doc', 'docx', 'ppt', 'pptx', 'pps', 'ppsx', 'odt', 'xls', 'xlsx', 'mp3', 'm4a', 'ogg', 'wav', 'mp4', 'm4v', 'mov', 'wmv'); // valid extensions
+		
+			// rename uploading image
+			$userpic = rand(1000,1000000).".".$imgExt;
+				
+			// allow valid image file formats
+			if(in_array($imgExt, $valid_extensions)){			
+				// Check file size '20MB'
+				if($imgSize < 2000000000)				{
+					
+					move_uploaded_file($tmp_dir,$upload_dir.$userpic);
+				}
+				else{
+					
+					 echo '<script language="javascript">';
+        echo 'alert("Large: Should be less than 10MB")';
+        echo '</script>';
+		$errMSG = "Sorry, your file is too large it should be less then 5MB";
+				}
+			}
+			else{
+				
+				
+			 echo '<script language="javascript">';
+        echo 'alert("Error: Filetype not accepted.")';
+        echo '</script>';
+		$errMSG = "Sorry, Filetype not accepted.";
+			}
+			
+			
+			
+		// if no error occured, continue ....	
+		if(!isset($errMSG))
+		{
+			
+		$message_post=mysqli_real_escape_string($conn,test_input($_POST['file_post']));	
+		$user_name=$_SESSION['user_name'];
+	    $chname=$_SESSION['chname'];
+		
+		if($message_post==''){
+	
+		$post_insert=mysqli_query($conn," INSERT INTO users_message (channel_name, user_name, date, post_file, org_name) VALUES ('$chname', '$user_name', CURRENT_TIMESTAMP(), '$userpic', '$imgFile') ")  ;
+		}
+		
+		else{
+			
+			$post_insert=mysqli_query($conn," INSERT INTO users_message (channel_name, messages, user_name, date, post_file, org_name) VALUES ('$chname', '$message_post', '$user_name', CURRENT_TIMESTAMP(), '$imgFile') ")  ;
+		
+			
+		}
+		
+		}
+	
+						}
+	
+	
+	
+	
+	
+	
+	
 
 	
 						if(isset($_POST['submit15'])) { // images from file
