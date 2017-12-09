@@ -219,9 +219,55 @@ if(isset($_POST['th_down1'])) { // for index.php after posting the reactions for
 	}
 
 	
+	if(isset($_POST['delete_image'])) { // delete image
+	
+	$user_email=$_SESSION['user_email'];
+	$userpic=$_SESSION['user_pic'];
+	
+	if($row_grav1['grav_image']==0)
+			{
+				$email = $user_email;
+
+$default = "https://image.freepik.com/free-icon/user-image-with-black-background_318-34564.jpg";
+$size = 200;	
+$grav_url = "https://www.gravatar.com/avatar/" . md5( strtolower( trim( $email ) ) ) . "?d=" . urlencode( $default ) . "&s=" . $size;
+$userpic = $grav_url;
+
+				
+				$delete_insert=mysqli_query($conn," UPDATE users_info SET user_pic = '$userpic', grav_image = '1' WHERE user_email = '$user_email'")  ;
+		
+				$_SESSION['user_pic']=$userpic;
+		echo '<script language="javascript">';
+        echo 'location.href="index.php"';
+        echo '</script>';
+				
+			}
+		else {
+	
+	$default_image="user-image.jpg";	
+	
+	$delete_insert=mysqli_query($conn," UPDATE users_info SET user_pic = '$default_image' WHERE user_email = '$user_email'")  ;
+	if(delete_insert){
+	
+	$_SESSION['user_pic']=$default_image;
+	echo '<script language="javascript">';
+        echo 'location.href="index.php"';
+        echo '</script>';
+		
+
+	}
+	
+		}
+	}	
+	
+	
+	
+	
 	if(isset($_POST['update_image'])) { // update image
 						
-						
+						echo '<script language="javascript">';
+        echo 'alert("Success")';
+        echo '</script>';
 						
 						$imgFile = $_FILES['user_image1']['name'];
 						$tmp_dir = $_FILES['user_image1']['tmp_name'];
@@ -243,9 +289,9 @@ if(isset($_POST['th_down1'])) { // for index.php after posting the reactions for
 				
 			// allow valid image file formats
 			if(in_array($imgExt, $valid_extensions)){			
-				// Check file size '5MB'
+				// Check file size '20MB'
 				if($imgSize < 1000000000)				{
-					
+					 
 					unlink($upload_dir.$_SESSION['user_pic']);
 					move_uploaded_file($tmp_dir,$upload_dir.$userpic);
 				}
@@ -279,11 +325,27 @@ if(isset($_POST['th_down1'])) { // for index.php after posting the reactions for
 		{
 			$user_email=$_SESSION['user_email'];
 			 $_SESSION['user_pic'] = $userpic;
+			 
+			 $result_grav1=mysqli_query($conn,"select * from users_info where user_email='".$_SESSION['user_email']."'");
+			$row_grav1=mysqli_fetch_array($result_grav1);	
+			if($row_grav1['grav_image']!=NULL)
+			{
+				$update_insert=mysqli_query($conn," UPDATE users_info SET user_pic = '$userpic', grav_image = 0 WHERE user_email = '$user_email'")  ;
+		echo '<script language="javascript">';
+        echo 'location.href="index.php"';
+        echo '</script>';
+				
+			}
+		
+		else
+		{	
 		
 		$update_insert=mysqli_query($conn," UPDATE users_info SET user_pic = '$userpic' WHERE user_email = '$user_email'")  ;
 		echo '<script language="javascript">';
         echo 'location.href="index.php"';
         echo '</script>';
+		
+		}
 		
 		}
 		
