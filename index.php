@@ -23,6 +23,7 @@ error_reporting(0);
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
 	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>	
     <script src="https://cdn.rawgit.com/google/code-prettify/master/loader/run_prettify.js"></script>
+	<script src='https://www.google.com/recaptcha/api.js'></script>
 	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css"><!-- getting the bootstrap css file for predefined components  -->
 	
 
@@ -57,18 +58,71 @@ li.L5, li.L6, li.L7, li.L8 {
 		
 		
 		
-		<form action="index.php" method="post" enctype="multipart/form-data">
+		
+		<?php
+		if($_SESSION['user_pic']=="user-image.jpg")
+			
+			{
+		?>
+		
+		<img src="<?php echo $_SESSION['user_pic']; ?>" class="img-rounded responsive"   width="200" height="200"> 
+		
+		
+		<?php
+			}
+			
+			else {
+		
+		?>
 		<img src="user_images/<?php echo $_SESSION['user_pic']; ?>" class="img-rounded responsive"   width="200" height="200"> 
-		<br>
-		<br>
-			<p><span style="font-weight:bold">Update Image:</span><input style="margin-top:20px; margin-left:80px" type="file" name="user_image1" accept="image/*" /></p>
 		
-			
-			
+		<?php
+			}
+		
+		?>
+		
+		<br>
+		<br>
+		
+		<ul class="nav nav-pills nav-justified">
+			<li class="active"><a data-toggle="pill" href="#home99">Update Picture</a></li>
+			<li><a data-toggle="pill" href="#home98">Delete Picture</a></li>
+		</ul>
+        
+		
+		
+  <div class="tab-content">
+    <div id="home99" class="tab-pane fade in active">
+	
+	<form action="index.php" method="post" enctype="multipart/form-data">
+		
+	
+     <input id="profile_choose" style="margin-top:20px; margin-left:80px" type="file" name="user_image1" accept="image/*" />
+		<br>
+		
+			<img id="profile_preview" src="" alt="Image Preview" height="100" width="150" />
+		 
+		 <br>
+		 <br>
+		 
+		 
 			<button type="submit" name="update_image" class="btn btn-danger ">Upload</button>
+		 
+		 	</form>
+		 
+	</div>
+	
+	
+	
+    <div id="home98" class="tab-pane fade">
+      <h3>Menu 1</h3>
+      <p>Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.</p>
+    </div>
+  </div>
 		
-		</form>		
 		
+			
+
 		<br>
 		
 		<div><span style="font-weight:bold">Username: </span><span><?php echo $_SESSION['user_name']; ?></span></div>
@@ -1460,7 +1514,11 @@ $(document).ready(function() {
 });
 
 
-function readURL(input) {
+    
+    $("#imgInp").change(function(){
+        readURL(this);
+		
+		function readURL(input) {
         if (input.files && input.files[0]) {
             var reader = new FileReader();
             
@@ -1471,10 +1529,29 @@ function readURL(input) {
             reader.readAsDataURL(input.files[0]);
         }
     }
-    
-    $("#imgInp").change(function(){
-        readURL(this);
+
+		
     });
+	
+    
+    $("#profile_choose").change(function(){
+        readURL(this);
+		
+		
+	function readURL(input) {
+        if (input.files && input.files[0]) {
+            var reader = new FileReader();
+            
+            reader.onload = function (e) {
+                $('#profile_preview').attr('src', e.target.result);
+            }
+            
+            reader.readAsDataURL(input.files[0]);
+        }
+    }
+		
+    });
+
 	
 function preview_image() {
     var x = document.getElementById("working").value;
