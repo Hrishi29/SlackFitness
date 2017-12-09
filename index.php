@@ -60,6 +60,12 @@ li.L5, li.L6, li.L7, li.L8 {
 		
 		
 		<?php
+		
+		include 'connect.php';
+		
+			$result_grav=mysqli_query($conn,"select * from users_info where user_email='".$_SESSION['user_email']."'");
+			$row_grav=mysqli_fetch_array($result_grav);	
+		
 		if($_SESSION['user_pic']=="user-image.jpg")
 			
 			{
@@ -71,15 +77,27 @@ li.L5, li.L6, li.L7, li.L8 {
 		<?php
 			}
 			
+			
+			
+			else if($row_grav['grav_image']==1){
+			
+		?>
+		<img src="<?php echo $_SESSION['user_pic']; ?>" class="img-rounded responsive"   width="200" height="200"> 
+		
+		<?php
+			}
+			
 			else {
 		
 		?>
 		<img src="user_images/<?php echo $_SESSION['user_pic']; ?>" class="img-rounded responsive"   width="200" height="200"> 
 		
-		<?php
-			}
 		
-		?>
+		<?php
+		
+			}
+			
+		?>	
 		
 		<br>
 		<br>
@@ -106,7 +124,7 @@ li.L5, li.L6, li.L7, li.L8 {
 		 <br>
 		 
 		 
-			<button type="submit" name="update_image" class="btn btn-danger ">Upload</button>
+			<button type="submit" name="update_image" class="btn btn-danger ">Update</button>
 		 
 		 	</form>
 		 
@@ -115,9 +133,17 @@ li.L5, li.L6, li.L7, li.L8 {
 	
 	
     <div id="home98" class="tab-pane fade">
-      <h3>Menu 1</h3>
-      <p>Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.</p>
-    </div>
+      
+	  <br>
+	  <form action="index.php" method="post" >
+	
+	  
+	  <h4 style="font-weight:bold">Delete Your Profile Picture? Click Below!</h2>
+	  
+	  <button type="submit" name="delete_image" class="btn btn-danger ">Delete</button>
+		 
+	  </form>	 
+      </div>
   </div>
 		
 		
@@ -208,7 +234,7 @@ li.L5, li.L6, li.L7, li.L8 {
 			  <select multiple class="form-control" id="invites" name="formInvites[]">
 			  <?php
 			  
-			  include 'connect.php';
+			  
 			  
 			  
 			  $rinvites=mysqli_query($conn,"select *from users_info where user_name!='".$_SESSION['user_name']."' and user_email!='".$_SESSION['user_email']."'");
@@ -974,6 +1000,16 @@ li.L5, li.L6, li.L7, li.L8 {
 				
 				<?php
 					}
+					else if($rnew2['grav_image']==1){
+						
+				?>
+
+				<img src="<?php echo $rnew2['user_pic']; ?>" class="img-rounded" height="65" width="65">
+					
+				
+				<?php
+					
+					}
 					else 
 					{	
 
@@ -1139,13 +1175,22 @@ li.L5, li.L6, li.L7, li.L8 {
 					<img src="user-image.jpg" class="img-rounded" height="65" width="65">
 					
 					<?php
+					}
+					else if($rnew4['grav_image']==1){
+						
+				?>
+
+				<img src="<?php echo $rnew4['user_pic']; ?>" class="img-rounded" height="65" width="65">
 					
-							}
-							
-							else {
+				
+				<?php
 					
-					?>
-					
+					}
+					else 
+					{	
+
+				?>	
+				
 				
 					<img src="user_images/<?php echo $rnew4['user_pic'] ?>" class="img-rounded" height="65" width="65">
 					
