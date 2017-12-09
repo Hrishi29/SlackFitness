@@ -23,6 +23,9 @@ if(!isset($_SESSION['workspace'])){ //only users within workspace
 	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css"><!-- getting the bootstrap css file for predefined components  -->
 </head>
 
+<body>
+
+
 <nav class="navbar navbar-inverse navbar-fixed-top">
   <div class="container-fluid">
     <div class="navbar-header">
@@ -36,9 +39,9 @@ if(!isset($_SESSION['workspace'])){ //only users within workspace
 </nav>
   
 
-<body>
 
-<div style="margin-top: 100px;"class="container">
+
+<div style="margin-top: 100px;" class="container">
   <h2>Account Basics</h2>
   
   <div class="panel-group" id="accordion">

@@ -36,16 +36,15 @@ if(!isset($_SESSION['workspace'])){ //only users within workspace
 
 
 <form action="signup.php" method="post" enctype="multipart/form-data">
-	<!--Select image to upload:
-    <input type="file" name="fileToUpload" id="fileToUpload"> -->
-    <img src="user-image.jpg" class="img-rounded responsive"   width="170" height="130"> 
+	
+    <!--<img src="user-image.jpg" class="img-rounded responsive"   width="170" height="130"> 
 
 	<input id="imgInp" style="margin-top:20px; margin-left:80px" type="file" name="user_image" accept="image/*" />
 
 	<br>
 	<img id="blah" src="" alt="Image Preview" height="100" width="150" />
 		 
-		 
+		--> 
 
 </center>
 
@@ -63,7 +62,7 @@ include 'connect.php';
 	 
 					if ($_SERVER["REQUEST_METHOD"] == "POST") {
 						
-						$imgFile = $_FILES['user_image']['name'];
+				/*		$imgFile = $_FILES['user_image']['name'];
 						$tmp_dir = $_FILES['user_image']['tmp_name'];
 						$imgSize = $_FILES['user_image']['size'];
 						
@@ -101,11 +100,11 @@ include 'connect.php';
 					}
 					
 					
-					else {
+					else { */
 			
 								$userpic = "user-image.jpg";
 						
-					}					
+				//	}					
 						$user_pass=mysqli_real_escape_string($conn,test_input($_POST['pass']));
 						$user_passw=mysqli_real_escape_string($conn,test_input($_POST['passw']));
 						if ($user_pass!=$user_passw)
@@ -133,12 +132,15 @@ include 'connect.php';
 	
 
 else {
-	
 		
+$email = $user_email;
+
+$default = "https://image.freepik.com/free-icon/user-image-with-black-background_318-34564.jpg";
+$size = 200;	
+$grav_url = "https://www.gravatar.com/avatar/" . md5( strtolower( trim( $email ) ) ) . "?d=" . urlencode( $default ) . "&s=" . $size;
+$userpic = $grav_url;
 	
-	
-	
-$insert_user="INSERT INTO users_info (id, user_pic, user_name, user_pass,  user_email) VALUES ('1', '$userpic', '$user_name', '$user_pass', '$user_email')";
+$insert_user="INSERT INTO users_info (id, user_pic, user_name, user_pass,  user_email, grav_image) VALUES ('1', '$userpic', '$user_name', '$user_pass', '$user_email', '1')";
 
     if(mysqli_query($conn,$insert_user))
     {				
@@ -154,7 +156,7 @@ $insert_user="INSERT INTO users_info (id, user_pic, user_name, user_pass,  user_
 					
 					$pchannel=$r203['p_channel'];
 					$invitor=$r203['invitor'];
-					$insert2_channel=mysqli_query($conn," INSERT INTO unique_channel (channels1, users_email, invitor) VALUES ('$pchannel', '$user_email', '$user_email')")  ;
+					$insert2_channel=mysqli_query($conn," INSERT INTO unique_channel (channels1, users_email, invitor) VALUES ('$pchannel', '$user_email', '$invitor')")  ;
 					$_SESSION['page_num'] = 1;
 					
 					}
