@@ -23,7 +23,9 @@ error_reporting(0);
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css"><!-- getting the bootstrap css file for predefined components  -->
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
-  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>	
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+  <script src="https://www.google.com/recaptcha/api.js" async defer></script>
+		
   <!-- main CSS
         ============================================ -->
         <link rel="stylesheet" href="style.css">
@@ -88,8 +90,13 @@ error_reporting(0);
 							</div>
 							
 							<br>
+							<div class="g-recaptcha" data-sitekey="6Lc1RzwUAAAAAPG12Vp4x3mASn8R3cn5yHP6WEFz"></div>
+							<br>
+							<div id="cando" style="font-weight:bold;" ></div>
+							<br>
+							
 							<div class="input-group">
-							<button  class="btn btn-md btn-success"  type="submit" value="submit1" name="submit1">Sign In</button><a style="margin-left:340px; font-weight:bold" href="signup.php">Don't have an account? Sign Up</a>
+							<button  class="btn btn-md btn-success" onclick="return Validate()"  type="submit" value="submit1" name="submit1">Sign In</button><a style="margin-left:340px; font-weight:bold" href="signup.php">Don't have an account? Sign Up</a>
 							</div>
 						</form>
 									
@@ -108,8 +115,19 @@ error_reporting(0);
 
 
 	 $("#banner-sign").css("height",$(window).height()); //image resizing according to window height
-	
+		
+	function Validate() {
 
+if (grecaptcha.getResponse() == ""){
+    document.getElementById("cando").innerHTML = "Captcha Needed!";
+	return false;
+} else {
+    document.getElementById("cando").innerHTML = "";
+	return true;
+}
+
+	}	
+	
 </script>
 	
 	
