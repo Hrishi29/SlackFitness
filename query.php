@@ -673,7 +673,8 @@ if(isset($_POST['th_down1'])) { // for index.php after posting the reactions for
 
 
 	if(isset($_POST['submit1'])) {  //for signin.php
-		
+	
+	
 		$_SESSION['user_email']=mysqli_real_escape_string($conn,test_input($_POST['user_email']));
 		$_SESSION['user_pass']=mysqli_real_escape_string($conn,test_input($_POST['user_pass']));	
 		
@@ -694,6 +695,7 @@ if(isset($_POST['th_down1'])) { // for index.php after posting the reactions for
 					header("Location:index.php"); //success
 	
 				}
+				
 
 	}
 	
