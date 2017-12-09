@@ -17,7 +17,8 @@ if(!isset($_SESSION['workspace'])){ //only users within workspace
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
 	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>	
-    
+    <script src="https://www.google.com/recaptcha/api.js" async defer></script>
+	
 	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css"><!-- getting the bootstrap css file for predefined components  -->
 </head>
 
@@ -39,9 +40,12 @@ if(!isset($_SESSION['workspace'])){ //only users within workspace
     <input type="file" name="fileToUpload" id="fileToUpload"> -->
     <img src="user-image.jpg" class="img-rounded responsive"   width="170" height="130"> 
 
-	<input style="margin-top:20px; margin-left:80px" type="file" name="user_image" accept="image/*" />
+	<input id="imgInp" style="margin-top:20px; margin-left:80px" type="file" name="user_image" accept="image/*" />
 
-
+	<br>
+	<img id="blah" src="" alt="Image Preview" height="100" width="150" />
+		 
+		 
 
 </center>
 
@@ -198,7 +202,13 @@ function test_input($data) { // function for mysql injections
     <label for="rpwd">Confirm Password:<?php echo $user_mess; ?></label>
     <input name="passw" type="password" placeholder="Confirm password" class="form-control" id="rpwd" required>
   </div>
-  <button type="submit" value="submit3" name="submit3"  class="btn btn-default">Submit</button>
+  
+  <div class="g-recaptcha" data-sitekey="6Lc1RzwUAAAAAPG12Vp4x3mASn8R3cn5yHP6WEFz"></div>
+		<br>
+			<div id="cando" style="font-weight:bold;" ></div>
+		<br>
+							
+  <button type="submit" value="submit3" name="submit3" onclick="return Validate()"  class="btn btn-default">Submit</button>
 </form>
 
 
@@ -206,7 +216,39 @@ function test_input($data) { // function for mysql injections
 </div>
 </div>
 
+<script>
 
+function Validate() {
+
+if (grecaptcha.getResponse() == ""){
+    document.getElementById("cando").innerHTML = "Captcha Needed!";
+	return false;
+} else {
+    document.getElementById("cando").innerHTML = "";
+	return true;
+}
+
+	}	
+	
+
+
+function readURL(input) {
+        if (input.files && input.files[0]) {
+            var reader = new FileReader();
+            
+            reader.onload = function (e) {
+                $('#blah').attr('src', e.target.result);
+            }
+            
+            reader.readAsDataURL(input.files[0]);
+        }
+    }
+    
+    $("#imgInp").change(function(){
+        readURL(this);
+    });	
+	
+</script>
 </body>
 
 </html>
