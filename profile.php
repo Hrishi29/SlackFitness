@@ -51,9 +51,42 @@ if(isset($_POST['search_submit'])) {
 	
 	<h1 style="font-family: 'Salsa'"><?php echo $profile2['user_name'];?></h2>
 
+	<?php
 	
-	<img src="user_images/<?php echo $profile2['user_pic'];?>" class="img-rounded responsive"   width="200" height="200"> 
+	if($profile2['user_pic']=="user-image.jpg")
+		
+		{
+	
+	?>
+	
+	<img src="user-image.jpg" class="img-rounded responsive"   width="200" height="200" alt="profile_picture"> 
 
+	<?php
+	
+		}
+		
+		else if($profile2['grav_image']==1){
+			
+	?>
+
+	<img src="<?php echo $profile2['user_pic'];?>" class="img-rounded responsive" alt="profile_picture"  width="200" height="200"> 
+	
+	
+	<?php
+		}
+		else
+		{
+
+	?>
+	
+	<img src="user_images/<?php echo $profile2['user_pic'];?>" class="img-rounded responsive" alt="profile_picture"  width="200" height="200"> 
+	
+	
+	<?php
+	
+		}
+	
+	?>
 	<br>
 	<br>
 	<?php
