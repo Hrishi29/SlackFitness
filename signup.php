@@ -180,7 +180,15 @@ $insert_user="INSERT INTO users_info (id, user_pic, user_name, user_pass,  user_
 
 					include 'class.phpmailer.php';
 					require_once 'class.smtp.php';
-
+					$length = 30;
+	$str = "";
+	$characters = array_merge(range('A','Z'), range('a','z'), range('0','9'));
+	$max = count($characters) - 1;
+	for ($i = 0; $i < $length; $i++) {
+		$rand = mt_rand(0, $max);
+		$str .= $characters[$rand];
+	}
+	
 					
 					$return_arrfinal = array();
      $status_array['status'] = '1';
