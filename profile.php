@@ -99,7 +99,7 @@ if(isset($_POST['search_submit'])) {
 	?>
 	
 	
-	<img src="user_ratings/1.png" class="img-rounded responsive"   width="150" height="50"> 
+	<img src="user_ratings/1.png" class="img-rounded responsive" alt="profile_picture"  width="150" height="50"> 
 
 	
 	<?php
@@ -114,7 +114,7 @@ if(isset($_POST['search_submit'])) {
 	?>
 	
 	
-	<img src="user_ratings/2.png" class="img-rounded responsive"   width="150" height="50"> 
+	<img src="user_ratings/2.png" class="img-rounded responsive" alt="profile_picture"  width="150" height="50"> 
 
 	
 	<?php
@@ -127,7 +127,7 @@ if(isset($_POST['search_submit'])) {
 	?>
 	
 	
-	<img src="user_ratings/3.png" class="img-rounded responsive"   width="150" height="50"> 
+	<img src="user_ratings/3.png" class="img-rounded responsive" alt="profile_picture"  width="150" height="50"> 
 
 	
 	<?php
