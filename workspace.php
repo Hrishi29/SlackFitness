@@ -73,7 +73,7 @@ session_start();
   </a>
 		</div>
 		<div  class="row"> <!-- overlay text -->
-			<div class="col-md-5"></div>
+			<div class="col-md-4"></div>
 			<div  style="margin-top:250px" class="col-md-6"> <!-- centering the form -->
 			<div style="text-align:center" class="well well-sm">
 			
@@ -119,7 +119,7 @@ session_start();
 						<form   class="form-horizontal" method="post" action="workspace.php">
 						
 						<div class="row">
-								<div class="col-lg-6 col-lg-offset-3">
+								<div class="col-lg-8 col-lg-offset-2">
 							<div class="input-group">
 								
 									<input id="workspace" type="text"  placeholder="your-workspace-url" name="search" required />
