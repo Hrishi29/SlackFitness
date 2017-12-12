@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Dec 12, 2017 at 07:18 PM
+-- Generation Time: Dec 12, 2017 at 09:30 PM
 -- Server version: 5.7.14
 -- PHP Version: 5.6.25
 
@@ -233,22 +233,13 @@ CREATE TABLE `users_channel` (
 
 INSERT INTO `users_channel` (`id`, `ch_id`, `channels`, `user_email`) VALUES
 (1, 1, 'general', 'mater@rsprings.gov'),
-(1, 19, 'general', 'chinga@cars.com'),
 (1, 20, 'general', 'hornet@rsprings.gov'),
-(1, 22, 'general', 'kachow@rusteze.com'),
 (1, 23, 'general', 'porsche@rsprings.gov'),
-(1, 24, 'general', 'topsecret@agent.org'),
-(1, 63, 'general', 'krish@gmail.com'),
-(1, 66, 'general', 'Sbk@gmail.com'),
 (1, 67, 'general', 'admin@super.com'),
-(1, 68, 'general', 'andy@gmail.com'),
 (1, 69, 'nutrition', 'admin@super.com'),
 (1, 70, 'workouts', 'admin@super.com'),
 (1, 71, 'nutrition', 'hornet@rsprings.gov'),
 (1, 72, 'private', 'hornet@rsprings.gov'),
-(1, 73, 'privatetest', 'topsecret@agent.org'),
-(1, 74, 'nutrition', 'kachow@rusteze.com'),
-(1, 75, 'workouts', 'kachow@rusteze.com'),
 (1, 81, 'general', 'hrishi.gadkari94@gmail.com'),
 (1, 82, 'general', 'hgadk001@odu.edu');
 
@@ -278,15 +269,10 @@ INSERT INTO `users_info` (`user_id`, `id`, `user_email`, `user_pass`, `user_name
 (1, 1, 'mater@rsprings.gov', '@mater', 'Tom Mater', '681898.jpeg', NULL, '0', NULL),
 (2, 1, 'porsche@rsprings.gov', '@sally', 'Sally Carrera', 'user-image.jpg', NULL, '0', NULL),
 (3, 1, 'hornet@rsprings.gov', '@doc', 'Doc Hudson', '355259.jpg', NULL, '0', NULL),
-(4, 1, 'topsecret@agent.org', '@mcmissile', 'Finn McMissile', 'user-image.jpg', NULL, '0', NULL),
-(5, 1, 'kachow@rusteze.com', '@mcqueen', 'Lightning McQueen', 'user-image.jpg', NULL, '0', NULL),
-(6, 1, 'chinga@cars.com', '@chick', 'Chick Hicks', 'user-image.jpg', NULL, '0', NULL),
-(16, 1, 'krish@gmail.com', '123', 'krishi', 'user-image.jpg', NULL, '0', NULL),
-(19, 1, 'Sbk@gmail.com', 'user123', 'Shahbaz Khan', '133740.jpg', NULL, '0', NULL),
 (20, 1, 'admin@super.com', 'super', 'Admin', '167185.png', NULL, '0', NULL),
-(21, 1, 'andy@gmail.com', 'user', 'Andy Murray', 'user-image.jpg', NULL, '0', NULL),
 (27, 1, 'hrishi.gadkari94@gmail.com', '1', 'hrishi2994', 'https://www.gravatar.com/avatar/d55156903c9ac57779df949d9aac0293?d=https%3A%2F%2Fimage.freepik.com%2Ffree-icon%2Fuser-image-with-black-background_318-34564.jpg&s=200', '1', '0', NULL),
-(28, 1, 'hgadk001@odu.edu', NULL, 'Hrishi29', 'https://avatars0.githubusercontent.com/u/31528997?v=4', '1', '0', NULL);
+(28, 1, 'hgadk001@odu.edu', NULL, 'Hrishi29', 'https://avatars0.githubusercontent.com/u/31528997?v=4', '1', '0', NULL),
+(30, 1, 'chinga@cars.com', '@chick', 'Chick Hicks', 'user-image.jpg', NULL, '0', NULL);
 
 -- --------------------------------------------------------
 
@@ -449,7 +435,7 @@ ALTER TABLE `users_channel`
 -- AUTO_INCREMENT for table `users_info`
 --
 ALTER TABLE `users_info`
-  MODIFY `user_id` int(20) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=30;
+  MODIFY `user_id` int(20) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=31;
 --
 -- AUTO_INCREMENT for table `users_message`
 --
