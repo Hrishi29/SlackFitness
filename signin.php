@@ -105,7 +105,7 @@ error_reporting(0);
 							</div>
 							
 							<br>
-							<div class="g-recaptcha" data-sitekey="6Lc1RzwUAAAAAPG12Vp4x3mASn8R3cn5yHP6WEFz"></div>
+							<div class="g-recaptcha" data-sitekey="6LdmwzwUAAAAAGQhutDN6byzchcb95bddlCdNJD7"></div>
 							<br>
 							<div id="cando" style="font-weight:bold;" ></div>
 							<br>

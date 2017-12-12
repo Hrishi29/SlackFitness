@@ -259,7 +259,7 @@ function test_input($data) { // function for mysql injections
     <input name="passw" type="password" placeholder="Confirm password" class="form-control" id="rpwd" required>
   </div>
   
-  <div class="g-recaptcha" data-sitekey="6Lc1RzwUAAAAAPG12Vp4x3mASn8R3cn5yHP6WEFz"></div>
+  <div class="g-recaptcha" data-sitekey="6LdmwzwUAAAAAGQhutDN6byzchcb95bddlCdNJD7"></div>
 		<br>
 			<div id="cando" style="font-weight:bold;" ></div>
 		<br>
