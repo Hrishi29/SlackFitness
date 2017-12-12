@@ -15,6 +15,7 @@ session_start();
   <!-- main CSS
         ============================================ -->
         <link rel="stylesheet" href="style.css">
+		<link rel="icon" type="image/jpg" href="https://static8.depositphotos.com/1010751/1032/v/950/depositphotos_10323838-stock-illustration-fitness-logo.jpg">
 	
 	
   </head>
