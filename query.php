@@ -2,12 +2,28 @@
 
 	if(isset($_GET['chname']) ) { // for index.php page for login into respective channesla
  
-		
-        $_SESSION['chname']=mysqli_real_escape_string($conn,test_input($_GET['chname']));
+		$chname=mysqli_real_escape_string($conn,test_input($_GET['chname']));
+		if(is_numeric ($chname)){
+			$retreiv890=mysqli_query($conn,"select  user_name from users_info where user_id='".$chname."'");
+			$retreive891=mysqli_fetch_array($retreiv890);
+			$_SESSION['dmname']=$retreive891['user_name'];
+			
+			$retreiv888=mysqli_query($conn,"select  user_id from users_info where user_email='".$_SESSION['user_email']."'");
+			$retreive889=mysqli_fetch_array($retreiv888);
+			$_SESSION['chname']=$chname.$retreive889['user_id'];
 		echo '<script language="javascript">';
         echo ' location.href="index.php"';
         echo '</script>';		
+			
+		}
 		
+		else{
+        $_SESSION['chname']=$chname;
+		echo '<script language="javascript">';
+        echo ' location.href="index.php"';
+        echo '</script>';		
+		}	
+	
 	}
 	
 	 
@@ -876,7 +892,80 @@ include 'connect.php';
 						
 		
 	}
- 
+	
+	if (isset($_POST['pillwork'])) {
+		$useremail=$_SESSION['user_email'];
+$result7001=mysqli_query($conn,"select * from users_info where user_email='".$_SESSION['user_email']."'");
+					 
+					$row7011=mysqli_fetch_array($result7001);
+					
+					if($row7011['two_factor']==0)
+					{
+	
+						$update_insert=mysqli_query($conn," UPDATE users_info SET two_factor = '1' WHERE user_email = '$useremail'")  ;
+	
+	
+					}
+					
+					else {
+						
+						$update_insert=mysqli_query($conn," UPDATE users_info SET two_factor = '0' WHERE user_email = '$useremail'")  ;
+	
+						
+					}
+	}
+	
+	if (isset($_POST['contact_submit'])) {
+		
+	$firstname = mysqli_real_escape_string($conn,test_input($_POST['firstname']));
+	$lastname =	mysqli_real_escape_string($conn,test_input($_POST['lastname']));
+	$contactno = mysqli_real_escape_string($conn,test_input($_POST['contactno']));
+	$emailid =	mysqli_real_escape_string($conn,test_input($_POST['email_id']));
+	$subject = mysqli_real_escape_string($conn,test_input($_POST['subject']));
+		
+		include 'class.phpmailer.php';
+		require_once 'class.smtp.php';
+
+		$return_arrfinal = array();
+     $status_array['status'] = '1';
+     $mail = new PHPMailer();
+     $toarraymail="hgadk001@odu";
+     $mail->SMTPDebug = 1;                              // Enable verbose debug output
+     $mail->Port = '587';
+     $mail->isSMTP();                                      // Set mailer to use SMTP // Specify main and backup SMTP servers                                    // Set mailer to use SMTP
+     $mail->Host = gethostbyname('smtp.gmail.com');  // Specify main and backup SMTP servers
+     $mail->SMTPAuth = true; // Authentication must be disabled
+
+     $mail->Username = 'ghrishi29@gmail.com';
+     $mail->Password = 'userhrishi30';
+     $mail->SMTPSecure= 'tls';
+
+
+     $mail->setFrom("ghrishi29@gmail.com","Fitness");
+     $mail->AddAddress($toarraymail);     // Add a recipient
+     // Optional name
+     $mail->isHTML(true);                                  // Set email format to HTML
+		
+     $mail->Subject = 'Contact For Fitness.com';
+     $mail->Body    =" Name: $firstname $lastname <br> Email Id: $emailid <br> Contact number: $contactno <br> Subject: $subject";
+     $mail->AltBody = 'This is the body in plain text for non-HTML mail clients';
+
+     if(!$mail->Send()){
+       echo "false";
+       echo 'Mailer Error: ' . $mail->ErrorInfo;
+	   
+       return false;
+     }else{
+       echo '<script language="javascript">';
+        echo 'alert("Submitted Successfully!")';
+        echo '</script>';
+       
+     }
+   
+		
+	}
+	
+	
 function test_input($data) { // function for mysql injections
   $data = trim($data);
   $data = stripslashes($data);

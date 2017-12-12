@@ -30,6 +30,7 @@ error_reporting(0);
     <script src="https://cdn.rawgit.com/google/code-prettify/master/loader/run_prettify.js"></script>
 	<script src='https://www.google.com/recaptcha/api.js'></script>
 	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css"><!-- getting the bootstrap css file for predefined components  -->
+	<link rel="icon" type="image/jpg" href="https://static8.depositphotos.com/1010751/1032/v/950/depositphotos_10323838-stock-illustration-fitness-logo.jpg">
 	
 
   <!-- Custom CSS -->
@@ -164,7 +165,59 @@ li.L5, li.L6, li.L7, li.L8 {
 		<br>
 		
 		
-		</center>		
+		</center>
+
+<ul class="nav nav-pills nav-justified">
+
+<?php
+$result700=mysqli_query($conn,"select * from users_info where user_email='".$_SESSION['user_email']."'");
+					 
+					$row701=mysqli_fetch_array($result700);
+					
+					if($row701['two_factor']==0)
+					{
+		
+
+?>
+    <li class="active"><a data-toggle="pill" href="#home700">Turn On Two-Factor Authentication</a></li>
+ </ul>
+ <br>
+  <div class="tab-content">
+  
+    <div id="home700" class="tab-pane fade in active">
+	
+      <p id="codec" style="font-family: 'Salsa' ;font-weight:bold" >Currently Two-Factor Authentication is Turned Off! </p>
+    </div>
+	
+ <?php
+ 
+					}
+					else {
+						
+						
+ ?>
+    
+	<li class="active"><a data-toggle="pill" href="#home700">Turn Off Two-Factor Authentication</a></li>
+	</ul>
+	<br>
+  <div class="tab-content">
+  
+    <div id="home700" class="tab-pane fade in active">
+	
+      <p id="codec" style="font-family: 'Salsa' ;font-weight:bold" >Currently Two-Factor Authentication is Turned On! </p>
+    </div>
+	
+	
+	
+<?php
+
+					}
+?>	
+  
+  
+
+  </div>
+		
       <div class="modal-footer">
 		
     
@@ -704,7 +757,17 @@ li.L5, li.L6, li.L7, li.L8 {
 										{
 										
 									?>
-									<li style="margin-left:180px;" ><a href="#" style="color:red; font-size:1.5em; font-weight:bold" data-toggle="tooltip" title="The channel is archived by admin!">#<?php echo $_SESSION['chname']; ?></a></li>
+									<li style="margin-left:180px;" ><a href="#" style="color:red; font-size:1.5em; font-weight:bold" data-toggle="tooltip" title="The channel is archived by admin!">#<?php 
+										
+										if(is_numeric ($_SESSION['chname'])) {
+										
+										echo $_SESSION['dmname'];
+					}
+					else
+					{
+					
+									
+					echo $_SESSION['chname']; } ?></a></li>
 									
 							<?php
 							
@@ -716,7 +779,17 @@ li.L5, li.L6, li.L7, li.L8 {
 							
 							
 									
-									<li style="margin-left:180px" class="active"><a href="" style="font-size:1.5em; font-weight:bold">#<?php echo $_SESSION['chname']; ?></a></li>
+									<li style="margin-left:180px" class="active"><a href="" style="font-size:1.5em; font-weight:bold">#<?php 
+									if(is_numeric ($_SESSION['chname'])) {
+										
+										echo $_SESSION['dmname'];
+					}
+					else
+					{
+					
+									
+									
+					echo $_SESSION['chname']; } ?></a></li>
 									
 							
 							
@@ -835,6 +908,9 @@ li.L5, li.L6, li.L7, li.L8 {
 				<li>
 				<a style="color:white !important;" href="help.php" class="btn btn-primary btn-sm" role="button">Help</a>
 				</li>
+				<li>
+				<a style="color:white !important;" href="contact.php" class="btn btn-warning btn-sm" role="button">Contact Us</a>
+				</li>
                 <li class="sidebar-brand">
                     <a style="color:white !important; font-weight:bold" data-toggle="modal" href="#myModal" >Channels <span class="glyphicon glyphicon-plus-sign" style="margin-top:2px"></span></a>
                 </li>
@@ -884,8 +960,13 @@ li.L5, li.L6, li.L7, li.L8 {
 		
       <li>
 				<?php	
+					if(is_numeric ($_SESSION['chname'])) {
+						
+					}
+					else
+					{
 					echo '<a class="actives" style="color:white !important;" href="index.php?chname=' . $_SESSION['chname'] . '"># ' . $_SESSION['chname'] . '</a>';
-                    
+                    }
 				?>
           
                     
@@ -922,7 +1003,7 @@ li.L5, li.L6, li.L7, li.L8 {
 		   
 		  <?php 
 		   
-                   echo '<a href="index.php?dmid='.$r22['user_id'].'">  '.$r22['user_name'].' </a>'
+                   echo '<a href="index.php?chname='.$r22['user_id'].'">  '.$r22['user_name'].' </a>'
 		  
 		  ?>
 		  
@@ -1560,6 +1641,46 @@ $(document).ready(function() {
        }
  
    });
+ 
+ $('.nav-pills a[href="#home700"]').click(function(){
+	
+var heya = 'hey';	
+	  $.ajax({
+ 
+               //AJAX type is "Post".
+ 
+               type: "POST",
+ 
+               //Data will be sent to "ajax.php".
+ 
+               url: "index.php",
+ 
+               //Data, that will be sent to "ajax.php".
+ 
+               data: {
+ 
+                   //Assigning value of "name" into "search" variable.
+ 
+                   pillwork: heya
+ 
+               },
+ 
+               //If result found, this funtion will be called.
+ 
+               success: function(html) {
+ 
+                   //Assigning result to "display" div in "search.php" file.
+ 
+                   document.getElementById("codec").innerHTML = 'Success!!';
+ 
+               }
+ 
+           });
+ 
+	 
+ });
+ 
+ 
  
 });
 

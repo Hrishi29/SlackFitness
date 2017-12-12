@@ -15,28 +15,12 @@ session_start();
   <!-- main CSS
         ============================================ -->
         <link rel="stylesheet" href="style.css">
-		<link rel="icon" type="image/jpg" href="https://static8.depositphotos.com/1010751/1032/v/950/depositphotos_10323838-stock-illustration-fitness-logo.jpg">
 	
 	
   </head>
 
 
 <body>
-
-
-<nav class="navbar navbar-inverse navbar-fixed-top">
-  <div class="container-fluid">
-    <div class="navbar-header">
-      <a style="font-weight:bold; font-family: 'Salsa'; font-size:2.5em; color:orange" class="navbar-brand" href="workspace.php">Fitness</a>
-    </div>
-    <ul class="nav navbar-nav navbar-right">
-      
-	  
-      <li><a role="button" style="color:white" class="btn btn-primary" href="contact.php">Contact Us</a></li>
-	  
-    </ul>
-  </div>
-</nav>
 
 	<div id="banner" class="container" >
 		<div style="position:absolute;" id="myCarousel" class="carousel slide" data-ride="carousel">
@@ -50,15 +34,15 @@ session_start();
    <!-- Wrapper for slides -->
   <div class="carousel-inner">
     <div class="item active">
-      <img class="adjust" alt="home" src="image.png">
+      <img class="adjust"  src="image.png">
     </div>
 
     <div class="item">
-      <img class="adjust" alt="home" src="image11.jpg">
+      <img class="adjust" src="image11.jpg">
     </div>
 
     <div class="item">
-      <img class="adjust" alt="home" src="image12.jpg">
+      <img class="adjust" src="image12.jpg">
     </div>
   </div>
 
@@ -73,10 +57,9 @@ session_start();
   </a>
 		</div>
 		<div  class="row"> <!-- overlay text -->
-			<div class="col-md-5"></div>
-			<div  style="margin-top:250px" class="col-md-6"> <!-- centering the form -->
-			<div style="text-align:center" class="well well-sm">
-			
+			<div  style="margin-top:250px" class="col-md-6 col-sm-2 col-sm-offset-2 col-md-offset-4"> <!-- centering the form -->
+			<div class="well well-sm">
+			<center>
 				<?php
 
 
@@ -116,10 +99,7 @@ session_start();
 				
 				<h2 style=" font-weight:bold">Sign in to your workspace</h2>
 					<p style=" font-weight:bold">Enter your workspace’s Slack URL.</p>
-						<form   class="form-horizontal" method="post" action="workspace.php">
-						
-						<div class="row">
-								<div class="col-lg-6 col-lg-offset-3">
+						<form  class="form-horizontal" method="post" action="workspace.php">
 							<div class="input-group">
 								
 									<input id="workspace" type="text"  placeholder="your-workspace-url" name="search" required />
@@ -127,28 +107,23 @@ session_start();
 							</div>
 								<br>
 								<div class="row">
-									<div class="col-lg-6 col-lg-offset-3">
+									<div class="col-md-11 col-sm-6">
 									<div class="input-group"  >
 											<button class="btn btn-success" name="submit" value="submit" type="submit">Continue -></button>
 									
 									</div>
 									</div>
 								</div>
-						</div>
-						</div>
-						
-						
 						</form>
 									
 									
 										
 									
 							
-				
+			</center>			
 			</div>
 		
 			</div>
-			<div class="col-md-2"></div>
 		</div>
 	</div>
 	

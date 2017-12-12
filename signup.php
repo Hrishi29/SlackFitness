@@ -18,6 +18,7 @@ if(!isset($_SESSION['workspace'])){ //only users within workspace
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
 	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>	
     <script src="https://www.google.com/recaptcha/api.js" async defer></script>
+	<link rel="icon" type="image/jpg" href="https://static8.depositphotos.com/1010751/1032/v/950/depositphotos_10323838-stock-illustration-fitness-logo.jpg">
 	
 	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css"><!-- getting the bootstrap css file for predefined components  -->
 </head>
@@ -25,12 +26,28 @@ if(!isset($_SESSION['workspace'])){ //only users within workspace
 
 <body>
 
+<nav class="navbar navbar-inverse navbar-fixed-top">
+  <div class="container-fluid">
+    <div class="navbar-header">
+      <a style="font-weight:bold; font-family: 'Salsa'; font-size:2.5em; color:orange" class="navbar-brand" href="signup.php">Fitness</a>
+    </div>
+    <ul class="nav navbar-nav navbar-right">
+      
+	  
+      <li><a role="button" style="color:white" class="btn btn-primary" href="contact.php">Contact Us</a></li>
+	  
+    </ul>
+  </div>
+</nav>
+
 
 <div class="container">
 <div class="row">
 <div class="col-md-6 col-md-offset-3">
 <center>
-
+<br>
+<br>
+<br>
 <h2>Sign Up</h2>
 
 
@@ -161,8 +178,45 @@ $insert_user="INSERT INTO users_info (id, user_pic, user_name, user_pass,  user_
 					
 					}
 
+					include 'class.phpmailer.php';
+					require_once 'class.smtp.php';
+
+					
+					$return_arrfinal = array();
+     $status_array['status'] = '1';
+     $mail = new PHPMailer();
+     $toarraymail=$user_email;
+     $mail->SMTPDebug = 1;                              // Enable verbose debug output
+     $mail->Port = '587';
+     $mail->isSMTP();                                      // Set mailer to use SMTP // Specify main and backup SMTP servers                                    // Set mailer to use SMTP
+     $mail->Host = gethostbyname('smtp.gmail.com');  // Specify main and backup SMTP servers
+     $mail->SMTPAuth = true; // Authentication must be disabled
+
+     $mail->Username = 'ghrishi29@gmail.com';
+     $mail->Password = 'userhrishi30';
+     $mail->SMTPSecure= 'tls';
+
+
+     $mail->setFrom("ghrishi29@gmail.com","Fitness");
+     $mail->AddAddress($toarraymail);     // Add a recipient
+     // Optional name
+     $mail->isHTML(true);                                  // Set email format to HTML
+		
+     $mail->Subject = 'User Verification For Fitness.com';
+     $mail->Body    =" Hi, <br> Your Authorization Code: $str";
+     $mail->AltBody = 'This is the body in plain text for non-HTML mail clients';
+
+     if(!$mail->Send()){
+       echo "false";
+       echo 'Mailer Error: ' . $mail->ErrorInfo;
+       return false;
+     }else{
+       header("Location:mail.php");
+       
+     }
+     
 				  
-       header("Location:index.php");	
+       //header("Location:index.php");	
 
     }
 

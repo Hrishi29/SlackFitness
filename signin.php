@@ -9,7 +9,7 @@ if(!isset($_SESSION['workspace'])){ //only users within workspace
 
 
 if(isset($_SESSION['user_name'])) { // if user in session jump to index page 
-   header("Location:callback.php");	
+   header("Location:index.php");	
 
 }	
 error_reporting(0);
@@ -18,13 +18,14 @@ error_reporting(0);
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <title>Slack</title>
+  <title>Fitness</title>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css"><!-- getting the bootstrap css file for predefined components  -->
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
   <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
   <script src="https://www.google.com/recaptcha/api.js" async defer></script>
+	<link rel="icon" type="image/jpg" href="https://static8.depositphotos.com/1010751/1032/v/950/depositphotos_10323838-stock-illustration-fitness-logo.jpg">
 		
   <!-- main CSS
         ============================================ -->
@@ -36,6 +37,20 @@ error_reporting(0);
 
 
 <body>
+<nav class="navbar navbar-inverse navbar-fixed-top">
+  <div class="container-fluid">
+    <div class="navbar-header">
+      <a style="font-weight:bold; font-family: 'Salsa'; font-size:2.5em; color:orange" class="navbar-brand" href="signin.php">Fitness</a>
+    </div>
+    <ul class="nav navbar-nav navbar-right">
+      
+	  
+      <li><a role="button" style="color:white" class="btn btn-primary" href="contact.php">Contact Us</a></li>
+	  
+    </ul>
+  </div>
+</nav>
+
 
 	<div id="banner-sign" class="container">
 		<div  class="row">
@@ -89,15 +104,17 @@ error_reporting(0);
 									<input id="password" type="password" class="form-control" name="user_pass" placeholder="Password" required>
 							</div>
 							
-							<br><!--
+							<br>
 							<div class="g-recaptcha" data-sitekey="6Lc1RzwUAAAAAPG12Vp4x3mASn8R3cn5yHP6WEFz"></div>
 							<br>
 							<div id="cando" style="font-weight:bold;" ></div>
-							<br> -->
+							<br>
 							
 							<div class="input-group">
 							<button  class="btn btn-md btn-success" onclick="return Validate()"  type="submit" value="submit1" name="submit1">Sign In</button><a style="margin-left:340px; font-weight:bold" href="signup.php">Don't have an account? Sign Up</a>
 							</div>
+						
+						</form>
 						
 						<?php require "init.php";    ?>
 						
@@ -120,7 +137,7 @@ error_reporting(0);
 
 	 $("#banner-sign").css("height",$(window).height()); //image resizing according to window height
 		
-	/*function Validate() {
+	function Validate() {
 
 if (grecaptcha.getResponse() == ""){
     document.getElementById("cando").innerHTML = "Captcha Needed!";
@@ -131,7 +148,7 @@ if (grecaptcha.getResponse() == ""){
 }
 
 	}	
-	*/
+	
 </script>
 	
 	

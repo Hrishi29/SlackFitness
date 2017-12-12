@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Dec 12, 2017 at 08:16 AM
+-- Generation Time: Dec 12, 2017 at 06:45 PM
 -- Server version: 5.7.14
 -- PHP Version: 5.6.25
 
@@ -285,7 +285,7 @@ INSERT INTO `users_info` (`user_id`, `id`, `user_email`, `user_pass`, `user_name
 (19, 1, 'Sbk@gmail.com', 'user123', 'Shahbaz Khan', '133740.jpg', NULL, '0', NULL),
 (20, 1, 'admin@super.com', 'super', 'Admin', '167185.png', NULL, '0', NULL),
 (21, 1, 'andy@gmail.com', 'user', 'Andy Murray', 'user-image.jpg', NULL, '0', NULL),
-(27, 1, 'hrishi.gadkari94@gmail.com', '1', 'hrishi2994', 'https://www.gravatar.com/avatar/d55156903c9ac57779df949d9aac0293?d=https%3A%2F%2Fimage.freepik.com%2Ffree-icon%2Fuser-image-with-black-background_318-34564.jpg&s=200', '1', '1', NULL),
+(27, 1, 'hrishi.gadkari94@gmail.com', '1', 'hrishi2994', 'https://www.gravatar.com/avatar/d55156903c9ac57779df949d9aac0293?d=https%3A%2F%2Fimage.freepik.com%2Ffree-icon%2Fuser-image-with-black-background_318-34564.jpg&s=200', '1', '0', NULL),
 (28, 1, 'hgadk001@odu.edu', NULL, 'Hrishi29', 'https://avatars0.githubusercontent.com/u/31528997?v=4', '1', '0', NULL);
 
 -- --------------------------------------------------------
@@ -325,7 +325,8 @@ INSERT INTO `users_message` (`mess_id`, `channel_name`, `messages`, `user_name`,
 (99, 'general', NULL, 'Tom Mater', '2017-12-08 18:28:13', NULL, NULL, 'Assignment 2.docx', '321480.docx'),
 (100, 'general', NULL, 'Tom Mater', '2017-12-08 18:57:54', NULL, NULL, 'assignment2.rar', '876558.rar'),
 (101, 'general', 'Checking Gravatar API', 'hrishi2994', '2017-12-09 10:33:18', NULL, NULL, NULL, NULL),
-(102, 'general', 'Github API Done!', 'Hrishi29', '2017-12-11 23:22:54', NULL, NULL, NULL, NULL);
+(102, 'general', 'Github API Done!', 'Hrishi29', '2017-12-11 23:22:54', NULL, NULL, NULL, NULL),
+(103, '127', 'Direct Messages!', 'hrishi2994', '2017-12-12 17:54:05', NULL, NULL, NULL, NULL);
 
 --
 -- Indexes for dumped tables
@@ -453,7 +454,7 @@ ALTER TABLE `users_info`
 -- AUTO_INCREMENT for table `users_message`
 --
 ALTER TABLE `users_message`
-  MODIFY `mess_id` int(20) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=103;
+  MODIFY `mess_id` int(20) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=104;
 --
 -- Constraints for dumped tables
 --
