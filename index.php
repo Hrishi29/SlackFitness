@@ -234,7 +234,7 @@ $result700=mysqli_query($conn,"select * from users_info where user_email='".$_SE
   </center>
 </div>
 
-
+</div>
 
 
 
@@ -355,7 +355,7 @@ $result700=mysqli_query($conn,"select * from users_info where user_email='".$_SE
 		<h4>Channels you can join to:</h4>
 	  
 
-      <div style="max-height:200px; overflow-y:auto;"class="well">
+      <div style="max-height:200px; overflow-y:auto;" class="well">
       <form method="post" action="index.php">
 	  	<ul class="list-group">
 		   
@@ -436,7 +436,7 @@ $result700=mysqli_query($conn,"select * from users_info where user_email='".$_SE
 		<h4>You have following invites:</h4>
 	  
 
-      <div style="max-height:400px; overflow-y:auto;"class="well">
+      <div style="max-height:400px; overflow-y:auto;" class="well">
       <form method="post" action="index.php">
 	  	<ul class="list-group">
 		   
@@ -527,7 +527,7 @@ $result700=mysqli_query($conn,"select * from users_info where user_email='".$_SE
 		    <div class="form-group">
 			
 			<label for="cmess">Enter Description: </label>
-			<textarea style="margin-top:20px;" class="form-control" type="text" name="mess_post" id="cmess" placeholder="(Optional)" ></textarea>
+			<textarea style="margin-top:20px;" class="form-control"  name="mess_post" id="cmess" placeholder="(Optional)" ></textarea>
 
 			
 		
@@ -579,7 +579,7 @@ $result700=mysqli_query($conn,"select * from users_info where user_email='".$_SE
 		    <div class="form-group">
 			
 			<label for="curl">Enter Description: </label>
-			<textarea style="margin-top:20px;" class="form-control" type="text" name="mess_url" id="curl" placeholder="(Optional)" ></textarea>
+			<textarea style="margin-top:20px;" class="form-control"  name="mess_url" id="curl" placeholder="(Optional)" ></textarea>
 
 			
 		
