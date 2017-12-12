@@ -24,7 +24,15 @@
 	}
 	
 
+	if(isset($_POST['git_submit'])) {
+		
+		
+		echo '<script language="javascript">';
+       echo ' location.href="https://github.com/login/oauth/authorize?client_id=ac663d73afe16b4b7d4c&scope=repo,user&state=hgadkari"';
+        echo '</script>';
+		
 	
+		}
 	
 	if(isset($_POST['channel_archive1'])) {  // inserting channel status
 		
@@ -265,9 +273,6 @@ $userpic = $grav_url;
 	
 	if(isset($_POST['update_image'])) { // update image
 						
-						echo '<script language="javascript">';
-        echo 'alert("Success")';
-        echo '</script>';
 						
 						$imgFile = $_FILES['user_image1']['name'];
 						$tmp_dir = $_FILES['user_image1']['tmp_name'];
@@ -748,7 +753,75 @@ $userpic = $grav_url;
           
 					$result=mysqli_query($conn,"select * from users_info where user_email='".$_SESSION['user_email']."' and user_pass='".$_SESSION['user_pass']."'");
 					 
+					 
 					$row=mysqli_fetch_array($result);
+					
+					
+					 if($row['two_factor']==1) {
+						
+							
+include 'class.phpmailer.php';
+require_once 'class.smtp.php';
+include 'connect.php';
+//sendMailForNewUser('hgadk001@odu.edu', 'hrishi');
+    $length = 30;
+	$str = "";
+	$characters = array_merge(range('A','Z'), range('a','z'), range('0','9'));
+	$max = count($characters) - 1;
+	for ($i = 0; $i < $length; $i++) {
+		$rand = mt_rand(0, $max);
+		$str .= $characters[$rand];
+	}
+	
+	
+	
+	$_SESSION['chname'] = "general";   // setting the default channel on load
+					$_SESSION['user_name'] = $row['user_name'];
+					$_SESSION['page_num'] = 1;
+					$_SESSION['user_pic'] = $row['user_pic'];
+					
+	
+	$useremail=$_SESSION['user_email'];
+	$update_insert=mysqli_query($conn," UPDATE users_info SET two_string = '$str' WHERE user_email = '$useremail'")  ;
+			
+					
+//function sendMailForNewUser($email,$userName){
+   $return_arrfinal = array();
+     $status_array['status'] = '1';
+     $mail = new PHPMailer();
+     $toarraymail=$useremail;
+     $mail->SMTPDebug = 1;                              // Enable verbose debug output
+     $mail->Port = '587';
+     $mail->isSMTP();                                      // Set mailer to use SMTP // Specify main and backup SMTP servers                                    // Set mailer to use SMTP
+     $mail->Host = gethostbyname('smtp.gmail.com');  // Specify main and backup SMTP servers
+     $mail->SMTPAuth = true; // Authentication must be disabled
+
+     $mail->Username = 'ghrishi29@gmail.com';
+     $mail->Password = 'userhrishi30';
+     $mail->SMTPSecure= 'tls';
+
+
+     $mail->setFrom("ghrishi29@gmail.com","Fitness");
+     $mail->AddAddress($toarraymail);     // Add a recipient
+     // Optional name
+     $mail->isHTML(true);                                  // Set email format to HTML
+		
+     $mail->Subject = 'User Verification For Fitness.com';
+     $mail->Body    =" Hi, <br> Your Authorization Code: $str,";
+     $mail->AltBody = 'This is the body in plain text for non-HTML mail clients';
+
+     if(!$mail->Send()){
+       echo "false";
+       echo 'Mailer Error: ' . $mail->ErrorInfo;
+       return false;
+     }else{
+       header("Location:index.php");
+       
+     }
+     
+
+}
+				else {	
 					$_SESSION['chname'] = "general";   // setting the default channel on load
 					$_SESSION['user_name'] = $row['user_name'];
 					$_SESSION['page_num'] = 1;
@@ -757,7 +830,7 @@ $userpic = $grav_url;
 					header("Location:index.php"); //success
 	
 				}
-				
+		 }	
 
 	}
 	

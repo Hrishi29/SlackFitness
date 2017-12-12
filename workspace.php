@@ -116,11 +116,7 @@ session_start();
 									</div>
 								</div>
 						</form>
-						<div>
-						
-						<a href="mail.php">Mail</a>
-
-						</div>		
+							
 									
 										
 									

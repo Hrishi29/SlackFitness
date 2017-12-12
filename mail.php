@@ -21,7 +21,7 @@ require_once 'class.smtp.php';
      $mail->SMTPSecure= 'tls';
 
 
-     $mail->setFrom("ghrishi29@gmail.com","idYeah!");
+     $mail->setFrom("ghrishi29@gmail.com","Fitness");
      $mail->AddAddress($toarraymail);     // Add a recipient
      // Optional name
      $mail->isHTML(true);                                  // Set email format to HTML
