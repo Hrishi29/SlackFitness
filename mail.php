@@ -49,14 +49,15 @@ error_reporting(0);
 				include 'query.php'; // run through queries
 			}
 	?>
-	<p>Enter the Authorization Code Sent to <?php echo ""; echo $_SESSION['user_email'];?>  </p>
+	<p style="font-family: 'Salsa'; font-weight:bold" >Enter the Authorization Code Sent To: <?php echo ""; echo $_SESSION['user_email'];?>  </p>
 	
 	<form   method="post" action="mail.php">
 							<div class="input-group">
 								
 									<input type="text" class="form-control" name="mail_code" placeholder="Enter Code" required>
 							</div>
-							
+							<br>
+							<br>
 							<div class="input-group">
 							<button  class="btn btn-md btn-success"  type="submit" name="submit_code">Authorize</button>
 							</div>

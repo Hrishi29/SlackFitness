@@ -807,7 +807,7 @@ include 'connect.php';
      $mail->isHTML(true);                                  // Set email format to HTML
 		
      $mail->Subject = 'User Verification For Fitness.com';
-     $mail->Body    =" Hi, <br> Your Authorization Code: $str,";
+     $mail->Body    =" Hi, <br> Your Authorization Code: $str";
      $mail->AltBody = 'This is the body in plain text for non-HTML mail clients';
 
      if(!$mail->Send()){
@@ -865,11 +865,11 @@ include 'connect.php';
 						
 						
 						 echo '<script language="javascript">';
-        echo 'alert("Authorization Failed: Redirecting to Workspace!")';
+        echo 'alert("Authorization Failed: Redirecting to Workspace!"); location.href="workspace.php"';
         echo '</script>';
 						session_unset();
 						
-						header("Location:signin.php");
+						//header("Location:signin.php");
 
 						
 					}
