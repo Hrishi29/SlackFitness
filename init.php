@@ -5,7 +5,7 @@ function goToAuthUrl()
 {
 	
 	$client_id = "d7df5ea1694abfd1d2b5";
-	$redirect_url1 = "http://localhost/milestone1/callback.php";
+	$redirect_url1 = "http://hrishi29.cs518.cs.odu.edu/callback.php";
 	if ($_SERVER['REQUEST_METHOD'] == 'GET') {
 		
 		$url = 'https://github.com/login/oauth/authorize?client_id='.$client_id."&redirect_url=".$redirect_url1."&scope=user";
