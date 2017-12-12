@@ -13,6 +13,20 @@ css file
  
 }
 
+
+#banner-sign1 {
+		
+  width: 100%;
+  background-image: url(image101.jpg);
+  height: 400px;
+  background-repeat: no-repeat;
+  background-position: center;
+  
+    background-size: cover;
+  
+}
+
+
 #banner-sign {
 		
   width: 100%;
