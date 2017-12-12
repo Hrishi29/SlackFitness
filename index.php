@@ -2,11 +2,16 @@
 
 session_start();//session starts here
 
+
+
+
 if(!isset($_SESSION['user_name'])) {
    header("Location:signin.php");	
 
 }	
 error_reporting(0);
+
+
 
 
 	?>
