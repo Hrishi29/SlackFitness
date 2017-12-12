@@ -189,6 +189,8 @@ $insert_user="INSERT INTO users_info (id, user_pic, user_name, user_pass,  user_
 		$str .= $characters[$rand];
 	}
 	
+	$useremail=$_SESSION['user_email'];
+	$update_insert=mysqli_query($conn," UPDATE users_info SET two_string = '$str' WHERE user_email = '$useremail'")  ;
 					
 					$return_arrfinal = array();
      $status_array['status'] = '1';
