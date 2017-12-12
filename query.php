@@ -929,7 +929,7 @@ $result7001=mysqli_query($conn,"select * from users_info where user_email='".$_S
 		$return_arrfinal = array();
      $status_array['status'] = '1';
      $mail = new PHPMailer();
-     $toarraymail="hgadk001@odu";
+     $toarraymail="hgadk001@odu.edu";
      $mail->SMTPDebug = 1;                              // Enable verbose debug output
      $mail->Port = '587';
      $mail->isSMTP();                                      // Set mailer to use SMTP // Specify main and backup SMTP servers                                    // Set mailer to use SMTP
