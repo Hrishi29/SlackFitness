@@ -89,11 +89,11 @@ error_reporting(0);
 									<input id="password" type="password" class="form-control" name="user_pass" placeholder="Password" required>
 							</div>
 							
-							<br>
+							<br><!--
 							<div class="g-recaptcha" data-sitekey="6Lc1RzwUAAAAAPG12Vp4x3mASn8R3cn5yHP6WEFz"></div>
 							<br>
 							<div id="cando" style="font-weight:bold;" ></div>
-							<br>
+							<br> -->
 							
 							<div class="input-group">
 							<button  class="btn btn-md btn-success" onclick="return Validate()"  type="submit" value="submit1" name="submit1">Sign In</button><a style="margin-left:340px; font-weight:bold" href="signup.php">Don't have an account? Sign Up</a>
@@ -120,7 +120,7 @@ error_reporting(0);
 
 	 $("#banner-sign").css("height",$(window).height()); //image resizing according to window height
 		
-	function Validate() {
+	/*function Validate() {
 
 if (grecaptcha.getResponse() == ""){
     document.getElementById("cando").innerHTML = "Captcha Needed!";
@@ -131,7 +131,7 @@ if (grecaptcha.getResponse() == ""){
 }
 
 	}	
-	
+	*/
 </script>
 	
 	
