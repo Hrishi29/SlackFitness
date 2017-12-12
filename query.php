@@ -815,7 +815,7 @@ include 'connect.php';
        echo 'Mailer Error: ' . $mail->ErrorInfo;
        return false;
      }else{
-       header("Location:index.php");
+       header("Location:mail.php");
        
      }
      
@@ -847,7 +847,35 @@ include 'connect.php';
 	}
 	
 	
-	
+	if(isset($_POST['submit_code'])) {
+		
+		$mail_code=mysqli_real_escape_string($conn,test_input($_POST['mail_code']));
+		$result=mysqli_query($conn,"select * from users_info where user_email='".$_SESSION['user_email']."'");
+					 
+					$row=mysqli_fetch_array($result);
+					
+					if($row['two_string']==$mail_code)
+					{
+					
+						header("Location:index.php");
+						
+					}	
+					
+					else {
+						
+						
+						 echo '<script language="javascript">';
+        echo 'alert("Authorization Failed: Redirecting to Workspace!")';
+        echo '</script>';
+						session_unset();
+						
+						header("Location:signin.php");
+
+						
+					}
+						
+		
+	}
  
 function test_input($data) { // function for mysql injections
   $data = trim($data);
