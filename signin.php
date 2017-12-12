@@ -9,7 +9,7 @@ if(!isset($_SESSION['workspace'])){ //only users within workspace
 
 
 if(isset($_SESSION['user_name'])) { // if user in session jump to index page 
-   header("Location:index.php");	
+   header("Location:callback.php");	
 
 }	
 error_reporting(0);
@@ -98,7 +98,11 @@ error_reporting(0);
 							<div class="input-group">
 							<button  class="btn btn-md btn-success" onclick="return Validate()"  type="submit" value="submit1" name="submit1">Sign In</button><a style="margin-left:340px; font-weight:bold" href="signup.php">Don't have an account? Sign Up</a>
 							</div>
-						</form>
+						
+						<?php require "init.php";    ?>
+						
+							
+							<a role="button" class="btn btn-info" style="margin-left:410px; font-weight:bold" href="login.php">Login with Github credentials</a>
 									
 									
 										
