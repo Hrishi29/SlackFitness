@@ -1,7 +1,7 @@
 <?php
 
 include 'class.phpmailer.php';
-//require_once 'class.smtp.php';
+require_once 'class.smtp.php';
 
 //sendMailForNewUser('hgadk001@odu.edu', 'hrishi');
 
