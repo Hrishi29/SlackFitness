@@ -77,7 +77,7 @@ li.L5, li.L6, li.L7, li.L8 {
 			{
 		?>
 		
-		<img src="<?php echo $_SESSION['user_pic']; ?>" class="img-rounded responsive"   width="200" height="200"> 
+		<img src="<?php echo $_SESSION['user_pic']; ?>" class="img-rounded responsive" alt="userpic"  width="200" height="200"> 
 		
 		
 		<?php
@@ -88,7 +88,7 @@ li.L5, li.L6, li.L7, li.L8 {
 			else if($row_grav['grav_image']==1){
 			
 		?>
-		<img src="<?php echo $_SESSION['user_pic']; ?>" class="img-rounded responsive"   width="200" height="200"> 
+		<img src="<?php echo $_SESSION['user_pic']; ?>" class="img-rounded responsive"  alt="userpic" width="200" height="200"> 
 		
 		<?php
 			}
@@ -96,7 +96,7 @@ li.L5, li.L6, li.L7, li.L8 {
 			else {
 		
 		?>
-		<img src="user_images/<?php echo $_SESSION['user_pic']; ?>" class="img-rounded responsive"   width="200" height="200"> 
+		<img src="user_images/<?php echo $_SESSION['user_pic']; ?>" class="img-rounded responsive" alt="userpic"  width="200" height="200"> 
 		
 		
 		<?php
@@ -1081,7 +1081,7 @@ $result700=mysqli_query($conn,"select * from users_info where user_email='".$_SE
 
 				?>
 				
-					<img src="user-image.jpg" class="img-rounded" height="65" width="65">
+					<img src="user-image.jpg" alt="userpic" class="img-rounded" height="65" width="65">
 				
 				
 				<?php
@@ -1090,7 +1090,7 @@ $result700=mysqli_query($conn,"select * from users_info where user_email='".$_SE
 						
 				?>
 
-				<img src="<?php echo $rnew2['user_pic']; ?>" class="img-rounded" height="65" width="65">
+				<img src="<?php echo $rnew2['user_pic']; ?>" class="img-rounded"  alt="userpic" height="65" width="65">
 					
 				
 				<?php
@@ -1104,7 +1104,7 @@ $result700=mysqli_query($conn,"select * from users_info where user_email='".$_SE
 					 
 				
 				
-					<img src="user_images/<?php echo $rnew2['user_pic']; ?>" class="img-rounded" height="65" width="65">
+					<img src="user_images/<?php echo $rnew2['user_pic']; ?>" class="img-rounded" alt="userpic" height="65" width="65">
 					<?php
 					
 					}
@@ -1125,7 +1125,7 @@ $result700=mysqli_query($conn,"select * from users_info where user_email='".$_SE
 
 						
 					
-					echo $r34['post_img']; ?>" class="img-rounded" height="400" width="450">
+					echo $r34['post_img']; ?>" class="img-rounded" alt="userpic" height="400" width="450">
 					<br>
 					<br>
 					<?php
@@ -1258,7 +1258,7 @@ $result700=mysqli_query($conn,"select * from users_info where user_email='".$_SE
 					 ?>
 					
 					
-					<img src="user-image.jpg" class="img-rounded" height="65" width="65">
+					<img src="user-image.jpg" class="img-rounded" alt="userpic" height="65" width="65">
 					
 					<?php
 					}
@@ -1266,7 +1266,7 @@ $result700=mysqli_query($conn,"select * from users_info where user_email='".$_SE
 						
 				?>
 
-				<img src="<?php echo $rnew4['user_pic']; ?>" class="img-rounded" height="65" width="65">
+				<img src="<?php echo $rnew4['user_pic']; ?>" class="img-rounded" alt="userpic" height="65" width="65">
 					
 				
 				<?php
@@ -1278,7 +1278,7 @@ $result700=mysqli_query($conn,"select * from users_info where user_email='".$_SE
 				?>	
 				
 				
-					<img src="user_images/<?php echo $rnew4['user_pic'] ?>" class="img-rounded" height="65" width="65">
+					<img src="user_images/<?php echo $rnew4['user_pic'] ?>" class="img-rounded" alt="userpic" height="65" width="65">
 					
 					<?php
 					
