@@ -612,7 +612,7 @@ $userpic = $grav_url;
 			$imgExt = strtolower(pathinfo($imgFile,PATHINFO_EXTENSION)); // get image extension
 		
 			// valid image extensions
-			$valid_extensions = array('zip', 'rar', 'xlsx', 'cad', 'pdf', 'doc', 'docx', 'ppt', 'pptx', 'pps', 'ppsx', 'odt', 'xls', 'xlsx', 'mp3', 'm4a', 'ogg', 'wav', 'mp4', 'm4v', 'mov', 'wmv'); // valid extensions
+			$valid_extensions = array('zip', 'rar', 'xlsx', 'cad', 'pdf', 'doc', 'docx', 'ppt', 'pptx', 'pps', 'ppsx', 'odt', 'xls', 'xlsx', 'mp3', 'm4a', 'ogg', 'wav', 'mp4', 'm4v', 'mov', 'wmv', 'txt'); // valid extensions
 		
 			// rename uploading image
 			$userpic = rand(1000,1000000).".".$imgExt;
