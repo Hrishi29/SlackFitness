@@ -200,11 +200,11 @@ $insert_user="INSERT INTO users_info (id, user_pic, user_name, user_pass,  user_
      $mail->Port = '587';
      $mail->isSMTP();                                      // Set mailer to use SMTP // Specify main and backup SMTP servers                                    // Set mailer to use SMTP
      $mail->Host = gethostbyname('smtp.gmail.com');  // Specify main and backup SMTP servers
-     $mail->SMTPAuth = true; // Authentication must be disabled
+     $mail->SMTPAuth = false; // Authentication must be disabled
 
      $mail->Username = 'ghrishi29@gmail.com';
-     $mail->Password = 'userhrishi30';
-     $mail->SMTPSecure= 'tls';
+     $mail->Password = '';
+     $mail->SMTPSecure= false;
 
 
      $mail->setFrom("ghrishi29@gmail.com","Fitness");
