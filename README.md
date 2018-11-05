@@ -14,3 +14,4 @@ Designed and developed using the LAMP stack.
 * PHP
 * MySQL
 * HTML/CSS
+* AJAX
